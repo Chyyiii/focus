@@ -853,6 +853,15 @@ label.req::after { content: " *"; color: var(--out); font-weight: 800; }
 .field.bad > label { color: var(--out); }
 .field.bad input, .field.bad select { border-color: var(--out); box-shadow: 0 0 0 3px color-mix(in srgb, var(--out) 22%, transparent); animation: reqshake .3s; }
 @keyframes reqshake { 25%, 75% { transform: translateX(-4px); } 50% { transform: translateX(4px); } }
+.cmprow .cmp-v { font-variant-numeric: tabular-nums; }
+#ovCmp .cmprow .cmp-v:not(.up):not(.down) { font-size: 16px; font-weight: 700; }
+#ovCmp .cmprow .in { color: var(--in); }
+#ovCmp .cmprow .out { color: var(--out); }
+#ovCmp .cmprow.head { padding: 2px 0; border-bottom: 0; }
+#ovCmp .cmprow.head .cmp-v:not(.up):not(.down) { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+#ovCmp .cmprow .cmp-v.avgmain:not(.up):not(.down) { font-size: 20px; font-weight: 800; color: var(--brand); }
+#ovCmp .cmprow .cmp-v.avglive:not(.up):not(.down) { font-size: 16px; font-weight: 700; color: var(--ink); }
+#cmpCats .cmprow b { font-size: 16px; }
 #tmWarn.bud-st { margin: 0; }
 </style>
 <script>
@@ -1196,7 +1205,7 @@ label.req::after { content: " *"; color: var(--out); font-weight: 800; }
         <p>Заполнили форму записи и нажали <b>«Сохранить как быструю запись»</b>: сумма, категория и комментарий запомнятся. В следующий раз в начале формы появится кнопка с этой записью: нажмите на неё, и форма заполнится сама, останется нажать «Записать». «Править» рядом позволяет удалить ненужные.</p>
       </details>
       <details><summary>Сравнение и динамика</summary>
-        <p>Плитка <b>«Сравнение и динамика»</b> показывает столбики доходов и расходов за последние 6 месяцев и сравнивает выбранный месяц с предыдущим по категориям: красная стрелка вверх означает, что вы потратили больше, зелёная вниз — меньше.</p>
+        <p>Плитка <b>«Сравнение и динамика»</b> показывает столбики доходов и расходов за последние 6 месяцев и сравнивает выбранный месяц с предыдущим по категориям: красная стрелка вверх означает, что вы потратили больше, зелёная вниз — меньше. Ниже стоит <b>средний расход в день</b> по месяцам: все расходы месяца, делённые на прошедшие дни, и справа то же без регулярных платежей.</p>
       </details>
       <details><summary>Скрыть суммы</summary>
         <p>Кнопка с глазом в верхней карточке размывает все суммы на экране, чтобы можно было открыть приложение при других людях. Нажмите ещё раз, чтобы показать их.</p>
@@ -1383,6 +1392,11 @@ label.req::after { content: " *"; color: var(--out); font-weight: 800; }
         <div class="cmpbars" id="cmpBars"></div>
         <div class="cmpleg"><span><i style="background:var(--brand)"></i>Доходы</span><span><i style="background:#C0392B"></i>Расходы</span></div>
         <div id="cmpTable"></div>
+      </div>
+      <div>
+        <span class="lbl">Средний расход в день</span>
+        <p class="hint" id="cmpAvgH"></p>
+        <div id="cmpAvg"></div>
       </div>
       <div>
         <span class="lbl" id="cmpHead">Сравнение с прошлым месяцем</span>
@@ -4565,8 +4579,32 @@ label.req::after { content: " *"; color: var(--out); font-weight: 800; }
       return '<div class="cmpcol' + (idx === 5 ? ' now' : '') + '"><div class="cmppair"><i class="in" style="height:' + hi.toFixed(1) + '%"></i><i class="out" style="height:' + ho.toFixed(1) + '%"></i></div><span>' + MON[x.d.getMonth()] + '</span></div>';
     }).join('');
     $('cmpTable').innerHTML = arr.slice().reverse().filter(function (x) { return x.t.inc > 0 || x.t.out > 0; }).map(function (x) {
-      return '<div class="cmprow"><span>' + cap(x.d.toLocaleDateString('ru-RU', { month: 'long', year: 'numeric' })) + '</span><span class="cmp-v">+' + money(r2(x.t.inc)) + '</span><span class="cmp-v">−' + money(r2(x.t.out)) + '</span></div>';
+      return '<div class="cmprow"><span>' + cap(x.d.toLocaleDateString('ru-RU', { month: 'long', year: 'numeric' })) + '</span><span class="cmp-v in">+' + money(r2(x.t.inc)) + '</span><span class="cmp-v out">−' + money(r2(x.t.out)) + '</span></div>';
     }).join('') || '<p class="hint">Пока нет записей за эти месяцы.</p>';
+    // Средний расход в день: за прошедшие дни месяца (в текущем) или за весь месяц
+    var nowD = new Date(), todayS0 = dateStr(nowD), avgRows = [];
+    arr.slice().reverse().forEach(function (x) {
+      var y = x.d.getFullYear(), m = x.d.getMonth(), p = y + '-' + pad(m + 1) + '-';
+      var days = new Date(y, m + 1, 0).getDate();
+      if (y === nowD.getFullYear() && m === nowD.getMonth()) days = nowD.getDate();
+      else if (new Date(y, m, 1) > nowD) return;
+      var all = 0, live = 0;
+      txs.forEach(function (t) {
+        if (t.type !== 'out' || t.date.indexOf(p) !== 0 || t.date > todayS0) return;
+        all += t.amount; if (!t.auto) live += t.amount;
+      });
+      if (all <= 0) return;
+      avgRows.push({ d: x.d, avg: all / days, live: live / days, days: days });
+    });
+    $('cmpAvgH').textContent = avgRows.length ? 'Все расходы месяца, делённые на число прошедших дней. Во втором столбце то же без регулярных платежей: так видно, сколько уходит на обычную жизнь.' : '';
+    $('cmpAvg').innerHTML = (avgRows.length ? '<div class="cmprow head"><span></span><span class="cmp-v">в день</span><span class="cmp-v">без регулярных</span></div>' : '') + avgRows.map(function (x, i) {
+      var prev = avgRows[i + 1], dl = '';
+      if (prev && prev.avg > 0) {
+        var df = Math.round(x.avg - prev.avg);
+        dl = Math.abs(df) < 1 ? '' : '<small class="' + (df > 0 ? 'up' : 'down') + '" style="display:block;font-size:12px;margin-top:2px">' + (df > 0 ? '↑ +' : '↓ −') + money(Math.abs(df)) + ' к прошлому</small>';
+      }
+      return '<div class="cmprow"><span>' + cap(x.d.toLocaleDateString('ru-RU', { month: 'long', year: 'numeric' })) + dl + '</span><span class="cmp-v avgmain">' + money(Math.round(x.avg)) + '</span><span class="cmp-v avglive">' + money(Math.round(x.live)) + '</span></div>';
+    }).join('') || '<p class="hint">Пока нет расходов за эти месяцы.</p>';
     var cur = arr[5], pd = new Date(view.y, view.m - 1, 1), prev = monthTotals(pd.getFullYear(), pd.getMonth());
     var cn = cap(cur.d.toLocaleDateString('ru-RU', { month: 'long' })), pn = cap(pd.toLocaleDateString('ru-RU', { month: 'long' }));
     $('cmpHead').textContent = cn + ' и ' + pn.toLowerCase();
