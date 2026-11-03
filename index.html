@@ -394,6 +394,85 @@ footer p { max-width: 52ch; }
   font-size: 16px;
   box-shadow: var(--shadow);
 }
+
+/* ---- вкладки и привычки ---- */
+.tabbar { position: fixed; z-index: 25; left: 0; right: 0; bottom: 0; display: flex; justify-content: center; background: var(--surface); border-top: 1px solid var(--line); padding: 6px 10px calc(6px + env(safe-area-inset-bottom, 0px)); }
+.tabbar-in { display: flex; width: 100%; max-width: 560px; gap: 4px; }
+.tabbar button { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px; background: transparent; border: 0; border-radius: 14px; padding: 7px 4px; font-size: 12px; font-weight: 700; color: var(--muted); }
+.tabbar button svg { width: 22px; height: 22px; }
+.tabbar button[aria-selected="true"] { color: var(--brand); background: var(--tint); }
+:root[data-palette] .tabbar button[aria-selected="true"] { color: var(--ink); }
+body.has-tabs { padding-bottom: 150px; }
+body.has-tabs .fab { bottom: calc(80px + env(safe-area-inset-bottom, 0px)); }
+body.lay-edit .tabbar { display: none; }
+body.tab-today .fab, body.tab-hab .fab { display: none; }
+.pghead { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 6px 2px 0; }
+.pghead .brand { color: var(--ink); padding-top: 0; }
+.pghead .eye { background: var(--surface); color: var(--ink); border: 1px solid var(--line); }
+.pgtitle { margin: 0; font-size: 26px; font-weight: 800; letter-spacing: -0.01em; }
+.pgsub { margin: 2px 0 0; color: var(--muted); font-size: 14px; }
+.hrow { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-top: 1px solid var(--line); }
+.hrow:first-child { border-top: 0; }
+.hchk { flex: none; width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--line); background: var(--bg); display: grid; place-items: center; font-size: 20px; color: transparent; }
+.hchk.on { background: var(--brand); border-color: var(--brand); color: var(--brand-ink); }
+.hmain { flex: 1; min-width: 0; text-align: left; background: transparent; border: 0; padding: 0; color: inherit; }
+.hname { font-weight: 800; font-size: 16px; overflow-wrap: anywhere; }
+.hmeta { color: var(--muted); font-size: 13px; margin-top: 2px; }
+.hstreak { font-weight: 800; font-size: 14px; white-space: nowrap; }
+.hweek { display: flex; gap: 4px; margin-top: 8px; }
+.hweek button { flex: 1; min-width: 0; border: 1px solid var(--line); background: var(--bg); border-radius: 8px; padding: 4px 0; font-size: 11px; font-weight: 700; color: var(--muted); }
+.hweek button.on { background: var(--brand); border-color: var(--brand); color: var(--brand-ink); }
+.hweek button.off { opacity: 0.35; }
+.hweek button.today { outline: 2px solid var(--brand); outline-offset: 1px; }
+.hweek button:disabled { opacity: 0.25; }
+.hbar { height: 8px; border-radius: 99px; background: var(--tint); overflow: hidden; }
+.hbar i { display: block; height: 100%; width: 0; background: var(--brand); border-radius: 99px; transition: width 0.3s; }
+.tcard { background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: 16px; display: flex; flex-direction: column; gap: 8px; text-align: left; width: 100%; }
+.tcard h3 { margin: 0; font-size: 13px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.tcard .big { font-size: 30px; font-weight: 800; }
+.hdays { display: flex; gap: 6px; }
+.hdays button { flex: 1; border: 1px solid var(--line); background: var(--bg); border-radius: 10px; padding: 10px 0; font-weight: 700; color: var(--muted); }
+.hdays button[aria-pressed="true"] { background: var(--brand); border-color: var(--brand); color: var(--brand-ink); }
+.hemo { display: flex; flex-wrap: wrap; gap: 6px; }
+.hemo button { width: 42px; height: 42px; border-radius: 12px; border: 1px solid var(--line); background: var(--bg); font-size: 22px; }
+.hemo button[aria-pressed="true"] { border-color: var(--brand); outline: 2px solid var(--brand); }
+.hempty { color: var(--muted); padding: 10px 0; }
+
+.brandrow { display: flex; align-items: center; gap: 10px; }
+.star { width: 26px; height: 26px; color: var(--brand); filter: drop-shadow(0 0 8px var(--ge)); }
+.pghead .brand { font-size: 16px; }
+.pcard { position: relative; overflow: hidden; background: linear-gradient(160deg, var(--surface), var(--tint)); border: 1px solid var(--line); border-radius: 24px; padding: 16px; text-align: left; width: 100%; color: inherit; box-shadow: var(--shadow); }
+.pcard h3 { margin: 0; font-size: 14px; font-weight: 600; color: var(--muted); }
+.pbal-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+.pbal-v { font-size: 34px; font-weight: 800; letter-spacing: -0.01em; margin-top: 4px; font-variant-numeric: tabular-nums; }
+.pbadge { font-size: 13px; font-weight: 800; padding: 5px 10px; border-radius: 10px; background: var(--in-tint); color: var(--in); white-space: nowrap; }
+.pbadge.neg { background: var(--out-tint); color: var(--out); }
+.pchart { display: block; width: calc(100% + 32px); margin: 6px -16px -16px; height: 84px; }
+.prow1 { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.prow1 .pv { font-size: 20px; font-weight: 800; margin-top: 6px; }
+.prow1 .chev { color: var(--muted); font-size: 24px; }
+.pcard .hbar { margin-top: 12px; }
+.pgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.pgrid .pcard { display: flex; flex-direction: column; gap: 6px; min-height: 120px; }
+.pico { width: 28px; height: 28px; color: var(--brand); }
+.pcard .pt { font-weight: 800; font-size: 15px; }
+.pcard .ps { font-size: 14px; color: var(--muted); font-weight: 600; }
+.pcard .ps.ok { color: var(--in); }
+.pcard .ps.bad { color: var(--out); }
+.pgoal { display: flex; align-items: center; gap: 14px; }
+.pgoal .grow { flex: 1; min-width: 0; }
+.pgoal .gt { display: flex; justify-content: space-between; font-weight: 800; font-size: 15px; }
+
+#todayBody { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+#todayBody > * { min-width: 0; }
+#todayBody.dense { gap: 8px; }
+#todayBody .pcard { min-height: 0; }
+#todayBody .pcard.w1 { min-height: 112px; }
+.pcard.w1 .pbal-top { flex-direction: column; }
+.pcard.w1 .pbal-v { font-size: 24px; }
+.pcard.w1 .pgoal .pico { display: none; }
+.pcard.w1 .pt { font-size: 14px; }
+body.lay-edit .pghead, body.lay-edit #todayDate { pointer-events: none; }
 .fab span { font-size: 24px; line-height: 0.8; font-weight: 600; }
 
 /* Окна снизу */
@@ -939,7 +1018,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
 })();
 </script>
 
-<main class="wrap">
+<main class="wrap" id="finMain">
   <header class="hero" aria-label="Итоги месяца">
     <div class="hero-top">
       <span class="brand" id="brand">FOCUS</span>
@@ -1004,6 +1083,24 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     <button type="button" class="secondary helpbtn" id="tourBtn" style="margin-top:10px">Показать обучение</button>
   </footer>
 </main>
+
+<main class="wrap" id="todayMain" hidden>
+  <div class="pghead"><span class="brandrow"><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.5c.7 5.6 3.4 8.8 10.5 10.5-7.1 1.7-9.8 4.9-10.5 10.5-.7-5.6-3.4-8.8-10.5-10.5C8.6 10.3 11.3 7.1 12 1.5z" fill="currentColor"/></svg><span class="brand" id="brand2">FOCUS</span></span><button type="button" class="eye" id="gear2" aria-label="Настройки"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg></button></div>
+  <p class="pgsub" id="todayDate" style="margin:-4px 2px 0"></p>
+  <div id="todayBody"></div>
+</main>
+<main class="wrap" id="habMain" hidden>
+  <div class="pghead"><span class="brand" id="brand3">FOCUS</span><button type="button" class="eye" id="gear3" aria-label="Настройки"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg></button></div>
+  <div><h1 class="pgtitle">Привычки</h1><p class="pgsub" id="habSub"></p></div>
+  <div class="card" id="habList"></div>
+  <button type="button" class="primary" id="habAdd">+ Новая привычка</button>
+  <p class="hint">Нажмите на кружок, чтобы отметить сегодня. Квадратики недели можно нажимать, чтобы отметить прошлые дни.</p>
+</main>
+<nav class="tabbar" id="tabbar" aria-label="Разделы"><div class="tabbar-in" role="tablist">
+  <button type="button" role="tab" data-tab="today" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg>Сегодня</button>
+  <button type="button" role="tab" data-tab="fin" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="3"/><path d="M3 10h18M16 15h2"/></svg>Финансы</button>
+  <button type="button" role="tab" data-tab="hab" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4L19 7"/><rect x="3" y="3" width="18" height="18" rx="5"/></svg>Привычки</button>
+</div></nav>
 
 <div class="laytop" id="layTop" hidden>
   <div class="laytop-r"><strong>Правка главного экрана</strong><button type="button" class="primary" id="layDone">Готово</button></div>
@@ -1276,6 +1373,11 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
       </details>
       <details><summary>Быстрые записи</summary>
         <p>Заполнили форму записи и нажали <b>«Сохранить как быструю запись»</b>: сумма, категория и комментарий запомнятся. В следующий раз в начале формы появится кнопка с этой записью: нажмите на неё, и форма заполнится сама, останется нажать «Записать». «Править» рядом позволяет удалить ненужные.</p>
+      </details>
+      <details><summary>Вкладки и привычки</summary>
+        <p>Внизу экрана три раздела. <b>«Сегодня»</b> собирает главное на день: баланс с графиком за 30 дней, сколько привычек сделано сегодня, сколько можно потратить, лучшая серия и прогресс недели. Нажмите на карточку, чтобы перейти в нужный раздел. Экран «Сегодня» настраивается так же, как «Финансы»: откройте «Настройки» → «Внешний вид» → «Изменить порядок и размер плиток» на нужной вкладке. У каждой вкладки свой порядок. <b>«Финансы»</b> это всё, что было в приложении раньше. <b>«Привычки»</b> это ваши ежедневные дела.</p>
+        <p>В «Привычках» нажмите «Новая привычка», выберите название, значок и дни недели. Нажмите на кружок, чтобы отметить сегодня. Квадратики недели можно нажимать, чтобы отметить или снять прошлые дни. Число рядом с огоньком показывает серию подряд выполненных запланированных дней. Дни, в которые привычка не запланирована, серию не прерывают. Чтобы изменить или удалить привычку, нажмите на её название.</p>
+        <p>Привычки входят в резервную копию вместе с остальными данными.</p>
       </details>
       <details><summary>Главный экран: порядок и размер плиток</summary>
         <p>«Настройки» → «Внешний вид» → <b>«Изменить порядок и размер плиток»</b>. Откроется режим правки: нажмите на плитку, чтобы выбрать её, и используйте большие кнопки внизу: «Выше», «Ниже», «Сделать узкой» или «Сделать широкой», «Скрыть». Плитку можно и перетащить: удерживайте её и ведите пальцем. Чем шире плитка, тем больше в ней видно: например, у «Счетов», «Долгов» и «Регулярных платежей» больше строк, у «Лимитов» несколько категорий, у «Сравнения» столбики за полгода. «Компактно» делает плитки и промежутки меньше, «Вернуть как было» сбрасывает всё. Скрытые плитки в режиме правки видны бледными, их можно вернуть кнопкой «Показать». Остаток вверху экрана остаётся на месте. Настройка хранится на этом устройстве и входит в резервную копию.</p>
@@ -1620,6 +1722,24 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
         <div class="field"><label for="dNote">Комментарий</label><input id="dNote" maxlength="60" autocomplete="off" placeholder="Необязательно"></div>
       </details>
       <button type="submit" class="primary" id="dSubmit">Записать</button>
+    </form>
+  </div>
+</div>
+
+
+<div class="overlay" id="ovHab" hidden>
+  <div class="backdrop" data-close></div>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="habT" tabindex="-1">
+    <div class="sheet-head">
+      <h2 id="habT">Новая привычка</h2>
+      <button type="button" class="x" data-close aria-label="Закрыть">×</button>
+    </div>
+    <form id="habForm" class="stack" novalidate>
+      <div class="field"><label for="habName">Название</label><input id="habName" maxlength="40" autocomplete="off" placeholder="Например: зарядка"></div>
+      <div class="field"><label>Значок</label><div class="hemo" id="habEmo"></div></div>
+      <div class="field"><label>В какие дни</label><div class="hdays" id="habDays"></div></div>
+      <button type="submit" class="primary" id="habSubmit">Сохранить</button>
+      <button type="button" class="secondary" id="habDel" hidden>Удалить привычку</button>
     </form>
   </div>
 </div>
@@ -1986,6 +2106,225 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     });
     return { items: items };
   }
+
+  // ===== Привычки =====
+  var LS_HAB = 'kassa-habits-v1';
+  var hab = { items: [], log: {} };
+  var habVer = 0, habPending = 0, habChain = Promise.resolve();
+  var HAB_EMO = ['💪','🏃','📖','💧','🧘','😴','🥗','🚭','✍️','🎯','🧠','🦷'];
+  var WD = ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
+  function cleanHab(o) {
+    var items = [], log = {};
+    if (o && Array.isArray(o.items)) o.items.forEach(function (x) {
+      if (items.length >= 60 || !x || typeof x.id !== 'string' || !/^[A-Za-z0-9]{1,24}$/.test(x.id)) return;
+      var nm = typeof x.name === 'string' ? x.name.replace(/\s+/g, ' ').trim().slice(0, 40) : '';
+      if (!nm) return;
+      var days = Array.isArray(x.days) ? x.days.filter(function (d, i, a) { return d >= 0 && d <= 6 && a.indexOf(d) === i; }) : [];
+      if (!days.length) days = [0, 1, 2, 3, 4, 5, 6];
+      items.push({ id: x.id, name: nm, icon: typeof x.icon === 'string' ? x.icon.slice(0, 4) : '🎯', days: days.sort(),
+        created: (typeof x.created === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(x.created)) ? x.created : dateStr(new Date()) });
+    });
+    var ids = {}; items.forEach(function (i) { ids[i.id] = 1; });
+    if (o && o.log && typeof o.log === 'object') Object.keys(o.log).slice(-2000).forEach(function (k) {
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(k) || !Array.isArray(o.log[k])) return;
+      var a = o.log[k].filter(function (id, i, arr) { return ids[id] && arr.indexOf(id) === i; });
+      if (a.length) log[k] = a;
+    });
+    return { items: items, log: log };
+  }
+  function lsLoadHab() { try { return cleanHab(JSON.parse(localStorage.getItem(LS_HAB))); } catch (e) { return cleanHab(null); } }
+  function saveHab() {
+    var body = { items: hab.items, log: hab.log };
+    if (store.mode === 'cloud') return store.col.doc('_hab').set(body);
+    try { localStorage.setItem(LS_HAB, JSON.stringify(body)); } catch (e) {}
+    return Promise.resolve();
+  }
+  function persistHab() {
+    habVer++;
+    habPending++;
+    habChain = habChain.then(saveHab).catch(function () { toast('Не удалось сохранить привычки. Попробуйте ещё раз.'); }).then(function () { habPending--; });
+  }
+  function wdOf(d) { return (d.getDay() + 6) % 7; }
+  function habSched(h, d) { return h.days.indexOf(wdOf(d)) >= 0; }
+  function habDone(h, key) { var a = hab.log[key]; return !!a && a.indexOf(h.id) >= 0; }
+  function habStreak(h) {
+    var d = new Date(), n = 0, todayK = dateStr(d);
+    for (var i = 0; i < 800; i++) {
+      var k = dateStr(d);
+      if (k < h.created && !habDone(h, k)) break;
+      if (habSched(h, d) || habDone(h, k)) {
+        if (habDone(h, k)) n++;
+        else if (k !== todayK) break;
+      }
+      d.setDate(d.getDate() - 1);
+    }
+    return n;
+  }
+  function habToggle(id, key) {
+    var a = (hab.log[key] || []).slice(), i = a.indexOf(id);
+    if (i >= 0) a.splice(i, 1); else a.push(id);
+    if (a.length) hab.log[key] = a; else delete hab.log[key];
+    persistHab(); renderHab();
+  }
+  function habToday() {
+    var d = new Date(), k = dateStr(d);
+    return hab.items.filter(function (h) { return habSched(h, d) || habDone(h, k); });
+  }
+  function weekDates() {
+    var d = new Date(); d.setDate(d.getDate() - wdOf(d));
+    var r = [];
+    for (var i = 0; i < 7; i++) { r.push(new Date(d)); d.setDate(d.getDate() + 1); }
+    return r;
+  }
+  function habRowHtml(h, full) {
+    var k = dateStr(new Date()), on = habDone(h, k), st = habStreak(h);
+    var wk = '';
+    if (full) {
+      wk = '<div class="hweek">' + weekDates().map(function (d, i) {
+        var kk = dateStr(d), fut = kk > k, sc = habSched(h, d);
+        return '<button type="button" data-hk="' + kk + '" data-h="' + h.id + '" class="' + (habDone(h, kk) ? 'on ' : '') + (sc ? '' : 'off ') + (kk === k ? 'today' : '') + '"' + (fut ? ' disabled' : '') + ' aria-label="' + WD[i] + (habDone(h, kk) ? ', сделано' : '') + '">' + WD[i] + '</button>';
+      }).join('') + '</div>';
+    }
+    return '<div class="hrow"><button type="button" class="hchk' + (on ? ' on' : '') + '" data-hc="' + h.id + '" aria-label="Отметить: ' + esc(h.name) + '" aria-pressed="' + on + '">✓</button>' +
+      '<div class="hmain"' + (full ? ' data-he="' + h.id + '" role="button" tabindex="0"' : '') + '><div class="hname">' + esc(h.icon) + ' ' + esc(h.name) + '</div>' +
+      '<div class="hmeta">' + (h.days.length === 7 ? 'каждый день' : h.days.map(function (x) { return WD[x]; }).join(', ')) + '</div>' + wk + '</div>' +
+      (st > 0 ? '<div class="hstreak">🔥 ' + st + '</div>' : '') + '</div>';
+  }
+
+  function homeBal() {
+    if (accOn()) return accTotal();
+    var b = 0;
+    txs.forEach(function (t) { if (t.example) return; b += t.type === 'in' ? t.amount : -t.amount; });
+    return r2(b);
+  }
+  function homeTrend(bal) {
+    var N = 30, today = new Date(), flow = {}, keys = [];
+    txs.forEach(function (t) { if (t.example) return; flow[t.date] = (flow[t.date] || 0) + (t.type === 'in' ? t.amount : -t.amount); });
+    var vals = [], cur = bal, d = new Date(today);
+    for (var i = 0; i < N; i++) { vals.unshift(cur); cur -= (flow[dateStr(d)] || 0); d.setDate(d.getDate() - 1); }
+    var base = cur, change = bal - base, badge;
+    if (Math.abs(change) < 0.005) badge = '<span class="pbadge">без изменений</span>';
+    else if (base > 0) badge = '<span class="pbadge' + (change < 0 ? ' neg' : '') + '">' + (change > 0 ? '↑ +' : '↓ −') + Math.abs(Math.round(change / base * 100)) + '%</span>';
+    else badge = '<span class="pbadge' + (change < 0 ? ' neg' : '') + '">' + (change > 0 ? '+' : '−') + money(Math.round(Math.abs(change))) + '</span>';
+    var mn = Math.min.apply(null, vals), mx = Math.max.apply(null, vals), W = 300, H = 84, pad2 = 14;
+    var rng = mx - mn || 1;
+    var pts = vals.map(function (v, i) { return [i / (N - 1) * W, H - pad2 - (v - mn) / rng * (H - pad2 * 2)]; });
+    var dd = 'M' + pts[0][0].toFixed(1) + ' ' + pts[0][1].toFixed(1);
+    for (var j = 0; j < pts.length - 1; j++) {
+      var p0 = pts[j - 1] || pts[j], p1 = pts[j], p2 = pts[j + 1], p3 = pts[j + 2] || p2;
+      dd += ' C' + (p1[0] + (p2[0] - p0[0]) / 6).toFixed(1) + ' ' + (p1[1] + (p2[1] - p0[1]) / 6).toFixed(1) + ',' + (p2[0] - (p3[0] - p1[0]) / 6).toFixed(1) + ' ' + (p2[1] - (p3[1] - p1[1]) / 6).toFixed(1) + ',' + p2[0].toFixed(1) + ' ' + p2[1].toFixed(1);
+    }
+    var svg = '<svg class="pchart" viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="pgf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--brand)" stop-opacity=".35"/><stop offset="1" stop-color="var(--brand)" stop-opacity="0"/></linearGradient></defs>' +
+      '<path d="' + dd + ' L' + W + ' ' + H + ' L0 ' + H + ' Z" fill="url(#pgf)"/><path d="' + dd + '" fill="none" stroke="var(--brand)" stroke-width="2.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg>';
+    return { badge: badge, svg: svg };
+  }
+  function renderHab() {
+    var k = dateStr(new Date());
+    var td = new Date().toLocaleDateString('ru-RU', { weekday: 'long', day: 'numeric', month: 'long' });
+    $('todayDate').textContent = cap(td);
+    var all = habToday(), done = all.filter(function (h) { return habDone(h, k); }).length;
+    $('habSub').textContent = hab.items.length ? (all.length ? 'Сегодня сделано ' + done + ' из ' + all.length : 'Сегодня выходной от привычек') : 'Начните с одной простой привычки';
+    $('habList').innerHTML = hab.items.length ? hab.items.map(function (h) { return habRowHtml(h, true); }).join('') : '<p class="hempty">Пока нет привычек. Добавьте первую, например «Зарядка» или «Стакан воды».</p>';
+    // Сегодня
+    var html = '';
+    var bal = homeBal(), tr = homeTrend(bal);
+    html += '<div class="pcard" data-lk="bal"><div class="pbal-top"><div><h3>Баланс</h3><div class="pbal-v">' + sgn(bal) + '</div></div>' + tr.badge + '</div>' + tr.svg + '</div>';
+    var wk = weekDates(), wkSched = 0, wkDone = 0;
+    wk.forEach(function (d) { var kk = dateStr(d); hab.items.forEach(function (h) { if (habSched(h, d)) wkSched++; if (habDone(h, kk)) wkDone++; }); });
+    if (hab.items.length) {
+      html += '<button type="button" class="pcard" data-lk="hab" data-goto="hab"><div class="prow1"><div><h3>Сегодня</h3><div class="pv">' + (all.length ? done + ' / ' + all.length + ' привычек' : 'Привычек на сегодня нет') + '</div></div><span class="chev">›</span></div>' +
+        '<div class="hbar"><i data-w="' + (all.length ? done / all.length * 100 : 0).toFixed(1) + '"></i></div></button>';
+    } else {
+      html += '<button type="button" class="pcard" data-lk="hab" data-goto="hab"><div class="prow1"><div><h3>Сегодня</h3><div class="pv">Добавьте первую привычку</div></div><span class="chev">›</span></div></button>';
+    }
+    var best = 0, bestN = '';
+    hab.items.forEach(function (h) { var st = habStreak(h); if (st > best) { best = st; bestN = h.name; } });
+    var lim = '<div class="pt">—</div><div class="ps">Накопления выключены</div>';
+    if (settings.on) {
+      var s = saveStats(), isShort = s.short > 0.005;
+      var v = isShort ? '−' + money(Math.ceil(s.short - 0.005)) : (s.over ? '−' + money(Math.ceil(-s.left - 0.005)) : money(Math.floor(s.left + 0.005)));
+      lim = '<div class="pt">Можно сегодня</div><div class="ps ' + ((s.over || isShort) ? 'bad' : 'ok') + '">' + v + '</div>';
+    }
+    html += '<button type="button" class="pcard" data-lk="lim" data-goto="fin"><svg class="pico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="3"/><path d="M3 10h18M16 15h2"/></svg>' + lim + '</button>' +
+      '<button type="button" class="pcard" data-lk="streak" data-goto="hab"><svg class="pico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c1 3 5 5 5 10a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-6 1-9z"/></svg><div class="pt">Серия</div><div class="ps ' + (best ? 'ok' : '') + '">' + (best ? best + ' дн. · ' + esc(bestN) : 'пока нет') + '</div></button>';
+    html += '<button type="button" class="pcard" data-lk="goal" data-goto="hab"><div class="pgoal"><svg class="pico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg><div class="grow"><div class="gt"><span>Цели на неделю</span><span>' + wkDone + ' / ' + wkSched + '</span></div>' +
+      '<div class="hbar"><i data-w="' + (wkSched ? Math.min(100, wkDone / wkSched * 100) : 0).toFixed(1) + '"></i></div></div></div></button>';
+    $('todayBody').innerHTML = html;
+    applyLayout();
+    document.querySelectorAll('#todayBody .hbar i').forEach(function (i) { i.style.width = i.getAttribute('data-w') + '%'; });
+  }
+  var tab = 'today';
+  function setTab(t) {
+    if (t !== 'today' && t !== 'fin' && t !== 'hab') t = 'today';
+    tab = t;
+    try { localStorage.setItem('kassa-tab', t); } catch (e) {}
+    $('todayMain').hidden = t !== 'today';
+    $('finMain').hidden = t !== 'fin';
+    $('habMain').hidden = t !== 'hab';
+    document.body.classList.remove('tab-today', 'tab-fin', 'tab-hab');
+    document.body.classList.add('tab-' + t, 'has-tabs');
+    document.querySelectorAll('#tabbar button').forEach(function (b) { b.setAttribute('aria-selected', String(b.getAttribute('data-tab') === t)); });
+    renderHab();
+    if (t === 'fin') { applyLayout(); }
+    window.scrollTo(0, 0);
+  }
+  var habEdit = null, habEmoSel = '🎯', habDaysSel = [0, 1, 2, 3, 4, 5, 6];
+  function habFormDraw() {
+    $('habEmo').innerHTML = HAB_EMO.map(function (e) { return '<button type="button" data-e="' + e + '" aria-pressed="' + (e === habEmoSel) + '">' + e + '</button>'; }).join('');
+    $('habDays').innerHTML = WD.map(function (w, i) { return '<button type="button" data-d="' + i + '" aria-pressed="' + (habDaysSel.indexOf(i) >= 0) + '">' + w + '</button>'; }).join('');
+  }
+  function habOpen(id) {
+    var h = id ? hab.items.filter(function (x) { return x.id === id; })[0] : null;
+    habEdit = h ? h.id : null;
+    habEmoSel = h ? h.icon : '🎯';
+    habDaysSel = h ? h.days.slice() : [0, 1, 2, 3, 4, 5, 6];
+    $('habT').textContent = h ? 'Привычка' : 'Новая привычка';
+    $('habName').value = h ? h.name : '';
+    $('habDel').hidden = !h;
+    habFormDraw();
+    openOv('ovHab', h ? null : 'habName');
+  }
+  $('habAdd').addEventListener('click', function () { habOpen(null); });
+  $('habEmo').addEventListener('click', function (e) { var b = e.target.closest('button[data-e]'); if (!b) return; habEmoSel = b.getAttribute('data-e'); habFormDraw(); });
+  $('habDays').addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-d]'); if (!b) return;
+    var d = +b.getAttribute('data-d'), i = habDaysSel.indexOf(d);
+    if (i >= 0) { if (habDaysSel.length > 1) habDaysSel.splice(i, 1); } else habDaysSel.push(d);
+    habFormDraw();
+  });
+  $('habForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var nm = $('habName').value.replace(/\s+/g, ' ').trim();
+    if (!nm) { flag($('habName')); toast('Введите название привычки'); return; }
+    if (habEdit) {
+      var h = hab.items.filter(function (x) { return x.id === habEdit; })[0];
+      if (h) { h.name = nm; h.icon = habEmoSel; h.days = habDaysSel.slice().sort(); }
+    } else {
+      hab.items.push({ id: 'h' + Date.now().toString(36) + Math.random().toString(36).slice(2, 5), name: nm, icon: habEmoSel, days: habDaysSel.slice().sort(), created: dateStr(new Date()) });
+    }
+    hab = cleanHab(hab); persistHab(); renderHab(); closeOv();
+  });
+  $('habDel').addEventListener('click', function () {
+    if (!habEdit) return;
+    if (!confirm('Удалить привычку вместе с историей отметок?')) return;
+    hab.items = hab.items.filter(function (x) { return x.id !== habEdit; });
+    hab = cleanHab(hab); persistHab(); renderHab(); closeOv();
+  });
+  function habClick(e) {
+    var c = e.target.closest('[data-hc]');
+    if (c) { habToggle(c.getAttribute('data-hc'), dateStr(new Date())); return; }
+    var w = e.target.closest('[data-hk]');
+    if (w) { habToggle(w.getAttribute('data-h'), w.getAttribute('data-hk')); return; }
+    var ed = e.target.closest('[data-he]');
+    if (ed) { habOpen(ed.getAttribute('data-he')); return; }
+    var g = e.target.closest('[data-goto]');
+    if (g) setTab(g.getAttribute('data-goto'));
+  }
+  $('habList').addEventListener('click', habClick);
+  $('todayBody').addEventListener('click', habClick);
+  document.querySelectorAll('#tabbar button').forEach(function (b) { b.addEventListener('click', function () { setTab(b.getAttribute('data-tab')); }); });
+  $('gear2').addEventListener('click', function () { $('gear').click(); });
+  $('gear3').addEventListener('click', function () { $('gear').click(); });
   function lsLoadDebt() { try { return cleanDebt(JSON.parse(localStorage.getItem(LS_DEBT))); } catch (e) { return cleanDebt(null); } }
   function saveDebt() {
     var body = { items: debt.items };
@@ -2311,6 +2650,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     rec = lsLoadRec();
     tpl = lsLoadTpl();
     debt = lsLoadDebt(); debtVer++;
+    hab = lsLoadHab(); habVer++;
     loading = false;
     ensureCarryInit();
     render();
@@ -2411,6 +2751,10 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
           if (!debtPending) {
             var dd = snap.docs.filter(function (d) { return d.id === '_debt'; })[0];
             debt = cleanDebt(dd ? dd.data() : null); debtVer++;
+          }
+          if (!habPending) {
+            var hd = snap.docs.filter(function (d) { return d.id === '_hab'; })[0];
+            hab = cleanHab(hd ? hd.data() : null); habVer++;
           }
           loading = false;
           ensureCarryInit();
@@ -3904,7 +4248,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
       if (t.acc) o.acc = t.acc;
       return o;
     }), cats: catsBody(), save: { accs: settings.accs, xfers: settings.xfers, on: settings.on, plan: settings.plan, goal: settings.goal, carry: settings.carry, limitGoals: settings.limitGoals, carryFrom: settings.carryFrom, closed: settings.closed, goals: settings.goals, months: settings.months, goalStart: settings.goalStart },
-      tpl: { items: tpl.items }, debt: { items: debt.items }, ui: { name: ui.name.trim(), palette: ui.palette, mode: ui.mode, style: STYLE, oled: OLED, layout: LAY }, rec: { items: rec.items } };
+      tpl: { items: tpl.items }, debt: { items: debt.items }, hab: { items: hab.items, log: hab.log }, ui: { name: ui.name.trim(), palette: ui.palette, mode: ui.mode, style: STYLE, oled: OLED, layout: layOf('fin'), layoutT: layOf('today') }, rec: { items: rec.items } };
   }
   function downloadText(name, text) {
     var blob = new Blob([text], { type: 'application/json' });
@@ -4059,12 +4403,14 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
       ui = cleanUi(b.ui);
       if (b.ui && (b.ui.style === 'glass' || b.ui.style === 'classic')) STYLE = b.ui.style;
       if (b.ui && typeof b.ui.oled === 'boolean') OLED = b.ui.oled;
-      if (b.ui && b.ui.layout) { LAY = layClean(b.ui.layout); laySave(); applyLayout(); }
+      if (b.ui && b.ui.layout) { useCtx('fin'); LAY = layClean(b.ui.layout); laySave(); applyLayout(); }
+      if (b.ui && b.ui.layoutT) { useCtx('today'); LAY = layClean(b.ui.layoutT); laySave(); useCtx('fin'); applyLayout(); }
       applyLook();
       rec = cleanRec(b.rec);
       tpl = cleanTpl(b.tpl);
       persistTpl();
       if (b.debt) { debt = cleanDebt(b.debt); persistDebt(); }
+      if (b.hab) { hab = cleanHab(b.hab); persistHab(); }
       applyUi(); renderUiSheet(); fillSettingsInputs();
       changeCats();
       persistSettings();
@@ -4232,17 +4578,48 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     try { if (layIsDefault() && !LAY.dense) localStorage.removeItem(LAY_KEY); else localStorage.setItem(LAY_KEY, JSON.stringify(LAY)); } catch (e) {}
   }
   try { LAY = layClean(JSON.parse(localStorage.getItem(LAY_KEY))); } catch (e) { LAY = layClean(null); }
-  var layEditing = false, laySel = null, layDrag = null;
-  function layEls() {
+  var layEditing = false, laySel = null, layDrag = null, layEditCtx = 'fin', layCur = 'fin';
+  var CTX = {
+    fin: { key: LAY_KEY, def: LAY_DEF, name: LAY_NAME, size0: LAY_SIZE0, fixed: LAY_FIXED, wrap: 'finMain', always: false, lay: LAY },
+    today: { key: 'kassa-layout-today', def: ['bal', 'hab', 'lim', 'streak', 'goal'],
+      name: { bal: 'Баланс', hab: 'Привычки сегодня', lim: 'Можно сегодня', streak: 'Серия', goal: 'Цели на неделю' },
+      size0: { bal: 2, hab: 2, lim: 1, streak: 1, goal: 2 }, fixed: {}, wrap: 'todayBody', always: true, lay: null }
+  };
+  function useCtx(n) {
+    if (n === layCur) return;
+    CTX[layCur].lay = LAY;
+    layCur = n;
+    var c = CTX[n];
+    LAY_KEY = c.key; LAY_DEF = c.def; LAY_NAME = c.name; LAY_SIZE0 = c.size0; LAY_FIXED = c.fixed;
+    LAY = c.lay || layClean(null);
+  }
+  function layOf(n) { return n === layCur ? LAY : CTX[n].lay; }
+  useCtx('today');
+  try { LAY = layClean(JSON.parse(localStorage.getItem(LAY_KEY))); } catch (e) { LAY = layClean(null); }
+  useCtx('fin');
+  function layEls() { return layCur === 'today' ? layElsToday() : layElsFin(); }
+  function layElsToday() {
+    var r = {};
+    ['bal', 'hab', 'lim', 'streak', 'goal'].forEach(function (k) { r[k] = document.querySelector('#todayBody [data-lk="' + k + '"]'); });
+    return r;
+  }
+  function layElsFin() {
     var q = function (sel) { return document.querySelector(sel); };
     return { day: q('#tiles .t-day'), jar: q('#tiles .tile:not(.t-day)'), acc: q('#quick [data-open="acc"]'), debt: q('#quick [data-open="debt"]'), rec: q('#quick [data-open="rec"]'),
       cats: $('catsBox'), lim: q('#quick2 [data-open="lim"]'), cmp: q('#quick2 [data-open="cmp"]'), journal: $('journal') };
   }
   function applyLayout() {
-    var wrap = document.querySelector('main.wrap');
+    var c = layCur;
+    useCtx('fin'); applyLayoutX();
+    useCtx('today'); applyLayoutX();
+    useCtx(c);
+  }
+  function applyLayoutX() {
+    var wrap = $(CTX[layCur].wrap);
     if (!wrap) return;
-    var cust = !layIsDefault() || layEditing, els = layEls();
-    wrap.classList.toggle('lay', cust);
+    var ed = layEditing && layCur === layEditCtx;
+    var cust = !layIsDefault() || ed || CTX[layCur].always, els = layEls();
+    if (!CTX[layCur].always) wrap.classList.toggle('lay', cust);
     wrap.classList.toggle('dense', LAY.dense);
     LAY.order.forEach(function (k, i) {
       var el = els[k];
@@ -4253,8 +4630,8 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
         el.style.order = String(i);
         el.style.gridColumn = w === 2 ? '1 / -1' : 'span 1';
       } else { el.style.order = ''; el.style.gridColumn = ''; }
-      el.classList.toggle('lhide', cust && !layEditing && !!LAY.hide[k]);
-      el.classList.toggle('ldim', layEditing && !!LAY.hide[k]);
+      el.classList.toggle('lhide', cust && !ed && !!LAY.hide[k]);
+      el.classList.toggle('ldim', ed && !!LAY.hide[k]);
     });
   }
   function layPlace() {
@@ -4298,6 +4675,9 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
   function layChanged() { laySave(); applyLayout(); layBuild(); layKeepVisible(); }
   function layEnter() {
     closeOv();
+    var want = tab === 'fin' ? 'fin' : 'today';
+    if (tab === 'hab') setTab('today');
+    useCtx(want); layEditCtx = want;
     layEditing = true;
     if (!laySel || !layEls()[laySel]) laySel = LAY.order.filter(function (k) { return layEls()[k]; })[0] || null;
     document.body.classList.add('lay-edit');
@@ -4308,6 +4688,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
   }
   function layExit() {
     layEditing = false;
+    useCtx('fin');
     document.body.classList.remove('lay-edit');
     $('layTop').hidden = true; $('layBar').hidden = true; $('layLayer').hidden = true; $('layLayer').innerHTML = '';
     applyLayout();
@@ -4528,6 +4909,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
       renderAccUi();
       applyLayout();
     }
+    renderHab();
 
     $('clearEx').hidden = !txs.some(function (t) { return t.example; });
     $('storeNote').textContent = store.mode === 'cloud'
@@ -6277,5 +6659,6 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
   renderPick();
   render();
   init();
+  try { setTab(localStorage.getItem('kassa-tab') || 'today'); } catch (e) { setTab('today'); }
 })();
 </script>
