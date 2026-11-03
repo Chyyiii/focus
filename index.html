@@ -10,7 +10,7 @@
 <meta name="apple-mobile-web-app-title" content="FOCUS">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600&family=Michroma&display=swap">
 <style>
 /* Layout: главная в одну колонку. Цветная «обложка» с остатком, под ней плитки лимита и копилки, ниже журнал на светлой странице.
    Запись, копилка и оформление открываются снизу окнами, чтобы главный экран оставался спокойным.
@@ -48,21 +48,13 @@
   --font-disp: 'Unbounded', 'Manrope', system-ui, sans-serif;
 }
 :root[data-palette="ocean"] { --pl-brand: #1D4E89; --pl-ink: #FFFFFF; --pl-hero: #1D4E89; --pl-mute: #A9C6E8; --pd-brand: #7DB2F0; --pd-ink: #08182B; --pd-hero: #173E6E; --pd-mute: #A9C6E8; }
-:root[data-palette="plum"] { --pl-brand: #5B2A6B; --pl-ink: #FFFFFF; --pl-hero: #5B2A6B; --pl-mute: #D4B8DE; --pd-brand: #D3A2E6; --pd-ink: #26102E; --pd-hero: #4A2257; --pd-mute: #D4B8DE; }
 :root[data-palette="graphite"] { --pl-brand: #2B3640; --pl-ink: #FFFFFF; --pl-hero: #2B3640; --pl-mute: #B0BBC4; --pd-brand: #B8C4CE; --pd-ink: #12181D; --pd-hero: #27323B; --pd-mute: #B0BBC4; }
-:root[data-palette="copper"] { --pl-brand: #8A3A18; --pl-ink: #FFFFFF; --pl-hero: #7A3417; --pl-mute: #E8C3AD; --pd-brand: #F0A47A; --pd-ink: #2E1306; --pd-hero: #5E2C14; --pd-mute: #E8C3AD; }
 
 /* Фон, карточки и тексты тоже окрашиваются в оттенок выбранной палитры */
 :root[data-palette="ocean"] { --pl-bg: #EEF3F8; --pl-text: #0F1D2E; --pl-muted: #475A6E; --pl-line: #D5DFEA; --pl-tint: #E6EEF6; --pd-bg: #0A1118; --pd-surface: #121C27; --pd-text: #E4EDF6; --pd-muted: #A4B4C6; --pd-line: #223244; --pd-tint: #192634; }
-:root[data-palette="plum"] { --pl-bg: #F5F0F7; --pl-text: #1F1226; --pl-muted: #5A4A63; --pl-line: #E1D6E6; --pl-tint: #EEE7F2; --pd-bg: #120D16; --pd-surface: #1C1521; --pd-text: #F0E8F4; --pd-muted: #BBAEC3; --pd-line: #33283B; --pd-tint: #261D2D; }
 :root[data-palette="graphite"] { --pl-bg: #F1F2F4; --pl-text: #161B20; --pl-muted: #4C545C; --pl-line: #DCDFE3; --pl-tint: #EBEDF0; --pd-bg: #0F1214; --pd-surface: #171B1F; --pd-text: #E8EBEE; --pd-muted: #A7AEB6; --pd-line: #2B3138; --pd-tint: #20252A; }
-:root[data-palette="copper"] { --pl-bg: #F7F1ED; --pl-text: #271610; --pl-muted: #62504A; --pl-line: #E6D9D0; --pl-tint: #F1E8E2; --pd-bg: #15100D; --pd-surface: #1E1713; --pd-text: #F4EBE5; --pd-muted: #BDAC9F; --pd-line: #372B23; --pd-tint: #29201A; }
 
 /* Новые палитры */
-:root[data-palette="sunset"] { --pl-brand: #B1305A; --pl-ink: #FFFFFF; --pl-hero: #A02A52; --pl-mute: #F2BFD0; --pd-brand: #FF9EB8; --pd-ink: #2E0A16; --pd-hero: #5C1F36; --pd-mute: #F2BFD0; }
-:root[data-palette="midnight"] { --pl-brand: #3B3FA8; --pl-ink: #FFFFFF; --pl-hero: #2F3394; --pl-mute: #BCC0F2; --pd-brand: #A5A9FF; --pd-ink: #0C0E30; --pd-hero: #25286E; --pd-mute: #BCC0F2; }
-:root[data-palette="sunset"] { --pl-bg: #FBF1F3; --pl-text: #2A1119; --pl-muted: #7A5B64; --pl-line: #EBD6DB; --pl-tint: #F5E8EB; --pd-bg: #150C10; --pd-surface: #20141A; --pd-text: #F6E9ED; --pd-muted: #AA939A; --pd-line: #3A2630; --pd-tint: #2A1B22; }
-:root[data-palette="midnight"] { --pl-bg: #F0F1FA; --pl-text: #131530; --pl-muted: #5C5F85; --pl-line: #D8DAEE; --pl-tint: #E8E9F6; --pd-bg: #0A0B18; --pd-surface: #12142A; --pd-text: #E8E9FA; --pd-muted: #9093B8; --pd-line: #24274A; --pd-tint: #1A1C38; }
 
 /* Палитры «Жар», «Океан», «Графит»: чёрная основа и светящийся акцент */
 :root[data-palette="ember"] { --pl-brand: #C44A05; --pl-ink: #FFFFFF; --pl-hero: #120C08; --pl-mute: #F0C9A4; --pd-brand: #FF8A1F; --pd-ink: #1A0C02; --pd-hero: #120C08; --pd-mute: #F0C9A4;
@@ -186,7 +178,7 @@ button { cursor: pointer; }
 .hero > * { position: relative; z-index: 1; }
 .hero :focus-visible { outline-color: var(--hero-ink); }
 .hero-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
-.brand { min-width: 0; padding-top: 10px; overflow-wrap: anywhere; font-family: var(--font-disp); font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--hero-mute); }
+.brand { min-width: 0; padding-top: 6px; font-family: 'Michroma', 'Eurostile', 'Arial Black', system-ui, sans-serif; font-size: 17px; font-weight: 400; letter-spacing: 0.14em; text-transform: uppercase; color: var(--hero-ink); }
 .gear { flex: none; width: 36px; height: 36px; border: 0; border-radius: 50%; background: var(--hero-chip); color: var(--hero-ink); display: grid; place-items: center; }
 .month { display: flex; align-items: center; gap: 6px; align-self: flex-start; margin-block: 8px 14px; }
 .month button { width: 34px; height: 34px; border: 0; border-radius: 50%; background: var(--hero-chip); color: var(--hero-ink); font-size: 18px; line-height: 1; }
@@ -559,11 +551,8 @@ footer p { max-width: 52ch; }
 .sw { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 12px 8px; border: 2px solid var(--line); border-radius: 16px; background: var(--bg); font-weight: 700; font-size: 13px; }
 .sw i { width: 30px; height: 30px; border-radius: 50%; box-shadow: 0 0 0 2px var(--surface), 0 0 0 3px var(--line); }
 .sw[aria-pressed="true"] { border-color: var(--brand); }
-.sw[data-p="emerald"] i { background: #0F4A40; }
 .sw[data-p="ocean"] i { background: #1D4E89; }
-.sw[data-p="plum"] i { background: #5B2A6B; }
 .sw[data-p="graphite"] i { background: #2B3640; }
-.sw[data-p="copper"] i { background: #8A3A18; }
 .segb { display: flex; gap: 6px; background: var(--tint); border-radius: 14px; padding: 4px; }
 .segb button { flex: 1; border: 0; background: transparent; border-radius: 10px; padding: 10px 8px; font-weight: 700; color: var(--muted); }
 .segb button[aria-pressed="true"] { background: var(--brand); color: var(--brand-ink); }
@@ -713,8 +702,6 @@ html[data-hide] :is(.arow b, #accTotal, #accSub, .xrow span) { filter: blur(9px)
 .limitem .bar { margin-top: 8px; }
 .stat[data-stat] { cursor: pointer; -webkit-tap-highlight-color: transparent; transition: transform 0.12s ease; }
 .stat[data-stat]:active { transform: scale(0.97); }
-.sw[data-p="sunset"] i { background: #B1305A; }
-.sw[data-p="midnight"] i { background: #3B3FA8; }
 
 /* Крупные области нажатия: не меньше 44 пикселей */
 .link { position: relative; }
@@ -922,6 +909,16 @@ body.lay-edit { padding-top: 84px; padding-bottom: 210px; }
 body.lay-edit .fab { display: none; }
 body.lay-edit { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
 body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
+.tile.w1 .x1, .tile.w1 .x2, .tile.w1 .more, .tile.w2 .less { display: none; }
+.tile.w1 .rlist .x1 { display: none; }
+.tile.w1 .rrow { grid-template-columns: minmax(0, 1fr); row-gap: 1px; padding: 6px 0; }
+.tile.w1 .rrow b { grid-column: 1; grid-row: auto; justify-self: start; align-self: auto; font-size: 14px; }
+.tile.w1 .rrow .rn { overflow-wrap: break-word; }
+.pk { display: flex; flex-direction: column; gap: 5px; }
+.tile .spk6 { display: flex; align-items: flex-end; gap: 6px; height: 40px; margin-top: 6px; }
+.tile .spk6 i { flex: 1; min-height: 3px; border-radius: 4px 4px 0 0; background: var(--brand); opacity: 0.45; }
+.tile .spk6 i.cur { opacity: 1; }
+.rrow .lm { grid-column: 1 / -1; margin-top: 4px; }
 #tmWarn.bud-st { margin: 0; }
 </style>
 <script>
@@ -935,8 +932,8 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     var u = JSON.parse(localStorage.getItem('kassa-ui-v1') || 'null');
     var r = document.documentElement;
     if (!u) { r.setAttribute('data-palette', 'ember'); return; }
-    var pq = (u.palette && /^[a-z]+$/.test(u.palette)) ? u.palette : 'ember';
-    if (pq !== 'emerald') r.setAttribute('data-palette', pq);
+    var pq = (u.palette === 'ocean' || u.palette === 'graphite') ? u.palette : 'ember';
+    r.setAttribute('data-palette', pq);
     if (u.mode === 'light' || u.mode === 'dark') r.setAttribute('data-mode', u.mode);
   } catch (e) {}
 })();
@@ -978,7 +975,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
 
   <div class="tiles" id="quick">
     <button type="button" class="tile wide" data-open="acc"><span class="tile-lbl">Счета</span><span class="tile-sub" id="accSub"></span><span class="rlist" id="accList"></span></button>
-    <button type="button" class="tile wide" data-open="debt"><span class="tile-lbl">Долги</span><span class="tile-sub" id="debtSub"></span></button>
+    <button type="button" class="tile wide" data-open="debt"><span class="tile-lbl">Долги</span><span class="tile-sub" id="debtSub"></span><span class="rlist" id="debtList"></span></button>
     <button type="button" class="tile wide" data-open="rec"><span class="tile-lbl">Регулярные платежи</span><span class="tile-sub" id="recSub"></span><span class="rlist" id="recTileList"></span></button>
   </div>
 
@@ -988,8 +985,8 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
   </section>
 
   <div class="tiles" id="quick2">
-    <button type="button" class="tile" data-open="lim"><span class="tile-lbl">Лимиты по категориям</span><span class="tile-sub" id="limSub"></span></button>
-    <button type="button" class="tile" data-open="cmp"><span class="tile-lbl">Сравнение и динамика</span><span class="tile-sub">Расходы по месяцам и по категориям</span></button>
+    <button type="button" class="tile" data-open="lim"><span class="tile-lbl">Лимиты по категориям</span><span class="tile-sub" id="limSub"></span><span class="rlist" id="limTile"></span></button>
+    <button type="button" class="tile" data-open="cmp"><span class="tile-lbl">Сравнение и динамика</span><span class="tile-sub">Расходы по месяцам и по категориям</span><span id="cmpTile"></span></button>
   </div>
 
   <section id="journal">
@@ -1281,7 +1278,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
         <p>Заполнили форму записи и нажали <b>«Сохранить как быструю запись»</b>: сумма, категория и комментарий запомнятся. В следующий раз в начале формы появится кнопка с этой записью: нажмите на неё, и форма заполнится сама, останется нажать «Записать». «Править» рядом позволяет удалить ненужные.</p>
       </details>
       <details><summary>Главный экран: порядок и размер плиток</summary>
-        <p>«Настройки» → «Внешний вид» → <b>«Изменить порядок и размер плиток»</b>. Откроется режим правки: нажмите на плитку, чтобы выбрать её, и используйте большие кнопки внизу: «Выше», «Ниже», «Сделать узкой» или «Сделать широкой», «Скрыть». Плитку можно и перетащить: удерживайте её и ведите пальцем. «Компактно» делает плитки и промежутки меньше, «Вернуть как было» сбрасывает всё. Скрытые плитки в режиме правки видны бледными, их можно вернуть кнопкой «Показать». Остаток вверху экрана остаётся на месте. Настройка хранится на этом устройстве и входит в резервную копию.</p>
+        <p>«Настройки» → «Внешний вид» → <b>«Изменить порядок и размер плиток»</b>. Откроется режим правки: нажмите на плитку, чтобы выбрать её, и используйте большие кнопки внизу: «Выше», «Ниже», «Сделать узкой» или «Сделать широкой», «Скрыть». Плитку можно и перетащить: удерживайте её и ведите пальцем. Чем шире плитка, тем больше в ней видно: например, у «Счетов», «Долгов» и «Регулярных платежей» больше строк, у «Лимитов» несколько категорий, у «Сравнения» столбики за полгода. «Компактно» делает плитки и промежутки меньше, «Вернуть как было» сбрасывает всё. Скрытые плитки в режиме правки видны бледными, их можно вернуть кнопкой «Показать». Остаток вверху экрана остаётся на месте. Настройка хранится на этом устройстве и входит в резервную копию.</p>
       </details>
       <details><summary>Сравнение и динамика</summary>
         <p>Плитка <b>«Сравнение и динамика»</b> показывает столбики доходов и расходов за последние 6 месяцев и сравнивает выбранный месяц с предыдущим по категориям: красная стрелка вверх означает, что вы потратили больше, зелёная вниз — меньше. Ниже стоит <b>средний расход в день</b> по месяцам: все расходы месяца, делённые на прошедшие дни, и справа то же без регулярных платежей.</p>
@@ -1720,8 +1717,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
       <button type="button" class="x" data-close aria-label="Закрыть">×</button>
     </div>
     <div class="stack">
-      <details class="fold setgrp"><summary><span>Внешний вид</span><small class="ssub">Название, цвет, тема</small></summary>
-      <div class="field"><label for="uiName">Название</label><input id="uiName" maxlength="30" autocomplete="off" placeholder="FOCUS"></div>
+      <details class="fold setgrp"><summary><span>Внешний вид</span><small class="ssub">Цвет, тема</small></summary>
       <div class="field">
         <span class="lbl" id="lblColor">Цвет</span>
         <div class="swatches" id="swatches" role="group" aria-labelledby="lblColor"></div>
@@ -1881,13 +1877,8 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
   ];
   var PALETTES = [
     { id: 'ember', name: 'Жар' },
-    { id: 'emerald', name: 'Изумруд' },
     { id: 'ocean', name: 'Океан' },
-    { id: 'plum', name: 'Слива' },
-    { id: 'graphite', name: 'Графит' },
-    { id: 'copper', name: 'Медь' },
-    { id: 'sunset', name: 'Закат' },
-    { id: 'midnight', name: 'Полночь' }
+    { id: 'graphite', name: 'Графит' }
   ];
   var CATS = { out: DEFAULT_CATS.out.slice(), in: DEFAULT_CATS.in.slice(), icons: {}, limits: {} };
   var LS_KEY = 'kassa-book-v1';
@@ -2262,7 +2253,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     var pal = PALETTES.some(function (p) { return p.id === o.palette; }) ? o.palette : 'ember';
     var md = (o.mode === 'light' || o.mode === 'dark') ? o.mode : 'auto';
     var nm = typeof o.name === 'string' ? o.name.trim().slice(0, 30) : '';
-    return { name: nm, palette: pal, mode: md };
+    return { name: '', palette: pal, mode: md };
   }
   function lsLoadUi() {
     try { return cleanUi(JSON.parse(localStorage.getItem(LS_UI))); } catch (e) { return cleanUi(null); }
@@ -2859,9 +2850,9 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
   /* Обучение */
   var tourI = 0, tourOpen = false, tourLast = null;
   function tourSlides() {
-    var nm = ui.name.trim() || DEFAULT_NAME;
+    var nm = DEFAULT_NAME;
     return [
-      { v: '<div class="tm plain"><div class="ico">🪙</div></div>', t: 'Добро пожаловать в «' + esc(nm) + '»', p: 'Личная касса: доходы, расходы, накопления и лимит на каждый день. За минуту покажу, как всё устроено.' },
+      { v: '<div class="tm plain"><div class="ico" style="color:var(--brand)">✦</div></div>', t: 'Добро пожаловать в «' + esc(nm) + '»', p: 'Личная касса: доходы, расходы, накопления и лимит на каждый день. За минуту покажу, как всё устроено.' },
       { v: '<div class="tm plain"><span class="fab">＋ Запись</span></div>', t: 'Записывайте доходы и расходы', p: 'Нажмите «Запись», введите сумму и выберите категорию. Один платёж можно разделить по нескольким категориям, а частые траты сохранить как быстрые записи. Удалили лишнее? Вверху появится кнопка «Отменить».' },
       { v: '<div class="tm hero"><small>Остаток за месяц</small><b class="big">20 000 ₽</b><div class="chips"><span>Доходы<br>80 000</span><span>Расходы<br>50 000</span><span>Отложено<br>10 000</span></div></div>', t: 'Остаток месяца всегда на виду', p: 'Месяц переключается стрелками. Неизрасходованное можно переносить дальше, а кнопка с глазом прячет суммы от посторонних глаз.' },
       { v: '<div class="tm"><small>Можно сегодня</small><b class="big" style="margin-bottom:4px">2 500 ₽</b><div class="bar"><i style="width:40%;background:var(--brand)"></i></div><small style="text-transform:none;letter-spacing:0">лимит на день 2 500 ₽</small></div>', t: 'Сколько можно тратить сегодня', p: 'Приложение делит остаток на оставшиеся дни и вычитает ближайшие платежи. Включите накопления в плитке, и лимит появится на главном экране.' },
@@ -3126,7 +3117,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     var r = document.documentElement;
     if (ui.palette !== 'emerald') r.setAttribute('data-palette', ui.palette); else r.removeAttribute('data-palette');
     if (ui.mode === 'light' || ui.mode === 'dark') r.setAttribute('data-mode', ui.mode); else r.removeAttribute('data-mode');
-    $('brand').textContent = ui.name.trim() || DEFAULT_NAME;
+    $('brand').textContent = DEFAULT_NAME;
     try { localStorage.setItem(LS_UI, JSON.stringify({ name: ui.name.trim(), palette: ui.palette, mode: ui.mode })); } catch (e) {}
   }
   function renderUiSheet() {
@@ -3142,8 +3133,6 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     Array.prototype.forEach.call($('oleds').children, function (b) {
       b.setAttribute('aria-pressed', (b.getAttribute('data-o') === '1') === OLED ? 'true' : 'false');
     });
-    var inp = $('uiName');
-    if (document.activeElement !== inp) inp.value = ui.name;
   }
   // Один раз включаем палитру «Жар» (по просьбе), вернуть прежнюю можно в настройках
   function emberOnce() {
@@ -3166,13 +3155,6 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
   }).join('');
   $('gear').addEventListener('click', function () { renderUiSheet(); renderLockSettings(); renderAutoBk(); $('openAddChk').checked = lsGet('kassa-openadd') === '1'; openOv('ovSet'); });
   $('openAddChk').addEventListener('change', function () { lsSet('kassa-openadd', this.checked ? '1' : '0'); toast(this.checked ? 'При запуске будет открываться новая запись' : 'Запуск как обычно'); });
-  $('uiName').addEventListener('input', function () {
-    ui.name = this.value.slice(0, 30);
-    $('brand').textContent = ui.name.trim() || DEFAULT_NAME;
-    try { localStorage.setItem(LS_UI, JSON.stringify({ name: ui.name.trim(), palette: ui.palette, mode: ui.mode })); } catch (e) {}
-    clearTimeout(nameTimer);
-    nameTimer = setTimeout(function () { nameTimer = null; persistUi(); }, 600);
-  });
   $('swatches').addEventListener('click', function (e) {
     var b = e.target.closest('[data-p]');
     if (!b) return;
@@ -3464,9 +3446,9 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
       var p0 = pockets[0], pj = pcOf(p0);
       jarHtml = '<span class="mini gold"><i data-w="' + pj.toFixed(1) + '"></i></span><span class="tile-sub">' + (p0.name === 'Общая' ? '' : esc(p0.name) + ' · ') + 'из ' + money(p0.target) + ' · ' + Math.round(pj) + '%</span>';
     } else {
-      jarHtml = pockets.slice(0, 3).map(function (q) {
-        return '<span class="prow"><span>' + esc(q.name) + '</span><span>' + Math.round(pcOf(q)) + '%</span></span><span class="mini gold"><i data-w="' + pcOf(q).toFixed(1) + '"></i></span>';
-      }).join('') + (pockets.length > 3 ? '<span class="tile-sub">и ещё ' + (pockets.length - 3) + '</span>' : '');
+      jarHtml = pockets.slice(0, 6).map(function (q, qi) {
+        return '<span class="pk' + (qi >= 2 ? ' x2' : '') + '"><span class="prow"><span>' + esc(q.name) + '</span><span>' + Math.round(pcOf(q)) + '%</span></span><span class="mini gold"><i data-w="' + pcOf(q).toFixed(1) + '"></i></span></span>';
+      }).join('') + (pockets.length > 2 ? '<span class="tile-sub less">и ещё ' + (pockets.length - 2) + '</span>' : '') + (pockets.length > 6 ? '<span class="tile-sub more">и ещё ' + (pockets.length - 6) + '</span>' : '');
     }
     box.innerHTML =
       '<button type="button" class="tile t-day" data-open="day"><span class="tile-lbl">' + esc(lblDay) + '</span>' +
@@ -3474,11 +3456,14 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
       '<span class="tile-val' + (bad ? ' over' : '') + '">' + valDay + '</span>' +
       '<span class="mini m-day"><i class="' + (bad ? 'over' : '') + '" data-w="' + pctDay.toFixed(1) + '"></i></span>' +
       '<span class="tile-sub">' + esc(subDay) + '</span>' +
-      (!settings.limitGoals && s.goalsNeed > 0.005 ? '<span class="tile-sub">по целям ещё ' + money(r2(s.goalsNeed)) + '</span>' : '') + '</button>' +
+      (!settings.limitGoals && s.goalsNeed > 0.005 ? '<span class="tile-sub">по целям ещё ' + money(r2(s.goalsNeed)) + '</span>' : '') +
+      (s.limit > 0 ? '<span class="tile-sub more">потрачено сегодня ' + money(Math.round(s.spent)) + ' из ' + money(Math.round(s.limit)) + '</span>' : '') +
+      (s.reserve > 0 ? '<span class="tile-sub more">отложено на цели в месяц: ' + money(r2(s.reserve)) + '</span>' : '') + '</button>' +
       '<button type="button" class="tile" data-open="save"><span class="tile-lbl">В копилке</span>' +
       '<span class="tile-val gold">' + money(r2(s.total)) + '</span>' +
       jarHtml + '</button>';
     applyWidths(box);
+    applyLayout();
   }
 
   function renderSaveSheet() {
@@ -4262,8 +4247,9 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     LAY.order.forEach(function (k, i) {
       var el = els[k];
       if (!el) return;
+      var w = (LAY_FIXED[k] || el.classList.contains('off')) ? 2 : (LAY.size[k] || LAY_SIZE0[k]);
+      el.classList.toggle('w2', w === 2); el.classList.toggle('w1', w !== 2);
       if (cust) {
-        var w = (LAY_FIXED[k] || el.classList.contains('off')) ? 2 : (LAY.size[k] || LAY_SIZE0[k]);
         el.style.order = String(i);
         el.style.gridColumn = w === 2 ? '1 / -1' : 'span 1';
       } else { el.style.order = ''; el.style.gridColumn = ''; }
@@ -4984,10 +4970,10 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     if (!accOn()) { as.textContent = 'Наличка, карты, банки: сколько денег на каждом'; al.innerHTML = ''; }
     else {
       as.textContent = 'Всего на счетах: ' + money(accTotal());
-      al.innerHTML = settings.accs.slice(0, 4).map(function (a) {
+      al.innerHTML = settings.accs.slice(0, 6).map(function (a, ai) {
         var bl = accBal(a.id);
-        return '<span class="rrow"><span class="rn">' + esc(a.name) + '</span><b>' + (bl < 0 ? '−' : '') + money(Math.abs(bl)) + '</b></span>';
-      }).join('') + (settings.accs.length > 4 ? '<span class="tile-sub">и ещё ' + (settings.accs.length - 4) + '</span>' : '');
+        return '<span class="rrow' + (ai >= 2 ? ' x2' : '') + '"><span class="rn">' + esc(a.name) + '</span><b>' + (bl < 0 ? '−' : '') + money(Math.abs(bl)) + '</b></span>';
+      }).join('') + (settings.accs.length > 2 ? '<span class="tile-sub less">и ещё ' + (settings.accs.length - 2) + '</span>' : '') + (settings.accs.length > 6 ? '<span class="tile-sub more">и ещё ' + (settings.accs.length - 6) + '</span>' : '');
     }
     renderDebtTile();
     var rs = $('recSub'), rl = $('recTileList');
@@ -5003,11 +4989,30 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
       var sum30 = 0, n30 = 0;
       list.forEach(function (x) { if (x.diff <= 30 && x.it.type === 'out') { sum30 += x.it.amount; n30++; } });
       rs.textContent = n30 ? 'В ближайшие 30 дней: ' + n30 + ' · ' + money(r2(sum30)) : 'В ближайшие 30 дней платежей нет';
-      rl.innerHTML = list.slice(0, 3).map(function (x) {
+      rl.innerHTML = list.slice(0, 5).map(function (x, xi) {
         var when = x.diff <= 0 ? 'сегодня' : (x.diff === 1 ? 'завтра' : 'через ' + x.diff + ' дн.');
-        return '<span class="rrow"><span class="rn">' + esc(x.it.note || x.it.cat) + '</span><span class="rd">' + fmtShort(x.d) + ' · ' + when + '</span><b>' + (x.it.type === 'in' ? '+' : '') + money(x.it.amount) + '</b></span>';
-      }).join('') + (list.length > 3 ? '<span class="tile-sub">и ещё ' + (list.length - 3) + '</span>' : '');
+        return '<span class="rrow' + (xi >= 2 ? ' x2' : '') + '"><span class="rn">' + esc(x.it.note || x.it.cat) + '</span><span class="rd">' + fmtShort(x.d) + ' · ' + when + '</span><b>' + (x.it.type === 'in' ? '+' : '') + money(x.it.amount) + '</b></span>';
+      }).join('') + (list.length > 2 ? '<span class="tile-sub less">и ещё ' + (list.length - 2) + '</span>' : '') + (list.length > 5 ? '<span class="tile-sub more">и ещё ' + (list.length - 5) + '</span>' : '');
     }
+    // Лимиты: самые заполненные категории
+    var lt = $('limTile');
+    var lrows = set.map(function (c) { var sp = catSpent(c, key); return { c: c, sp: sp, lim: CATS.limits[c], pc: sp / CATS.limits[c] * 100 }; }).sort(function (a, b) { return b.pc - a.pc; }).slice(0, 5);
+    lt.innerHTML = lrows.map(function (x, xi) {
+      return '<span class="rrow' + (xi >= 1 ? ' x1' : '') + (xi >= 3 ? ' x2' : '') + '"><span class="rn">' + esc(x.c) + '</span><span class="rd">' + money(r2(x.sp)) + ' из ' + money(x.lim) + '</span><b' + (x.pc > 100 ? ' style="color:var(--out)"' : '') + '>' + Math.round(x.pc) + '%</b><span class="mini lm' + (x.pc > 100 ? '' : ' gold') + '"><i class="' + (x.pc > 100 ? 'over' : '') + '" data-w="' + Math.min(100, x.pc).toFixed(1) + '"></i></span></span>';
+    }).join('');
+    // Сравнение: средний расход в день и столбики за 6 месяцев
+    var ct = $('cmpTile'), tn = new Date(), cm = monthTotals(view.y, view.m);
+    var dpass = (view.y === tn.getFullYear() && view.m === tn.getMonth()) ? tn.getDate() : new Date(view.y, view.m + 1, 0).getDate();
+    var bars = [], mx = 0;
+    for (var bi = 5; bi >= 0; bi--) { var bd = new Date(view.y, view.m - bi, 1), bt = monthTotals(bd.getFullYear(), bd.getMonth()); bars.push(bt.out); mx = Math.max(mx, bt.out); }
+    ct.innerHTML = (cm.out > 0 ? '<span class="tile-sub">в среднем ' + money(Math.round(cm.out / dpass)) + ' в день</span>' : '') +
+      (mx > 0 ? '<span class="spk6 more" aria-hidden="true">' + bars.map(function (v, vi) { return '<i' + (vi === 5 ? ' class="cur"' : '') + ' style="height:' + Math.max(4, v / mx * 100).toFixed(0) + '%"></i>'; }).join('') + '</span>' : '');
+    // Долги: люди с остатком
+    var dl = $('debtList');
+    var dpp = debtPeople().filter(function (p) { return Math.abs(p.bal) > 0.005; }).sort(function (a, b) { return Math.abs(b.bal) - Math.abs(a.bal); });
+    dl.innerHTML = dpp.slice(0, 5).map(function (p, pi) {
+      return '<span class="rrow' + (pi >= 2 ? ' x2' : '') + '"><span class="rn">' + esc(p.name) + '</span><span class="rd">' + (p.bal > 0 ? 'должен вам' : 'вы должны') + '</span><b>' + money(Math.abs(r2(p.bal))) + '</b></span>';
+    }).join('') + (dpp.length > 2 ? '<span class="tile-sub less">и ещё ' + (dpp.length - 2) + '</span>' : '') + (dpp.length > 5 ? '<span class="tile-sub more">и ещё ' + (dpp.length - 5) + '</span>' : '');
   }
 
   /* Лимиты по категориям */
