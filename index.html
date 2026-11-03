@@ -1,13 +1,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Кассовая книга</title>
+<title>FOCUS</title>
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" type="image/png" href="apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <link rel="manifest" href="manifest.webmanifest">
-<meta name="apple-mobile-web-app-title" content="Касса">
+<meta name="apple-mobile-web-app-title" content="FOCUS">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600&display=swap">
@@ -63,6 +63,25 @@
 :root[data-palette="midnight"] { --pl-brand: #3B3FA8; --pl-ink: #FFFFFF; --pl-hero: #2F3394; --pl-mute: #BCC0F2; --pd-brand: #A5A9FF; --pd-ink: #0C0E30; --pd-hero: #25286E; --pd-mute: #BCC0F2; }
 :root[data-palette="sunset"] { --pl-bg: #FBF1F3; --pl-text: #2A1119; --pl-muted: #7A5B64; --pl-line: #EBD6DB; --pl-tint: #F5E8EB; --pd-bg: #150C10; --pd-surface: #20141A; --pd-text: #F6E9ED; --pd-muted: #AA939A; --pd-line: #3A2630; --pd-tint: #2A1B22; }
 :root[data-palette="midnight"] { --pl-bg: #F0F1FA; --pl-text: #131530; --pl-muted: #5C5F85; --pl-line: #D8DAEE; --pl-tint: #E8E9F6; --pd-bg: #0A0B18; --pd-surface: #12142A; --pd-text: #E8E9FA; --pd-muted: #9093B8; --pd-line: #24274A; --pd-tint: #1A1C38; }
+
+/* Палитры «Жар», «Океан», «Графит»: чёрная основа и светящийся акцент */
+:root[data-palette="ember"] { --pl-brand: #C44A05; --pl-ink: #FFFFFF; --pl-hero: #120C08; --pl-mute: #F0C9A4; --pd-brand: #FF8A1F; --pd-ink: #1A0C02; --pd-hero: #120C08; --pd-mute: #F0C9A4;
+  --pl-bg: #FBF4EC; --pl-text: #26160B; --pl-muted: #6B5646; --pl-line: #EBDAC8; --pl-tint: #F5EADD; --pd-bg: #0A0705; --pd-surface: #140E0A; --pd-text: #F8EDE3; --pd-muted: #C2AC9B; --pd-line: #3A2518; --pd-tint: #1E140E;
+  --g1: rgba(255, 110, 10, 0.60); --g2: rgba(255, 60, 0, 0.38); --ge: rgba(255, 150, 50, 0.45); --gs: rgba(255, 100, 0, 0.28); --gb: #0B0705; }
+:root[data-palette="ocean"] { --pl-brand: #1D5FB8; --pl-ink: #FFFFFF; --pl-hero: #050A12; --pl-mute: #B5D2F2; --pd-brand: #3D9BFF; --pd-ink: #031020; --pd-hero: #050A12; --pd-mute: #B5D2F2;
+  --pl-bg: #EEF3F9; --pl-text: #0C1A2B; --pl-muted: #445970; --pl-line: #D3DFEC; --pl-tint: #E5EDF6; --pd-bg: #04070C; --pd-surface: #0B121B; --pd-text: #EAF2FB; --pd-muted: #9FB3C8; --pd-line: #1B2D44; --pd-tint: #111C29;
+  --g1: rgba(40, 140, 255, 0.55); --g2: rgba(0, 200, 255, 0.30); --ge: rgba(90, 170, 255, 0.45); --gs: rgba(30, 120, 255, 0.28); --gb: #050A12; }
+:root[data-palette="graphite"] { --pl-brand: #2B3640; --pl-ink: #FFFFFF; --pl-hero: #08090A; --pl-mute: #C3CBD3; --pd-brand: #DDE3EA; --pd-ink: #0E1114; --pd-hero: #08090A; --pd-mute: #C3CBD3;
+  --pl-bg: #F1F2F4; --pl-text: #161B20; --pl-muted: #4C545C; --pl-line: #DCDFE3; --pl-tint: #EBEDF0; --pd-bg: #060708; --pd-surface: #101214; --pd-text: #EEF0F3; --pd-muted: #A9B0B8; --pd-line: #272B30; --pd-tint: #181B1E;
+  --g1: rgba(190, 205, 225, 0.38); --g2: rgba(120, 135, 155, 0.28); --ge: rgba(220, 228, 240, 0.35); --gs: rgba(160, 180, 210, 0.20); --gb: #08090A; }
+:root[data-palette="ember"] .hero, :root[data-palette="ocean"] .hero, :root[data-palette="graphite"] .hero {
+  background: radial-gradient(120% 95% at 100% 0%, var(--g1), transparent 58%), radial-gradient(90% 75% at 0% 105%, var(--g2), transparent 62%), var(--gb);
+  box-shadow: 0 0 0 1px var(--ge), 0 10px 40px var(--gs);
+}
+:root[data-palette="ember"] .hero::before, :root[data-palette="ocean"] .hero::before, :root[data-palette="graphite"] .hero::before { background: none; }
+.sw[data-p="ember"] i { background: radial-gradient(circle at 70% 25%, #FF8A1F, #C23A00 60%, #120C08 100%); }
+.sw[data-p="ocean"] i { background: radial-gradient(circle at 70% 25%, #3D9BFF, #0B4FA8 60%, #050A12 100%); }
+.sw[data-p="graphite"] i { background: radial-gradient(circle at 70% 25%, #DDE3EA, #6B7683 60%, #08090A 100%); }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]):not([data-mode]) {
@@ -208,6 +227,10 @@ html[data-hide] :is(.hero-bal, .hero-sub, .stat-v, .tile-val, .tile-sub, .jar-v,
 .cmpcol { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; gap: 4px; }
 .cmppair { display: flex; align-items: flex-end; gap: 3px; height: 112px; }
 .cmppair i { display: block; width: 12px; border-radius: 4px 4px 0 0; min-height: 2px; }
+.cmpbars.n12 { gap: 2px; }
+.cmpbars.n12 .cmppair { gap: 1px; }
+.cmpbars.n12 .cmppair i { width: 6px; }
+.cmpbars.n12 .cmpcol span { font-size: 9px; }
 .cmppair i.in { background: var(--brand); }
 .cmppair i.out { background: #C0392B; }
 .cmpcol span { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; }
@@ -862,6 +885,43 @@ label.req::after { content: " *"; color: var(--out); font-weight: 800; }
 #ovCmp .cmprow .cmp-v.avgmain:not(.up):not(.down) { font-size: 20px; font-weight: 800; color: var(--brand); }
 #ovCmp .cmprow .cmp-v.avglive:not(.up):not(.down) { font-size: 16px; font-weight: 700; color: var(--ink); }
 #cmpCats .cmprow b { font-size: 16px; }
+.wrap.lay { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.wrap.lay > header.hero, .wrap.lay > .remind, .wrap.lay > footer { grid-column: 1 / -1; }
+.wrap.lay > header.hero { order: -3; }
+.wrap.lay > .remind { order: -2; }
+.wrap.lay > footer { order: 9999; }
+.wrap.lay > .tiles { display: contents; }
+.wrap.lay > section { min-width: 0; }
+.lhide { display: none !important; }
+.wrap.dense { gap: 12px; }
+.wrap.dense .tiles { gap: 8px; }
+.wrap.dense .tile { padding: 10px 12px; }
+.layrow { display: grid; gap: 8px; padding: 12px 14px; border-bottom: 1px solid var(--line); list-style: none; }
+.layrow:last-child { border-bottom: 0; }
+.layn { font-weight: 700; }
+.layrow.off .layn { opacity: .55; }
+.layb { display: flex; flex-wrap: wrap; gap: 6px; }
+.layb button { min-height: 44px; min-width: 44px; padding: 0 10px; border-radius: 12px; border: 1px solid var(--line); background: var(--tint); font-weight: 700; font-size: 13px; }
+.layb button:disabled { opacity: .35; }
+.laytop { position: fixed; top: 0; left: 0; right: 0; z-index: 70; padding: max(10px, env(safe-area-inset-top)) 16px 10px; background: var(--surface); border-bottom: 1px solid var(--line); display: grid; gap: 4px; }
+.laytop-r { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.laytop .primary { min-height: 40px; padding: 0 20px; }
+.laytop-h { font-size: 12px; color: var(--muted); }
+.laybar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 70; background: var(--surface); border-top: 1px solid var(--line); padding: 12px 16px calc(12px + env(safe-area-inset-bottom)); display: grid; gap: 8px; }
+.laybar p { margin: 0; font-weight: 800; }
+.laybar .layb { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.laybar .layb button { min-height: 46px; padding: 0 6px; font-size: 13px; }
+.layb2 { display: flex; justify-content: space-between; gap: 10px; }
+.laylayer { position: absolute; left: 0; top: 0; width: 0; height: 0; z-index: 50; }
+.lbox { position: absolute; border-radius: 20px; outline: 2px dashed var(--brand); outline-offset: -2px; touch-action: pan-y; cursor: grab; transition: left .18s, top .18s, width .18s, height .18s; -webkit-user-select: none; user-select: none; }
+.lbox span { position: absolute; left: 12px; top: -11px; font-size: 11px; font-weight: 800; background: var(--brand); color: var(--brand-ink); padding: 2px 9px; border-radius: 999px; pointer-events: none; }
+.lbox.sel { outline-style: solid; outline-width: 3px; background: color-mix(in srgb, var(--brand) 16%, transparent); }
+.lbox.drag { transition: none; z-index: 3; cursor: grabbing; box-shadow: 0 14px 40px rgba(0, 0, 0, 0.4); background: color-mix(in srgb, var(--brand) 26%, transparent); }
+.ldim { opacity: 0.35; }
+body.lay-edit { padding-top: 84px; padding-bottom: 210px; }
+body.lay-edit .fab { display: none; }
+body.lay-edit { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
 #tmWarn.bud-st { margin: 0; }
 </style>
 <script>
@@ -873,9 +933,10 @@ label.req::after { content: " *"; color: var(--out); font-weight: 800; }
     document.documentElement.setAttribute('data-style', localStorage.getItem('kassa-style') === 'classic' ? 'classic' : 'glass');
     if (localStorage.getItem('kassa-oled') === '1') document.documentElement.setAttribute('data-oled', '');
     var u = JSON.parse(localStorage.getItem('kassa-ui-v1') || 'null');
-    if (!u) return;
     var r = document.documentElement;
-    if (u.palette && /^[a-z]+$/.test(u.palette) && u.palette !== 'emerald') r.setAttribute('data-palette', u.palette);
+    if (!u) { r.setAttribute('data-palette', 'ember'); return; }
+    var pq = (u.palette && /^[a-z]+$/.test(u.palette)) ? u.palette : 'ember';
+    if (pq !== 'emerald') r.setAttribute('data-palette', pq);
     if (u.mode === 'light' || u.mode === 'dark') r.setAttribute('data-mode', u.mode);
   } catch (e) {}
 })();
@@ -884,7 +945,7 @@ label.req::after { content: " *"; color: var(--out); font-weight: 800; }
 <main class="wrap">
   <header class="hero" aria-label="Итоги месяца">
     <div class="hero-top">
-      <span class="brand" id="brand">Кассовая книга</span>
+      <span class="brand" id="brand">FOCUS</span>
       <span class="hero-btns"><button type="button" class="eye" id="pie" aria-label="Диаграмма: куда уходят доходы"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12A9 9 0 1 1 12 3v9z"/><path d="M15.5 3.6A9 9 0 0 1 20.4 8.5H15.5z"/></svg></button><button type="button" class="eye" id="eye" aria-label="Скрыть суммы" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/><path class="slash" d="M4 4l16 16"/></svg></button><button type="button" class="gear" id="gear" aria-label="Оформление">
         <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg>
       </button></span>
@@ -947,6 +1008,21 @@ label.req::after { content: " *"; color: var(--out); font-weight: 800; }
   </footer>
 </main>
 
+<div class="laytop" id="layTop" hidden>
+  <div class="laytop-r"><strong>Правка главного экрана</strong><button type="button" class="primary" id="layDone">Готово</button></div>
+  <p class="laytop-h">Нажмите на плитку, чтобы выбрать её. Чтобы переместить, удерживайте плитку и перетащите.</p>
+</div>
+<div class="laylayer" id="layLayer" hidden></div>
+<div class="laybar" id="layBar" hidden>
+  <p id="layName"></p>
+  <div class="layb">
+    <button type="button" id="layUp">↑ Выше</button>
+    <button type="button" id="layDn">↓ Ниже</button>
+    <button type="button" id="laySz">Размер</button>
+    <button type="button" id="layVis">Скрыть</button>
+  </div>
+  <div class="layb2"><button type="button" class="link" id="layDense">Компактно: нет</button><button type="button" class="link" id="layReset">Вернуть как было</button></div>
+</div>
 <button class="fab" id="fab" type="button"><span aria-hidden="true">+</span>Запись</button>
 
 <div class="overlay" id="ovAdd" hidden>
@@ -1204,6 +1280,9 @@ label.req::after { content: " *"; color: var(--out); font-weight: 800; }
       <details><summary>Быстрые записи</summary>
         <p>Заполнили форму записи и нажали <b>«Сохранить как быструю запись»</b>: сумма, категория и комментарий запомнятся. В следующий раз в начале формы появится кнопка с этой записью: нажмите на неё, и форма заполнится сама, останется нажать «Записать». «Править» рядом позволяет удалить ненужные.</p>
       </details>
+      <details><summary>Главный экран: порядок и размер плиток</summary>
+        <p>«Настройки» → «Внешний вид» → <b>«Изменить порядок и размер плиток»</b>. Откроется режим правки: нажмите на плитку, чтобы выбрать её, и используйте большие кнопки внизу: «Выше», «Ниже», «Сделать узкой» или «Сделать широкой», «Скрыть». Плитку можно и перетащить: удерживайте её и ведите пальцем. «Компактно» делает плитки и промежутки меньше, «Вернуть как было» сбрасывает всё. Скрытые плитки в режиме правки видны бледными, их можно вернуть кнопкой «Показать». Остаток вверху экрана остаётся на месте. Настройка хранится на этом устройстве и входит в резервную копию.</p>
+      </details>
       <details><summary>Сравнение и динамика</summary>
         <p>Плитка <b>«Сравнение и динамика»</b> показывает столбики доходов и расходов за последние 6 месяцев и сравнивает выбранный месяц с предыдущим по категориям: красная стрелка вверх означает, что вы потратили больше, зелёная вниз — меньше. Ниже стоит <b>средний расход в день</b> по месяцам: все расходы месяца, делённые на прошедшие дни, и справа то же без регулярных платежей.</p>
       </details>
@@ -1369,6 +1448,12 @@ label.req::after { content: " *"; color: var(--out); font-weight: 800; }
       <button type="button" class="x" data-close aria-label="Закрыть">×</button>
     </div>
     <div class="stack">
+      <div class="segb" id="pieSeg" role="group" aria-label="Период">
+        <button type="button" data-p="1" aria-pressed="true">Месяц</button>
+        <button type="button" data-p="3" aria-pressed="false">3 мес.</button>
+        <button type="button" data-p="6" aria-pressed="false">6 мес.</button>
+        <button type="button" data-p="12" aria-pressed="false">Год</button>
+      </div>
       <p class="small quiet" id="pieMonth"></p>
       <div class="piewrap" id="pieWrap"></div>
       <p class="hint" id="pieNote"></p>
@@ -1388,7 +1473,12 @@ label.req::after { content: " *"; color: var(--out); font-weight: 800; }
     <div class="stack">
       <button type="button" class="secondary" id="tmOpen">⏳ Машина времени: что будет дальше</button>
       <div>
-        <span class="lbl">Последние 6 месяцев</span>
+        <div class="segb" id="cmpSeg" role="group" aria-label="Период">
+          <button type="button" data-p="3" aria-pressed="false">3 мес.</button>
+          <button type="button" data-p="6" aria-pressed="true">6 мес.</button>
+          <button type="button" data-p="12" aria-pressed="false">12 мес.</button>
+        </div>
+        <span class="lbl" id="cmpPerL">Последние 6 месяцев</span>
         <div class="cmpbars" id="cmpBars"></div>
         <div class="cmpleg"><span><i style="background:var(--brand)"></i>Доходы</span><span><i style="background:#C0392B"></i>Расходы</span></div>
         <div id="cmpTable"></div>
@@ -1631,7 +1721,7 @@ label.req::after { content: " *"; color: var(--out); font-weight: 800; }
     </div>
     <div class="stack">
       <details class="fold setgrp"><summary><span>Внешний вид</span><small class="ssub">Название, цвет, тема</small></summary>
-      <div class="field"><label for="uiName">Название</label><input id="uiName" maxlength="30" autocomplete="off" placeholder="Кассовая книга"></div>
+      <div class="field"><label for="uiName">Название</label><input id="uiName" maxlength="30" autocomplete="off" placeholder="FOCUS"></div>
       <div class="field">
         <span class="lbl" id="lblColor">Цвет</span>
         <div class="swatches" id="swatches" role="group" aria-labelledby="lblColor"></div>
@@ -1657,6 +1747,10 @@ label.req::after { content: " *"; color: var(--out); font-weight: 800; }
           <button type="button" data-o="0" aria-pressed="true">Обычный</button>
           <button type="button" data-o="1" aria-pressed="false">Чёрный (OLED)</button>
         </div>
+      </div>
+      <div class="field">
+        <span class="lbl">Главный экран</span>
+        <button type="button" class="secondary" id="layOpen">Изменить порядок и размер плиток</button>
       </div>
 </details>
       <details class="fold setgrp"><summary><span>Защита</span><small class="ssub">Пин-код и Face ID</small></summary>
@@ -1765,7 +1859,7 @@ label.req::after { content: " *"; color: var(--out); font-weight: 800; }
 (function () {
   'use strict';
 
-  var DEFAULT_NAME = 'Кассовая книга';
+  var DEFAULT_NAME = 'FOCUS';
   var DEFAULT_CATS = {
     out: ['Продукты', 'Транспорт', 'Жильё', 'Связь', 'Кафе и рестораны', 'Здоровье', 'Одежда', 'Развлечения', 'Другое'],
     in: ['Зарплата', 'Подработка', 'Подарок', 'Другое']
@@ -1786,6 +1880,7 @@ label.req::after { content: " *"; color: var(--out); font-weight: 800; }
     '💼', '💰', '🏦', '📈', '🛠️', '🧾', '✨', '❤️'
   ];
   var PALETTES = [
+    { id: 'ember', name: 'Жар' },
     { id: 'emerald', name: 'Изумруд' },
     { id: 'ocean', name: 'Океан' },
     { id: 'plum', name: 'Слива' },
@@ -1812,7 +1907,7 @@ label.req::after { content: " *"; color: var(--out); font-weight: 800; }
   var loading = true;
   var store = { mode: 'local', col: null };
   var settings = { accs: [], xfers: [], on: false, plan: 0, goal: 0, carry: true, limitGoals: false, carryFrom: '', closed: '', goals: [], months: 0, goalStart: '' };
-  var ui = { name: '', palette: 'emerald', mode: 'auto' };
+  var ui = { name: '', palette: 'ember', mode: 'auto' };
   var STYLE = 'glass', OLED = false;
   try { STYLE = localStorage.getItem('kassa-style') === 'classic' ? 'classic' : 'glass'; OLED = localStorage.getItem('kassa-oled') === '1'; } catch (e) {}
   function isGlass() { return STYLE === 'glass'; }
@@ -2164,7 +2259,7 @@ label.req::after { content: " *"; color: var(--out); font-weight: 800; }
   }
   function cleanUi(o) {
     o = o || {};
-    var pal = PALETTES.some(function (p) { return p.id === o.palette; }) ? o.palette : 'emerald';
+    var pal = PALETTES.some(function (p) { return p.id === o.palette; }) ? o.palette : 'ember';
     var md = (o.mode === 'light' || o.mode === 'dark') ? o.mode : 'auto';
     var nm = typeof o.name === 'string' ? o.name.trim().slice(0, 30) : '';
     return { name: nm, palette: pal, mode: md };
@@ -2312,6 +2407,7 @@ label.req::after { content: " *"; color: var(--out); font-weight: 800; }
           if (!uiPending && !nameTimer) {
             var ud = snap.docs.filter(function (d) { return d.id === '_ui'; })[0];
             if (ud) { ui = cleanUi(ud.data()); applyUi(); renderUiSheet(); }
+            emberOnce();
           }
           if (!recPending && !recBusy) {
             var rd = snap.docs.filter(function (d) { return d.id === '_rec'; })[0];
@@ -3048,6 +3144,16 @@ label.req::after { content: " *"; color: var(--out); font-weight: 800; }
     });
     var inp = $('uiName');
     if (document.activeElement !== inp) inp.value = ui.name;
+  }
+  // Один раз включаем палитру «Жар» (по просьбе), вернуть прежнюю можно в настройках
+  function emberOnce() {
+    if (lsGet('kassa-ember') === '1') return;
+    lsSet('kassa-ember', '1');
+    if (ui.palette === 'ember') return;
+    ui.palette = 'ember';
+    applyUi();
+    persistUi();
+    setTimeout(function () { toast('Включена палитра «Жар». Прежние цвета: Настройки → Внешний вид'); }, 900);
   }
   function persistUi() {
     uiPending++;
@@ -3813,7 +3919,7 @@ label.req::after { content: " *"; color: var(--out); font-weight: 800; }
       if (t.acc) o.acc = t.acc;
       return o;
     }), cats: catsBody(), save: { accs: settings.accs, xfers: settings.xfers, on: settings.on, plan: settings.plan, goal: settings.goal, carry: settings.carry, limitGoals: settings.limitGoals, carryFrom: settings.carryFrom, closed: settings.closed, goals: settings.goals, months: settings.months, goalStart: settings.goalStart },
-      tpl: { items: tpl.items }, debt: { items: debt.items }, ui: { name: ui.name.trim(), palette: ui.palette, mode: ui.mode, style: STYLE, oled: OLED }, rec: { items: rec.items } };
+      tpl: { items: tpl.items }, debt: { items: debt.items }, ui: { name: ui.name.trim(), palette: ui.palette, mode: ui.mode, style: STYLE, oled: OLED, layout: LAY }, rec: { items: rec.items } };
   }
   function downloadText(name, text) {
     var blob = new Blob([text], { type: 'application/json' });
@@ -3837,7 +3943,7 @@ label.req::after { content: " *"; color: var(--out); font-weight: 800; }
     var file = null;
     try { file = new File([json], name, { type: 'application/json' }); } catch (e) {}
     if (file && navigator.canShare && navigator.canShare({ files: [file] })) {
-      navigator.share({ files: [file], title: 'Кассовая книга' }).then(function () { markBackup(); toast('Копия готова'); }).catch(function (e) {
+      navigator.share({ files: [file], title: 'FOCUS' }).then(function () { markBackup(); toast('Копия готова'); }).catch(function (e) {
         if (e && e.name === 'AbortError') return;
         downloadText(name, json); markBackup(); toast('Копия сохранена в загрузки');
       });
@@ -3868,7 +3974,7 @@ label.req::after { content: " *"; color: var(--out); font-weight: 800; }
     var file = null;
     try { file = new File([text], name, { type: 'text/csv' }); } catch (e) {}
     if (file && navigator.canShare && navigator.canShare({ files: [file] })) {
-      navigator.share({ files: [file], title: 'Кассовая книга' }).catch(function (e) {
+      navigator.share({ files: [file], title: 'FOCUS' }).catch(function (e) {
         if (e && e.name === 'AbortError') return;
         var blob = new Blob([text], { type: 'text/csv' }), a = document.createElement('a');
         a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click();
@@ -3920,7 +4026,7 @@ label.req::after { content: " *"; color: var(--out); font-weight: 800; }
         $('bkInfo').hidden = false;
       } catch (e) {
         bkPending = null; $('bkInfo').hidden = true;
-        toast('Это не файл копии «Кассовой книги»');
+        toast('Это не файл копии FOCUS');
       }
   }
   $('bkFile').addEventListener('change', function () {
@@ -3968,6 +4074,7 @@ label.req::after { content: " *"; color: var(--out); font-weight: 800; }
       ui = cleanUi(b.ui);
       if (b.ui && (b.ui.style === 'glass' || b.ui.style === 'classic')) STYLE = b.ui.style;
       if (b.ui && typeof b.ui.oled === 'boolean') OLED = b.ui.oled;
+      if (b.ui && b.ui.layout) { LAY = layClean(b.ui.layout); laySave(); applyLayout(); }
       applyLook();
       rec = cleanRec(b.rec);
       tpl = cleanTpl(b.tpl);
@@ -4111,6 +4218,185 @@ label.req::after { content: " *"; color: var(--out); font-weight: 800; }
   function catAttr(n) {
     return ' style="--cc:' + catColor(n) + '" class="cl' + (catFilter === n ? ' on' : '') + '" data-cat="' + esc(n) + '" role="button" tabindex="0" aria-pressed="' + (catFilter === n ? 'true' : 'false') + '"';
   }
+  // ===== Настройка главного экрана =====
+  var LAY_KEY = 'kassa-layout';
+  var LAY_DEF = ['day', 'jar', 'acc', 'debt', 'rec', 'cats', 'lim', 'cmp', 'journal'];
+  var LAY_NAME = { day: 'Можно сегодня', jar: 'В копилке', acc: 'Счета', debt: 'Долги', rec: 'Регулярные платежи', cats: 'Куда уходят деньги', lim: 'Лимиты по категориям', cmp: 'Сравнение и динамика', journal: 'Записи' };
+  var LAY_SIZE0 = { day: 1, jar: 1, acc: 2, debt: 2, rec: 2, cats: 2, lim: 1, cmp: 1, journal: 2 };
+  var LAY_FIXED = { cats: 1, journal: 1 };
+  var LAY = { order: LAY_DEF.slice(), size: {}, hide: {}, dense: false };
+  function layClean(o) {
+    var r = { order: [], size: {}, hide: {}, dense: false };
+    if (o && typeof o === 'object') {
+      if (Array.isArray(o.order)) o.order.forEach(function (k) { if (LAY_DEF.indexOf(k) >= 0 && r.order.indexOf(k) < 0) r.order.push(k); });
+      LAY_DEF.forEach(function (k) {
+        if (r.order.indexOf(k) < 0) r.order.push(k);
+        if (o.size && (o.size[k] === 1 || o.size[k] === 2) && !LAY_FIXED[k]) r.size[k] = o.size[k];
+        if (o.hide && o.hide[k] === true) r.hide[k] = true;
+      });
+      r.dense = o.dense === true;
+    } else r.order = LAY_DEF.slice();
+    return r;
+  }
+  function layIsDefault() {
+    if (LAY.order.join() !== LAY_DEF.join()) return false;
+    if (Object.keys(LAY.hide).length) return false;
+    return LAY_DEF.every(function (k) { return !LAY.size[k] || LAY.size[k] === LAY_SIZE0[k]; });
+  }
+  function laySave() {
+    try { if (layIsDefault() && !LAY.dense) localStorage.removeItem(LAY_KEY); else localStorage.setItem(LAY_KEY, JSON.stringify(LAY)); } catch (e) {}
+  }
+  try { LAY = layClean(JSON.parse(localStorage.getItem(LAY_KEY))); } catch (e) { LAY = layClean(null); }
+  var layEditing = false, laySel = null, layDrag = null;
+  function layEls() {
+    var q = function (sel) { return document.querySelector(sel); };
+    return { day: q('#tiles .t-day'), jar: q('#tiles .tile:not(.t-day)'), acc: q('#quick [data-open="acc"]'), debt: q('#quick [data-open="debt"]'), rec: q('#quick [data-open="rec"]'),
+      cats: $('catsBox'), lim: q('#quick2 [data-open="lim"]'), cmp: q('#quick2 [data-open="cmp"]'), journal: $('journal') };
+  }
+  function applyLayout() {
+    var wrap = document.querySelector('main.wrap');
+    if (!wrap) return;
+    var cust = !layIsDefault() || layEditing, els = layEls();
+    wrap.classList.toggle('lay', cust);
+    wrap.classList.toggle('dense', LAY.dense);
+    LAY.order.forEach(function (k, i) {
+      var el = els[k];
+      if (!el) return;
+      if (cust) {
+        var w = (LAY_FIXED[k] || el.classList.contains('off')) ? 2 : (LAY.size[k] || LAY_SIZE0[k]);
+        el.style.order = String(i);
+        el.style.gridColumn = w === 2 ? '1 / -1' : 'span 1';
+      } else { el.style.order = ''; el.style.gridColumn = ''; }
+      el.classList.toggle('lhide', cust && !layEditing && !!LAY.hide[k]);
+      el.classList.toggle('ldim', layEditing && !!LAY.hide[k]);
+    });
+  }
+  function layPlace() {
+    var els = layEls(), sx = window.pageXOffset, sy = window.pageYOffset;
+    Array.prototype.forEach.call($('layLayer').children, function (bx) {
+      var el = els[bx.getAttribute('data-k')];
+      if (!el) return;
+      var r = el.getBoundingClientRect();
+      bx.style.left = (r.left + sx) + 'px'; bx.style.top = (r.top + sy) + 'px';
+      bx.style.width = r.width + 'px'; bx.style.height = r.height + 'px';
+      bx.classList.toggle('sel', bx.getAttribute('data-k') === laySel);
+    });
+  }
+  function layBuild() {
+    var els = layEls(), h = '';
+    LAY.order.forEach(function (k) {
+      var el = els[k];
+      if (!el || el.offsetWidth === 0) return;
+      h += '<div class="lbox" data-k="' + k + '"><span>' + esc(LAY_NAME[k]) + (LAY.hide[k] ? ' · скрыто' : '') + '</span></div>';
+    });
+    $('layLayer').innerHTML = h;
+    layPlace(); layBar();
+  }
+  function layBar() {
+    var k = laySel;
+    if (!k) { $('layName').textContent = 'Выберите плитку'; return; }
+    var i = LAY.order.indexOf(k), sz = LAY_FIXED[k] ? 2 : (LAY.size[k] || LAY_SIZE0[k]);
+    $('layName').textContent = LAY_NAME[k] + (LAY.hide[k] ? ' (скрыто)' : '');
+    $('layUp').disabled = i <= 0; $('layDn').disabled = i >= LAY.order.length - 1;
+    $('laySz').disabled = !!LAY_FIXED[k];
+    $('laySz').textContent = LAY_FIXED[k] ? 'Размер' : (sz === 2 ? 'Сделать узкой' : 'Сделать широкой');
+    $('layVis').textContent = LAY.hide[k] ? 'Показать' : 'Скрыть';
+    $('layDense').textContent = 'Компактно: ' + (LAY.dense ? 'да' : 'нет');
+  }
+  function layKeepVisible() {
+    var bx = $('layLayer').querySelector('[data-k="' + laySel + '"]');
+    if (!bx) return;
+    var r = bx.getBoundingClientRect(), top = 96, bot = window.innerHeight - 210;
+    if (r.top < top) window.scrollBy(0, r.top - top); else if (r.bottom > bot && r.height < bot - top) window.scrollBy(0, r.bottom - bot);
+  }
+  function layChanged() { laySave(); applyLayout(); layBuild(); layKeepVisible(); }
+  function layEnter() {
+    closeOv();
+    layEditing = true;
+    if (!laySel || !layEls()[laySel]) laySel = LAY.order.filter(function (k) { return layEls()[k]; })[0] || null;
+    document.body.classList.add('lay-edit');
+    $('layTop').hidden = false; $('layBar').hidden = false; $('layLayer').hidden = false;
+    applyLayout();
+    window.scrollTo(0, 0);
+    layBuild();
+  }
+  function layExit() {
+    layEditing = false;
+    document.body.classList.remove('lay-edit');
+    $('layTop').hidden = true; $('layBar').hidden = true; $('layLayer').hidden = true; $('layLayer').innerHTML = '';
+    applyLayout();
+  }
+  $('layOpen').addEventListener('click', layEnter);
+  $('layDone').addEventListener('click', layExit);
+  $('layUp').addEventListener('click', function () { var i = LAY.order.indexOf(laySel); if (i > 0) { LAY.order.splice(i, 1); LAY.order.splice(i - 1, 0, laySel); layChanged(); } });
+  $('layDn').addEventListener('click', function () { var i = LAY.order.indexOf(laySel); if (i >= 0 && i < LAY.order.length - 1) { LAY.order.splice(i, 1); LAY.order.splice(i + 1, 0, laySel); layChanged(); } });
+  $('laySz').addEventListener('click', function () { if (!laySel || LAY_FIXED[laySel]) return; LAY.size[laySel] = (LAY.size[laySel] || LAY_SIZE0[laySel]) === 2 ? 1 : 2; layChanged(); });
+  $('layVis').addEventListener('click', function () { if (!laySel) return; if (LAY.hide[laySel]) delete LAY.hide[laySel]; else LAY.hide[laySel] = true; layChanged(); });
+  $('layDense').addEventListener('click', function () { LAY.dense = !LAY.dense; layChanged(); });
+  $('layReset').addEventListener('click', function () { LAY = layClean(null); laySave(); applyLayout(); layBuild(); toast('Главный экран как раньше'); });
+  // Перетаскивание: удерживайте плитку (или потяните мышью) и переместите
+  $('layLayer').addEventListener('pointerdown', function (e) {
+    var bx = e.target.closest('.lbox');
+    if (!bx) return;
+    var d = { box: bx, key: bx.getAttribute('data-k'), id: e.pointerId, x: e.clientX, y: e.clientY, sx: window.pageXOffset, sy: window.pageYOffset, armed: false, moved: false, timer: 0, touch: e.pointerType !== 'mouse' };
+    layDrag = d;
+    laySel = d.key; layPlace(); layBar();
+    if (d.touch) d.timer = setTimeout(function () { if (layDrag === d) { d.armed = true; bx.classList.add('drag'); try { navigator.vibrate && navigator.vibrate(12); } catch (er) {} } }, 280);
+  });
+  window.addEventListener('pointermove', function (e) {
+    var d = layDrag;
+    if (!d || e.pointerId !== d.id) return;
+    var dx = e.clientX - d.x, dy = e.clientY - d.y;
+    if (!d.armed) {
+      if (Math.hypot(dx, dy) > (d.touch ? 10 : 4)) {
+        if (d.touch) { clearTimeout(d.timer); layDrag = null; return; }
+        d.armed = true; d.box.classList.add('drag');
+      } else return;
+    }
+    d.moved = true;
+    e.preventDefault();
+    d.box.style.transform = 'translate(' + (dx + (window.pageXOffset - d.sx)) + 'px,' + (dy + (window.pageYOffset - d.sy)) + 'px)';
+    var els = layEls(), hit = null;
+    Array.prototype.forEach.call($('layLayer').children, function (bx) {
+      if (bx === d.box) return;
+      var r = els[bx.getAttribute('data-k')].getBoundingClientRect();
+      var mx = r.left + r.width * 0.2, my = r.top + Math.min(r.height * 0.2, 30);
+      if (e.clientX >= mx && e.clientX <= r.right - r.width * 0.2 && e.clientY >= my && e.clientY <= r.bottom - Math.min(r.height * 0.2, 30)) hit = bx.getAttribute('data-k');
+    });
+    if (hit && hit !== d.key) {
+      var i = LAY.order.indexOf(d.key), j = LAY.order.indexOf(hit);
+      LAY.order.splice(i, 1); LAY.order.splice(j, 0, d.key);
+      applyLayout();
+      var bxs = $('layLayer').children, sx = window.pageXOffset, sy = window.pageYOffset;
+      Array.prototype.forEach.call(bxs, function (bx) {
+        if (bx === d.box) return;
+        var r = els[bx.getAttribute('data-k')].getBoundingClientRect();
+        bx.style.left = (r.left + sx) + 'px'; bx.style.top = (r.top + sy) + 'px'; bx.style.width = r.width + 'px'; bx.style.height = r.height + 'px';
+      });
+      // новое место перетаскиваемой плитки: считаем от её слота
+      var r0 = els[d.key].getBoundingClientRect();
+      d.box.style.left = (r0.left + sx) + 'px'; d.box.style.top = (r0.top + sy) + 'px'; d.box.style.width = r0.width + 'px'; d.box.style.height = r0.height + 'px';
+      d.x = e.clientX; d.y = e.clientY; d.sx = sx; d.sy = sy;
+      d.box.style.transform = 'translate(0px,0px)';
+    }
+    var vh = window.innerHeight;
+    d.scroll = e.clientY < 110 ? -14 : (e.clientY > vh - 220 ? 14 : 0);
+    if (d.scroll && !d.raf) d.raf = requestAnimationFrame(function tick() { d.raf = 0; if (layDrag === d && d.scroll) { window.scrollBy(0, d.scroll); d.raf = requestAnimationFrame(tick); } });
+  }, { passive: false });
+  function layDragEnd() {
+    var d = layDrag;
+    if (!d) return;
+    clearTimeout(d.timer);
+    layDrag = null;
+    d.box.classList.remove('drag'); d.box.style.transform = '';
+    if (d.moved) { laySave(); layBuild(); }
+    else layBar();
+  }
+  window.addEventListener('pointerup', layDragEnd);
+  window.addEventListener('pointercancel', layDragEnd);
+  document.addEventListener('touchmove', function (e) { if (layDrag && layDrag.armed) e.preventDefault(); }, { passive: false });
+  window.addEventListener('resize', function () { if (layEditing) layBuild(); });
+
   function render(mode) {
     var light = mode === 'journal';
     var key = view.y + '-' + pad(view.m + 1);
@@ -4254,6 +4540,7 @@ label.req::after { content: " *"; color: var(--out); font-weight: 800; }
       renderSaveSheet();
       checkDone();
       renderAccUi();
+      applyLayout();
     }
 
     $('clearEx').hidden = !txs.some(function (t) { return t.example; });
@@ -4493,20 +4780,42 @@ label.req::after { content: " *"; color: var(--out); font-weight: 800; }
     return r;
   }
   var PIE_COLORS = ['#2E7D6B', '#C0392B', '#3F6FB5', '#E07B39', '#8E5BB0', '#B5546B', '#4C9F70', '#6B7B8C'];
+  var PER = { pie: 1, cmp: 6 };
+  try {
+    var pp = +localStorage.getItem('kassa-per-pie'), pc = +localStorage.getItem('kassa-per-cmp');
+    if ([1, 3, 6, 12].indexOf(pp) >= 0) PER.pie = pp;
+    if ([3, 6, 12].indexOf(pc) >= 0) PER.cmp = pc;
+  } catch (e) {}
+  function perMark(id, v) {
+    Array.prototype.forEach.call($(id).children, function (b) { b.setAttribute('aria-pressed', +b.getAttribute('data-p') === v ? 'true' : 'false'); });
+  }
+  $('pieSeg').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-p]'); if (!b) return;
+    PER.pie = +b.getAttribute('data-p'); lsSet('kassa-per-pie', PER.pie); renderPie();
+  });
+  $('cmpSeg').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-p]'); if (!b) return;
+    PER.cmp = +b.getAttribute('data-p'); lsSet('kassa-per-cmp', PER.cmp); renderCmp();
+  });
   function renderPie() {
     var key = view.y + '-' + pad(view.m + 1), inc = 0, exp = 0, sv = 0, by = {};
+    var P = PER.pie, fromKey = monthKey(new Date(view.y, view.m - (P - 1), 1)), unit = P > 1 ? 'периода' : 'месяца';
+    perMark('pieSeg', P);
     txs.forEach(function (t) {
-      if (t.date.slice(0, 7) !== key) return;
+      var d7 = t.date.slice(0, 7);
+      if (d7 < fromKey || d7 > key) return;
       if (t.type === 'in') inc += t.amount;
       else if (t.type === 'out') { exp += t.amount; by[t.cat] = (by[t.cat] || 0) + t.amount; }
       else sv += t.amount;
     });
     inc = r2(inc); exp = r2(exp); sv = Math.max(0, r2(sv));
-    $('pieMonth').textContent = cap(new Date(view.y, view.m, 1).toLocaleDateString('ru-RU', { month: 'long' })) + ' ' + view.y + '. Месяц меняется стрелками на главной.';
+    $('pieMonth').textContent = P > 1
+      ? cap(new Date(view.y, view.m - (P - 1), 1).toLocaleDateString('ru-RU', { month: 'long', year: 'numeric' }).replace(' г.', '')) + ' – ' + new Date(view.y, view.m, 1).toLocaleDateString('ru-RU', { month: 'long', year: 'numeric' }).replace(' г.', '') + '. Конец периода меняется стрелками на главной.'
+      : cap(new Date(view.y, view.m, 1).toLocaleDateString('ru-RU', { month: 'long' })) + ' ' + view.y + '. Месяц меняется стрелками на главной.';
     var spend = r2(exp + sv), base = Math.max(inc, spend);
     var wrap = $('pieWrap'), leg = $('pieLeg'), note = $('pieNote');
     if (!(base > 0)) {
-      wrap.innerHTML = ''; leg.innerHTML = ''; note.textContent = 'В этом месяце нет доходов и расходов. Добавьте записи, и здесь появится диаграмма.';
+      wrap.innerHTML = ''; leg.innerHTML = ''; note.textContent = 'В этом ' + (P > 1 ? 'периоде' : 'месяце') + ' нет доходов и расходов. Добавьте записи, и здесь появится диаграмма.';
       return;
     }
     var names = Object.keys(by).sort(function (a, b) { return by[b] - by[a]; });
@@ -4538,9 +4847,9 @@ label.req::after { content: " *"; color: var(--out); font-weight: 800; }
       return '<button type="button" class="pr" data-i="' + gi + '"><span class="pr-top"><span class="pr-n"><i style="background:' + g.c + '"></i>' + (g.icon ? esc(g.icon) + ' ' : '') + esc(g.name) + '</span><span class="pr-v"><span class="amt">' + money(g.v) + '</span><b>' + (pc < 1 ? '<1' : Math.round(pc)) + '%</b></span></span><span class="pr-bar"><i style="width:' + (g.v / mx * 100).toFixed(1) + '%;background:' + g.c + '"></i></span>' + (g.sub ? subHtml(g.sub) : '') + '</button>';
     }).join('');
     pieShow();
-    if (inc <= 0) note.textContent = 'В этом месяце нет доходов, проценты считаются от суммы расходов.';
-    else if (spend > inc + 0.005) note.textContent = 'Расходы и накопления больше доходов месяца на ' + money(r2(spend - inc)) + ': часть оплачена остатком прошлых месяцев.';
-    else note.textContent = 'Доли считаются от доходов месяца. Остаток прошлых месяцев сюда не входит.';
+    if (inc <= 0) note.textContent = 'В этом ' + (P > 1 ? 'периоде' : 'месяце') + ' нет доходов, проценты считаются от суммы расходов.';
+    else if (spend > inc + 0.005) note.textContent = 'Расходы и накопления больше доходов ' + unit + ' на ' + money(r2(spend - inc)) + ': часть оплачена остатком прошлых месяцев.';
+    else note.textContent = 'Доли считаются от доходов ' + unit + '. Остаток прошлых месяцев сюда не входит.';
   }
   var pieSegs = [], pieBase = 0, pieInc = 0, pieLbl = '', pieSel = -1;
   function pieShow() {
@@ -4569,14 +4878,19 @@ label.req::after { content: " *"; color: var(--out); font-weight: 800; }
   $('pie').addEventListener('click', function () { renderPie(); openOv('ovPie'); });
   function renderCmp() {
     var arr = [], max = 0;
-    for (var i = 5; i >= 0; i--) {
+    var N = PER.cmp;
+    perMark('cmpSeg', N);
+    $('cmpPerL').textContent = 'Последние ' + N + ' месяцев';
+    $('cmpBars').style.gridTemplateColumns = 'repeat(' + N + ', minmax(0, 1fr))';
+    $('cmpBars').classList.toggle('n12', N > 6);
+    for (var i = N - 1; i >= 0; i--) {
       var d = new Date(view.y, view.m - i, 1), tt = monthTotals(d.getFullYear(), d.getMonth());
       arr.push({ d: d, t: tt });
       max = Math.max(max, tt.inc, tt.out);
     }
     $('cmpBars').innerHTML = arr.map(function (x, idx) {
       var hi = max > 0 ? x.t.inc / max * 100 : 0, ho = max > 0 ? x.t.out / max * 100 : 0;
-      return '<div class="cmpcol' + (idx === 5 ? ' now' : '') + '"><div class="cmppair"><i class="in" style="height:' + hi.toFixed(1) + '%"></i><i class="out" style="height:' + ho.toFixed(1) + '%"></i></div><span>' + MON[x.d.getMonth()] + '</span></div>';
+      return '<div class="cmpcol' + (idx === N - 1 ? ' now' : '') + '"><div class="cmppair"><i class="in" style="height:' + hi.toFixed(1) + '%"></i><i class="out" style="height:' + ho.toFixed(1) + '%"></i></div><span>' + MON[x.d.getMonth()] + '</span></div>';
     }).join('');
     $('cmpTable').innerHTML = arr.slice().reverse().filter(function (x) { return x.t.inc > 0 || x.t.out > 0; }).map(function (x) {
       return '<div class="cmprow"><span>' + cap(x.d.toLocaleDateString('ru-RU', { month: 'long', year: 'numeric' })) + '</span><span class="cmp-v in">+' + money(r2(x.t.inc)) + '</span><span class="cmp-v out">−' + money(r2(x.t.out)) + '</span></div>';
@@ -4605,7 +4919,7 @@ label.req::after { content: " *"; color: var(--out); font-weight: 800; }
       }
       return '<div class="cmprow"><span>' + cap(x.d.toLocaleDateString('ru-RU', { month: 'long', year: 'numeric' })) + dl + '</span><span class="cmp-v avgmain">' + money(Math.round(x.avg)) + '</span><span class="cmp-v avglive">' + money(Math.round(x.live)) + '</span></div>';
     }).join('') || '<p class="hint">Пока нет расходов за эти месяцы.</p>';
-    var cur = arr[5], pd = new Date(view.y, view.m - 1, 1), prev = monthTotals(pd.getFullYear(), pd.getMonth());
+    var cur = arr[N - 1], pd = new Date(view.y, view.m - 1, 1), prev = monthTotals(pd.getFullYear(), pd.getMonth());
     var cn = cap(cur.d.toLocaleDateString('ru-RU', { month: 'long' })), pn = cap(pd.toLocaleDateString('ru-RU', { month: 'long' }));
     $('cmpHead').textContent = cn + ' и ' + pn.toLowerCase();
     var now = new Date(), isNow = view.y === now.getFullYear() && view.m === now.getMonth();
@@ -5749,8 +6063,8 @@ label.req::after { content: " *"; color: var(--out); font-weight: 800; }
   function fidEnroll() {
     return navigator.credentials.create({ publicKey: {
       challenge: crypto.getRandomValues(new Uint8Array(32)),
-      rp: { name: 'Кассовая книга', id: location.hostname },
-      user: { id: crypto.getRandomValues(new Uint8Array(16)), name: 'kassa', displayName: 'Кассовая книга' },
+      rp: { name: 'FOCUS', id: location.hostname },
+      user: { id: crypto.getRandomValues(new Uint8Array(16)), name: 'kassa', displayName: 'FOCUS' },
       pubKeyCredParams: [{ type: 'public-key', alg: -7 }, { type: 'public-key', alg: -257 }],
       authenticatorSelection: { authenticatorAttachment: 'platform', userVerification: 'required', residentKey: 'discouraged' },
       timeout: 60000, attestation: 'none'
@@ -5952,6 +6266,7 @@ label.req::after { content: " *"; color: var(--out); font-weight: 800; }
 
   $('date').value = dateStr(new Date());
   ui = lsLoadUi();
+  emberOnce();
   applyUi();
   renderUiSheet();
   renderPick();
