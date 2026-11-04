@@ -537,7 +537,22 @@ body.lay-edit .pghead, body.lay-edit #todayDate { pointer-events: none; }
 .chdone .qbtn { background: rgba(255,255,255,.18); border-color: rgba(255,255,255,.3); color: inherit; min-width: 40%; }
 .chdone .qbtn.main { background: #fff; color: #1a0f08; border-color: #fff; }
 .shbox { display: grid; place-items: center; }
-.shbox img { display: block; max-width: 100%; max-height: 52vh; width: auto; height: auto; border-radius: 18px; border: 1px solid var(--line); }
+.qbtn.main { background: var(--brand); color: var(--brand-ink); border-color: var(--brand); }
+.shbox img { -webkit-touch-callout: default; -webkit-user-select: auto; user-select: auto; display: block; max-width: 100%; max-height: 52vh; width: auto; height: auto; border-radius: 18px; border: 1px solid var(--line); }
+
+.prow1 + .wgrow { margin-top: 10px; }
+.wgrow { display: flex; flex-direction: column; gap: 4px; }
+.wgrow + .wgrow { margin-top: 6px; }
+.wgt { display: flex; justify-content: space-between; gap: 8px; font-weight: 700; font-size: 14px; }
+.wgitem { padding: 12px 0; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 8px; }
+.wgitem:first-child { border-top: 0; }
+.wgtop { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.wgname { background: transparent; border: 0; padding: 0; text-align: left; font-weight: 800; font-size: 16px; color: inherit; }
+.okc { color: var(--in); }
+.wgbtn { display: flex; gap: 8px; }
+.wgbtn button { height: 44px; border-radius: 12px; border: 1px solid var(--line); background: var(--tint); font-weight: 800; font-size: 18px; flex: 0 0 56px; }
+.wgbtn .plus { flex: 1; background: var(--brand); color: var(--brand-ink); border-color: var(--brand); font-size: 16px; }
+.pcard.w1 .wgrow:nth-of-type(n+3) { display: none; }
 .fab span { font-size: 24px; line-height: 0.8; font-weight: 600; }
 
 /* Окна снизу */
@@ -1049,7 +1064,10 @@ label.req::after { content: " *"; color: var(--out); font-weight: 800; }
 .lbox.sel { outline-style: solid; outline-width: 3px; background: color-mix(in srgb, var(--brand) 16%, transparent); }
 .lbox.drag { transition: none; z-index: 3; cursor: grabbing; box-shadow: 0 14px 40px rgba(0, 0, 0, 0.4); background: color-mix(in srgb, var(--brand) 26%, transparent); }
 .ldim { opacity: 0.35; }
-body.lay-edit { padding-top: 84px; padding-bottom: 210px; }
+body.lay-edit { padding-top: 140px; padding-bottom: 210px; }
+.laysw { display: flex; gap: 6px; background: var(--tint); border-radius: 12px; padding: 3px; }
+.laysw button { flex: 1; border: 0; background: transparent; border-radius: 9px; padding: 8px 6px; font-weight: 700; color: var(--muted); }
+.laysw button[aria-pressed="true"] { background: var(--brand); color: var(--brand-ink); }
 body.lay-edit .fab { display: none; }
 body.lay-edit { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
 body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
@@ -1159,6 +1177,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
   <div><h1 class="pgtitle">Привычки</h1><p class="pgsub" id="habSub"></p></div>
   <div class="card" id="habList"></div>
   <button type="button" class="primary" id="habAdd">+ Новая привычка</button>
+  <button type="button" class="secondary" id="wgOpenBtn">Цели на неделю</button>
   <p class="hint">Нажмите на кружок, чтобы отметить сегодня. Квадратики недели можно нажимать, чтобы отметить прошлые дни.</p>
 </main>
 <nav class="tabbar" id="tabbar" aria-label="Разделы"><div class="tabbar-in" role="tablist">
@@ -1169,6 +1188,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
 
 <div class="laytop" id="layTop" hidden>
   <div class="laytop-r"><strong>Правка главного экрана</strong><button type="button" class="primary" id="layDone">Готово</button></div>
+  <div class="laysw" id="laySw" role="group" aria-label="Какой экран правим"><button type="button" data-lc="today">Сегодня</button><button type="button" data-lc="fin">Финансы</button></div>
   <p class="laytop-h">Нажмите на плитку, чтобы выбрать её. Чтобы переместить, удерживайте плитку и перетащите.</p>
 </div>
 <div class="laylayer" id="layLayer" hidden></div>
@@ -1443,9 +1463,10 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
         <p>«Настройки» → «Данные и копии» → <b>«Импорт из CSV»</b>. Выберите файл из Excel или банка. В первой строке нужны названия столбцов «Дата» и «Сумма», остальные («Тип», «Категория», «Комментарий») по желанию. Если столбца «Тип» нет, отрицательная сумма считается расходом. Перед добавлением приложение покажет, сколько записей найдено. Повторы пропускаются, новые категории создаются сами. Остатки счетов старые записи не меняют.</p>
       </details>
       <details><summary>Вкладки и привычки</summary>
-        <p>Внизу экрана три раздела. <b>«Сегодня»</b> собирает главное на день: баланс с графиком за 30 дней, сколько привычек сделано сегодня, сколько можно потратить, лучшая серия и прогресс недели. Нажмите на карточку, чтобы перейти в нужный раздел. Экран «Сегодня» настраивается так же, как «Финансы»: откройте «Настройки» → «Главный экран» на нужной вкладке. У каждой вкладки свой порядок. <b>«Финансы»</b> это всё, что было в приложении раньше. <b>«Привычки»</b> это ваши ежедневные дела.</p>
+        <p>Внизу экрана три раздела. <b>«Сегодня»</b> собирает главное на день: баланс с графиком за 30 дней, сколько привычек сделано сегодня, сколько можно потратить, лучшая серия и прогресс недели. Нажмите на карточку, чтобы перейти в нужный раздел. Экран «Сегодня» настраивается так же, как «Финансы»: откройте «Настройки» → «Главный экран». Сверху в режиме правки переключатель «Сегодня / Финансы» выбирает, какой экран править. У каждого экрана свой порядок. <b>«Финансы»</b> это всё, что было в приложении раньше. <b>«Привычки»</b> это ваши ежедневные дела.</p>
         <p>В «Привычках» нажмите «Новая привычка», выберите название, значок и дни недели. Нажмите на кружок, чтобы отметить сегодня. Квадратики недели можно нажимать, чтобы отметить или снять прошлые дни. Число рядом с огоньком показывает серию подряд выполненных запланированных дней. Дни, в которые привычка не запланирована, серию не прерывают. Чтобы изменить или удалить привычку, нажмите на её название.</p>
         <p><b>Челлендж.</b> В настройках привычки выберите «Челлендж: сколько дней» (до 365 дней или «Без конца») и дату начала. Под привычкой появится кнопка «Челлендж: день N из M». Внутри сетка кружков по 30 дней на странице (листайте вбок), галочка значит день выполнен, крестик значит пропущен. Нажатие на кружок отмечает или снимает день. Внизу «Прошло дней», «Максимальное комбо» и «Успешных дней», а кнопка «Поделиться прогрессом» создаёт картинку-итог в формате истории: её можно отправить другу или выложить в сторис. Когда срок закончится, появится поздравление с итогом и выбор: начать новый челлендж, продолжить без конца, сохранить картинку или закончить (отметки при этом остаются).</p>
+        <p><b>Цели на неделю</b> это отдельная от привычек вещь: число, которое нужно набрать за неделю, например «Тренировки: 3 раза» или «Главы книги: 5». Откройте их с экрана «Сегодня» или кнопкой в «Привычках», добавьте цель и нажимайте «+ 1» после каждого раза. Каждый понедельник счётчики начинаются заново.</p>
         <p>Привычки входят в резервную копию вместе с остальными данными.</p>
       </details>
       <details><summary>Главный экран: порядок и размер плиток</summary>
@@ -1823,8 +1844,40 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
       <button type="button" class="x" data-close aria-label="Закрыть">×</button>
     </div>
     <div class="shbox"><img id="shImg" alt="Итог челленджа"></div>
-    <p class="hint">Картинка в формате истории 9:16. Можно отправить другу или выложить в сторис.</p>
-    <div class="qrow"><button type="button" class="qbtn" id="shSend">Поделиться</button><button type="button" class="qbtn" id="shSave">Сохранить</button></div>
+    <p class="hint">Картинка в формате истории 9:16. Нажмите первую кнопку и в меню выберите «Сохранить изображение»: она попадёт в «Фото». Оттуда её можно выложить в сторис. Ещё можно нажать на картинку и удерживать, затем «Добавить в Фото».</p>
+    <div class="qrow"><button type="button" class="qbtn main" id="shSend">Сохранить в Фото / Поделиться</button></div>
+    <div class="qrow"><button type="button" class="qbtn" id="shSave">Сохранить в Файлы</button></div>
+  </div>
+</div>
+
+
+<div class="overlay" id="ovWG" hidden>
+  <div class="backdrop" data-close></div>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="wgT" tabindex="-1">
+    <div class="sheet-head">
+      <h2 id="wgT">Цели на неделю</h2>
+      <button type="button" class="x" data-close aria-label="Закрыть">×</button>
+    </div>
+    <p class="hint" id="wgSub"></p>
+    <div id="wgList"></div>
+    <button type="button" class="primary" id="wgAdd">+ Новая цель</button>
+    <p class="hint">Цели отдельные от привычек: это число, которое нужно набрать за неделю. Каждую неделю счётчики начинаются заново. Нажимайте «+ 1» после каждого раза.</p>
+  </div>
+</div>
+<div class="overlay" id="ovWGF" hidden>
+  <div class="backdrop" data-close></div>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="wgfT" tabindex="-1">
+    <div class="sheet-head">
+      <h2 id="wgfT">Новая цель</h2>
+      <button type="button" class="x" data-close aria-label="Закрыть">×</button>
+    </div>
+    <form id="wgForm" class="stack" novalidate>
+      <div class="field"><label for="wgName">Название</label><input id="wgName" maxlength="40" autocomplete="off" placeholder="Например: тренировки"></div>
+      <div class="field"><label>Значок</label><div class="hemo" id="wgEmo"></div></div>
+      <div class="field"><label for="wgTarget">Сколько раз за неделю</label><input id="wgTarget" type="number" inputmode="numeric" min="1" max="99" value="3"></div>
+      <button type="submit" class="primary">Сохранить</button>
+      <button type="button" class="secondary" id="wgDel" hidden>Удалить цель</button>
+    </form>
   </div>
 </div>
 
@@ -2243,7 +2296,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
 
   // ===== Привычки =====
   var LS_HAB = 'kassa-habits-v1';
-  var hab = { items: [], log: {} };
+  var hab = { items: [], log: {}, goals: [], gp: {} };
   var habVer = 0, habPending = 0, habChain = Promise.resolve();
   var HAB_EMO = ['💪','🏃','📖','💧','🧘','😴','🥗','🚭','✍️','🎯','🧠','🦷'];
   var WD = ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
@@ -2265,11 +2318,27 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
       var a = o.log[k].filter(function (id, i, arr) { return ids[id] && arr.indexOf(id) === i; });
       if (a.length) log[k] = a;
     });
-    return { items: items, log: log };
+    var goals = [], gids = {};
+    if (o && Array.isArray(o.goals)) o.goals.forEach(function (g) {
+      if (goals.length >= 20 || !g || typeof g.id !== 'string' || !/^[A-Za-z0-9]{1,24}$/.test(g.id) || gids[g.id]) return;
+      var nm = typeof g.name === 'string' ? g.name.replace(/\s+/g, ' ').trim().slice(0, 40) : '';
+      if (!nm) return;
+      var tg = Math.round(Number(g.target)); if (!(tg >= 1 && tg <= 99)) tg = 3;
+      gids[g.id] = 1;
+      goals.push({ id: g.id, name: nm, icon: typeof g.icon === 'string' ? g.icon.slice(0, 4) : '🎯', target: tg });
+    });
+    var gp = {};
+    if (o && o.gp && typeof o.gp === 'object') Object.keys(o.gp).sort().slice(-60).forEach(function (k) {
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(k) || !o.gp[k] || typeof o.gp[k] !== 'object') return;
+      var m = {}, any = false;
+      Object.keys(o.gp[k]).forEach(function (id) { var n = Math.round(Number(o.gp[k][id])); if (gids[id] && n > 0 && n <= 999) { m[id] = n; any = true; } });
+      if (any) gp[k] = m;
+    });
+    return { items: items, log: log, goals: goals, gp: gp };
   }
   function lsLoadHab() { try { return cleanHab(JSON.parse(localStorage.getItem(LS_HAB))); } catch (e) { return cleanHab(null); } }
   function saveHab() {
-    var body = { items: hab.items, log: hab.log };
+    var body = { items: hab.items, log: hab.log, goals: hab.goals, gp: hab.gp };
     if (store.mode === 'cloud') return store.col.doc('_hab').set(body);
     try { localStorage.setItem(LS_HAB, JSON.stringify(body)); } catch (e) {}
     return Promise.resolve();
@@ -2365,8 +2434,6 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     var html = '';
     var bal = homeBal(), tr = homeTrend(bal);
     html += '<div class="pcard" data-lk="bal" data-goto="fin" role="button" tabindex="0"><div class="pbal-top"><div><h3>Баланс</h3><div class="pbal-v num">' + sgn(bal) + '</div></div>' + tr.badge + '</div>' + tr.svg + '</div>';
-    var wk = weekDates(), wkSched = 0, wkDone = 0;
-    wk.forEach(function (d) { var kk = dateStr(d); hab.items.forEach(function (h) { if (habSched(h, d)) wkSched++; if (habDone(h, kk)) wkDone++; }); });
     if (hab.items.length) {
       html += '<button type="button" class="pcard" data-lk="hab" data-goto="hab"><div class="prow1"><div><h3>Сегодня</h3><div class="pv">' + (all.length ? '<span class="num">' + done + ' / ' + all.length + '</span> привычек' : 'Привычек на сегодня нет') + '</div></div><span class="chev">›</span></div>' +
         '<div class="hbar"><i data-w="' + (all.length ? done / all.length * 100 : 0).toFixed(1) + '"></i></div></button>';
@@ -2383,8 +2450,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     }
     html += '<button type="button" class="pcard" data-lk="lim" data-open="' + (settings.on ? 'day' : 'save') + '"><svg class="pico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="3"/><path d="M3 10h18M16 15h2"/></svg>' + lim + '</button>' +
       '<button type="button" class="pcard" data-lk="streak" data-goto="hab"><svg class="pico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c1 3 5 5 5 10a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-6 1-9z"/></svg><div class="pt">Серия</div><div class="ps ' + (best ? 'ok' : '') + '">' + (best ? '<span class="num">' + best + '</span> дн. · ' + esc(bestN) : 'пока нет') + '</div></button>';
-    html += '<button type="button" class="pcard" data-lk="goal" data-goto="hab"><div class="pgoal"><svg class="pico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg><div class="grow"><div class="gt"><span>Цели на неделю</span><span class="num">' + wkDone + ' / ' + wkSched + '</span></div>' +
-      '<div class="hbar"><i data-w="' + (wkSched ? Math.min(100, wkDone / wkSched * 100) : 0).toFixed(1) + '"></i></div></div></div></button>';
+    html += wgCardHtml();
     $('todayBody').innerHTML = html;
     applyLayout();
     document.querySelectorAll('#todayBody .hbar i').forEach(function (i) { i.style.width = i.getAttribute('data-w') + '%'; });
@@ -2561,13 +2627,13 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     if (!shBlob) return;
     var f = null; try { f = new File([shBlob], 'focus-challenge.png', { type: 'image/png' }); } catch (e) {}
     if (f && navigator.canShare && navigator.canShare({ files: [f] })) navigator.share({ files: [f] }).catch(function () {});
-    else { $('shSave').click(); }
+    else toast('Здесь меню «Поделиться» недоступно. Нажмите на картинку и удерживайте её, затем «Добавить в Фото».');
   });
   $('shSave').addEventListener('click', function () {
     if (!shBlob) return;
     var a = document.createElement('a'); a.href = URL.createObjectURL(shBlob); a.download = 'focus-challenge.png'; document.body.appendChild(a); a.click();
     setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 2000);
-    toast('Картинка сохранена. Если не нашли, нажмите и удерживайте её, чтобы сохранить в «Фото».');
+    toast('Картинка сохранена в «Файлы»');
   });
   $('chShare').addEventListener('click', function () { chShareOpen(); });
   $('chShareOld').addEventListener('click', function () {
@@ -2578,6 +2644,76 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     else if (navigator.clipboard) navigator.clipboard.writeText(text).then(function () { toast('Текст скопирован'); }, function () { toast(text); });
     else toast(text);
   });
+
+  // ----- цели на неделю (отдельно от привычек) -----
+  function wgKey() { return dateStr(weekDates()[0]); }
+  function wgCount(id, key) { var m = hab.gp[key || wgKey()]; return (m && m[id]) || 0; }
+  function wgSet(id, n) {
+    var k = wgKey(); n = Math.max(0, Math.min(999, n));
+    var m = Object.assign({}, hab.gp[k] || {});
+    if (n > 0) m[id] = n; else delete m[id];
+    if (Object.keys(m).length) hab.gp[k] = m; else delete hab.gp[k];
+    persistHab(); renderHab(); wgDraw();
+  }
+  function wgSummary() {
+    var n = hab.goals.length, ok = hab.goals.filter(function (g) { return wgCount(g.id) >= g.target; }).length;
+    return { n: n, ok: ok };
+  }
+  function wgCardHtml() {
+    var ico = '<svg class="pico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg>';
+    if (!hab.goals.length) return '<button type="button" class="pcard" data-lk="goal" data-wg="1"><div class="pgoal">' + ico + '<div class="grow"><div class="gt"><span>Цели на неделю</span></div><div class="hint">Добавьте первую цель, например «Тренировки: 3 раза»</div></div></div></button>';
+    var sm = wgSummary();
+    var rows = hab.goals.slice(0, 3).map(function (g) {
+      var c = wgCount(g.id), pc = Math.min(100, c / g.target * 100);
+      return '<div class="wgrow"><div class="wgt"><span>' + esc(g.icon) + ' ' + esc(g.name) + '</span><span class="num">' + c + ' / ' + g.target + '</span></div><div class="hbar"><i data-w="' + pc.toFixed(1) + '"></i></div></div>';
+    }).join('');
+    return '<button type="button" class="pcard" data-lk="goal" data-wg="1"><div class="prow1"><div><h3>Цели на неделю</h3><div class="pv"><span class="num">' + sm.ok + ' / ' + sm.n + '</span> выполнено</div></div><span class="chev">›</span></div>' + rows + (hab.goals.length > 3 ? '<span class="hint">и ещё ' + (hab.goals.length - 3) + '</span>' : '') + '</button>';
+  }
+  function wgDraw() {
+    var wk = weekDates(), a = wk[0], b = wk[6];
+    var fmt = function (d) { return d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' }); };
+    $('wgSub').textContent = 'Неделя: ' + fmt(a) + ' – ' + fmt(b);
+    $('wgList').innerHTML = hab.goals.length ? hab.goals.map(function (g) {
+      var c = wgCount(g.id), pc = Math.min(100, c / g.target * 100), ok = c >= g.target;
+      return '<div class="wgitem"><div class="wgtop"><button type="button" class="wgname" data-wge="' + g.id + '">' + esc(g.icon) + ' ' + esc(g.name) + '</button><span class="num' + (ok ? ' okc' : '') + '">' + c + ' / ' + g.target + (ok ? ' ✓' : '') + '</span></div>' +
+        '<div class="hbar"><i style="width:' + pc.toFixed(1) + '%"></i></div>' +
+        '<div class="wgbtn"><button type="button" data-wgm="' + g.id + '" aria-label="Минус один">−</button><button type="button" class="plus" data-wgp="' + g.id + '" aria-label="Плюс один">+ 1</button></div></div>';
+    }).join('') : '<p class="hempty">Целей пока нет. Цель на неделю это число, которое нужно набрать за 7 дней: тренировки, прочитанные главы, походы в зал.</p>';
+  }
+  function wgOpen() { wgDraw(); openOv('ovWG'); }
+  var wgEdit = null, wgEmo = '🎯';
+  function wgFormDraw() { $('wgEmo').innerHTML = HAB_EMO.map(function (e) { return '<button type="button" data-e="' + e + '" aria-pressed="' + (e === wgEmo) + '">' + e + '</button>'; }).join(''); }
+  function wgForm(id) {
+    var g = id ? hab.goals.filter(function (x) { return x.id === id; })[0] : null;
+    wgEdit = g ? g.id : null; wgEmo = g ? g.icon : '🎯';
+    $('wgfT').textContent = g ? 'Цель' : 'Новая цель';
+    $('wgName').value = g ? g.name : ''; $('wgTarget').value = g ? g.target : 3;
+    $('wgDel').hidden = !g; wgFormDraw();
+    openOv('ovWGF', g ? null : 'wgName');
+  }
+  $('wgAdd').addEventListener('click', function () { wgForm(null); });
+  $('wgEmo').addEventListener('click', function (e) { var b = e.target.closest('button[data-e]'); if (!b) return; wgEmo = b.getAttribute('data-e'); wgFormDraw(); });
+  $('wgForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var nm = $('wgName').value.replace(/\s+/g, ' ').trim(), tg = Math.round(Number($('wgTarget').value));
+    if (!nm) { flag($('wgName')); toast('Введите название цели'); return; }
+    if (!(tg >= 1 && tg <= 99)) { flag($('wgTarget')); toast('Сколько раз за неделю: число от 1 до 99'); return; }
+    if (wgEdit) { var g = hab.goals.filter(function (x) { return x.id === wgEdit; })[0]; if (g) { g.name = nm; g.icon = wgEmo; g.target = tg; } }
+    else hab.goals.push({ id: 'g' + Date.now().toString(36) + Math.random().toString(36).slice(2, 5), name: nm, icon: wgEmo, target: tg });
+    hab = cleanHab(hab); persistHab(); renderHab(); closeOv();
+  });
+  $('wgDel').addEventListener('click', function () {
+    if (!wgEdit || !confirm('Удалить цель вместе с историей?')) return;
+    hab.goals = hab.goals.filter(function (x) { return x.id !== wgEdit; });
+    hab = cleanHab(hab); persistHab(); renderHab(); closeOv();
+  });
+  $('wgList').addEventListener('click', function (e) {
+    var p = e.target.closest('[data-wgp]'), m = e.target.closest('[data-wgm]'), n = e.target.closest('[data-wge]');
+    if (p) wgSet(p.getAttribute('data-wgp'), wgCount(p.getAttribute('data-wgp')) + 1);
+    else if (m) wgSet(m.getAttribute('data-wgm'), wgCount(m.getAttribute('data-wgm')) - 1);
+    else if (n) wgForm(n.getAttribute('data-wge'));
+  });
+  $('wgOpenBtn').addEventListener('click', wgOpen);
   var habEdit = null, habEmoSel = '🎯', habDaysSel = [0, 1, 2, 3, 4, 5, 6], habGoalSel = 0;
   function habFormDraw() {
     $('habEmo').innerHTML = HAB_EMO.map(function (e) { return '<button type="button" data-e="' + e + '" aria-pressed="' + (e === habEmoSel) + '">' + e + '</button>'; }).join('');
@@ -2632,6 +2768,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     if (w) { habToggle(w.getAttribute('data-h'), w.getAttribute('data-hk')); return; }
     var op = e.target.closest('[data-open]');
     if (op && !e.target.closest('#habList')) { if (op.getAttribute('data-open') === 'day') { renderDay(); openOv('ovDay'); } else openOv('ovSave'); return; }
+    if (e.target.closest('[data-wg]')) { wgOpen(); return; }
     var hg = e.target.closest('[data-hg]');
     if (hg) { chalOpen(hg.getAttribute('data-hg')); return; }
     var ed = e.target.closest('[data-he]');
@@ -3177,6 +3314,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
   var BACK = {
     ovRecF: function () { renderRecSheet(); openOv('ovRec'); },
     ovDebtF: function () { renderDebt(); openOv('ovDebt'); },
+    ovWGF: function () { wgDraw(); openOv('ovWG'); },
     ovShare: function () { if (chalId) { chalDraw(true); openOv('ovChal'); } },
     ovExtra: function () { if (recEditId) startRecEdit(recEditId); else openOv('ovRec'); }
   };
@@ -4587,7 +4725,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
       if (t.acc) o.acc = t.acc;
       return o;
     }), cats: catsBody(), save: { accs: settings.accs, xfers: settings.xfers, on: settings.on, plan: settings.plan, goal: settings.goal, carry: settings.carry, limitGoals: settings.limitGoals, carryFrom: settings.carryFrom, closed: settings.closed, goals: settings.goals, months: settings.months, goalStart: settings.goalStart },
-      tpl: { items: tpl.items }, debt: { items: debt.items }, hab: { items: hab.items, log: hab.log }, ui: { name: ui.name.trim(), palette: ui.palette, mode: ui.mode, style: STYLE, oled: OLED, layout: layOf('fin'), layoutT: layOf('today') }, rec: { items: rec.items } };
+      tpl: { items: tpl.items }, debt: { items: debt.items }, hab: { items: hab.items, log: hab.log, goals: hab.goals, gp: hab.gp }, ui: { name: ui.name.trim(), palette: ui.palette, mode: ui.mode, style: STYLE, oled: OLED, layout: layOf('fin'), layoutT: layOf('today') }, rec: { items: rec.items } };
   }
   function downloadText(name, text) {
     var blob = new Blob([text], { type: 'application/json' });
@@ -5133,7 +5271,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
   function layKeepVisible() {
     var bx = $('layLayer').querySelector('[data-k="' + laySel + '"]');
     if (!bx) return;
-    var r = bx.getBoundingClientRect(), top = 96, bot = window.innerHeight - 210;
+    var r = bx.getBoundingClientRect(), top = $('layTop').offsetHeight + 10, bot = window.innerHeight - 210;
     if (r.top < top) window.scrollBy(0, r.top - top); else if (r.bottom > bot && r.height < bot - top) window.scrollBy(0, r.bottom - bot);
   }
   function layChanged() { laySave(); applyLayout(); layBuild(); layKeepVisible(); }
@@ -5145,6 +5283,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     layEditing = true;
     if (!laySel || !layEls()[laySel]) laySel = LAY.order.filter(function (k) { return layEls()[k]; })[0] || null;
     document.body.classList.add('lay-edit');
+    laySwMark();
     $('layTop').hidden = false; $('layBar').hidden = false; $('layLayer').hidden = false;
     applyLayout();
     window.scrollTo(0, 0);
@@ -5157,6 +5296,20 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     $('layTop').hidden = true; $('layBar').hidden = true; $('layLayer').hidden = true; $('layLayer').innerHTML = '';
     applyLayout();
   }
+
+  function laySwMark() { document.querySelectorAll('#laySw button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-lc') === layEditCtx)); }); }
+  function laySwitch(n) {
+    if (!layEditing || n === layEditCtx) return;
+    laySel = null;
+    useCtx(n); layEditCtx = n;
+    setTab(n === 'fin' ? 'fin' : 'today');
+    laySwMark();
+    applyLayout();
+    laySel = LAY.order.filter(function (k) { return layEls()[k]; })[0] || null;
+    window.scrollTo(0, 0);
+    layBuild();
+  }
+  $('laySw').addEventListener('click', function (e) { var b = e.target.closest('button[data-lc]'); if (b) laySwitch(b.getAttribute('data-lc')); });
   $('layOpen').addEventListener('click', layEnter);
   $('layDone').addEventListener('click', layExit);
   $('layUp').addEventListener('click', function () { var i = LAY.order.indexOf(laySel); if (i > 0) { LAY.order.splice(i, 1); LAY.order.splice(i - 1, 0, laySel); layChanged(); } });
@@ -5211,7 +5364,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
       d.box.style.transform = 'translate(0px,0px)';
     }
     var vh = window.innerHeight;
-    d.scroll = e.clientY < 110 ? -14 : (e.clientY > vh - 220 ? 14 : 0);
+    d.scroll = e.clientY < 160 ? -14 : (e.clientY > vh - 220 ? 14 : 0);
     if (d.scroll && !d.raf) d.raf = requestAnimationFrame(function tick() { d.raf = 0; if (layDrag === d && d.scroll) { window.scrollBy(0, d.scroll); d.raf = requestAnimationFrame(tick); } });
   }, { passive: false });
   function layDragEnd() {
