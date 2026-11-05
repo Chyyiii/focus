@@ -468,6 +468,31 @@ body.tab-today .fab, body.tab-hab .fab { display: none; }
 #todayBody > * { min-width: 0; }
 #todayBody.dense { gap: 8px; }
 #todayBody .pcard { min-height: 0; }
+.dring { display: flex; align-items: center; gap: 16px; }
+.dring svg { flex: none; width: 84px; height: 84px; }
+.dring .rt { fill: none; stroke: var(--tint); stroke-width: 9; }
+.dring .rv { fill: none; stroke: var(--brand); stroke-width: 9; stroke-linecap: round; transition: stroke-dashoffset .5s; }
+.dring text { fill: var(--ink); font-weight: 800; font-size: 22px; text-anchor: middle; dominant-baseline: central; }
+.dring .rinfo { min-width: 0; }
+.dring .rinfo b { display: block; font-size: 18px; font-weight: 800; }
+.dring .rinfo small { display: block; margin-top: 4px; color: var(--muted); font-size: 14px; font-weight: 600; overflow-wrap: anywhere; }
+.tplan .tph { display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%; background: transparent; border: 0; padding: 0; text-align: left; color: inherit; }
+.tplan .tph .chev { color: var(--muted); font-size: 24px; }
+.tplan .tph .pv { font-size: 18px; font-weight: 800; margin-top: 4px; }
+.tplan .wtrow:first-of-type { border-top: 0; }
+.tplan .more { background: transparent; border: 0; color: var(--muted); font-weight: 700; font-size: 14px; padding: 8px 0 0; text-align: left; }
+.pcmp { margin-top: 8px; font-size: 13px; font-weight: 700; color: var(--muted); }
+.pcmp.ok { color: var(--in); } .pcmp.bad { color: var(--out); }
+.mood { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; margin-top: 10px; }
+.mood button { background: var(--tint); border: 2px solid transparent; border-radius: 14px; padding: 8px 0; font-size: 26px; line-height: 1.1; }
+.mood button[aria-pressed="true"] { border-color: var(--brand); background: var(--surface); }
+.mnote { width: 100%; margin-top: 10px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); border-radius: 14px; padding: 11px 12px; font: inherit; font-size: 15px; }
+.mweek { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; margin-top: 12px; text-align: center; }
+.mweek div { font-size: 18px; line-height: 1.2; } .mweek small { display: block; font-size: 11px; color: var(--muted); font-weight: 700; }
+.qk { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.qk button { display: flex; flex-direction: column; align-items: center; gap: 4px; background: var(--tint); border: 0; border-radius: 16px; padding: 12px 4px; color: var(--ink); font-weight: 700; font-size: 13px; }
+.qk button b { font-size: 22px; line-height: 1; color: var(--brand); }
+#todayBody .pcard.qkc { padding: 10px; }
 #todayBody .pcard.w1 { min-height: 112px; }
 .pcard.w1 .pbal-top { flex-direction: column; }
 .pcard.w1 .pbal-v { font-size: 24px; }
@@ -606,6 +631,7 @@ body.lay-edit .pghead, body.lay-edit #todayDate { pointer-events: none; }
 #qlineBox[hidden], #qlineHint[hidden] { display: none; }
 .tour { position: fixed; inset: 0; z-index: 90; display: flex; align-items: center; justify-content: center; padding: 16px; background: rgba(8, 14, 12, .72); }
 .tour[hidden] { display: none; }
+@media (max-height: 640px) { .tour .tour-vis { display: none; } .tour .tour-card { padding-top: 40px; } }
 .tour-card { position: relative; width: 100%; max-width: 400px; max-height: calc(100vh - 32px); overflow: auto; background: var(--bg); color: var(--ink); border-radius: 26px; padding: 22px 20px 18px; box-shadow: 0 20px 60px rgba(0,0,0,.4); outline: none; animation: tourIn .25s ease; }
 @keyframes tourIn { from { opacity: 0; transform: translateY(14px) scale(.98); } to { opacity: 1; transform: none; } }
 .tour-skip { position: absolute; top: 14px; right: 16px; background: none; border: 0; color: var(--muted); font-weight: 700; font-size: 13px; padding: 4px; cursor: pointer; }
@@ -1213,7 +1239,10 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
 
 <main class="wrap" id="todayMain" hidden>
   <div class="pghead"><span class="brandrow"><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.5c.7 5.6 3.4 8.8 10.5 10.5-7.1 1.7-9.8 4.9-10.5 10.5-.7-5.6-3.4-8.8-10.5-10.5C8.6 10.3 11.3 7.1 12 1.5z" fill="currentColor"/></svg><span class="brand" id="brand2">FOCUS</span></span><button type="button" class="eye" id="gear2" aria-label="Настройки"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg></button></div>
-  <p class="pgsub" id="todayDate" style="margin:-4px 2px 0"></p>
+  <h1 class="pgtitle" id="todayHello" style="margin:6px 2px 0"></h1>
+  <p id="todayMot" style="margin:6px 2px 0;font-size:17px;font-weight:600;line-height:1.35"></p>
+  <p class="pgsub" id="todayDate" style="margin:6px 2px 0"></p>
+  <p class="pgsub" id="todayCtx" style="margin:0 2px 0;font-weight:600"></p>
   <div id="todayBody"></div>
 </main>
 <main class="wrap" id="habMain" hidden>
@@ -1507,11 +1536,20 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
         <p>«Настройки» → «Данные и копии» → <b>«Импорт из CSV»</b>. Выберите файл из Excel или банка. В первой строке нужны названия столбцов «Дата» и «Сумма», остальные («Тип», «Категория», «Комментарий») по желанию. Если столбца «Тип» нет, отрицательная сумма считается расходом. Перед добавлением приложение покажет, сколько записей найдено. Повторы пропускаются, новые категории создаются сами. Остатки счетов старые записи не меняют.</p>
       </details>
       <details><summary>Вкладки и привычки</summary>
-        <p>Внизу экрана три раздела, между ними можно переключаться и свайпом влево или вправо. <b>«Сегодня»</b> собирает главное на день: баланс с графиком за 30 дней, сколько привычек сделано сегодня, сколько можно потратить, лучшая серия и прогресс недели. Нажмите на карточку, чтобы перейти в нужный раздел. Экран «Сегодня» настраивается так же, как «Финансы»: откройте «Настройки» → «Главный экран». Сверху в режиме правки переключатель «Сегодня / Финансы» выбирает, какой экран править. У каждого экрана свой порядок. <b>«Финансы»</b> это всё, что было в приложении раньше. <b>«Привычки»</b> это ваши ежедневные дела.</p>
+        <p>Внизу экрана три раздела, между ними можно переключаться и свайпом влево или вправо. <b>«Сегодня»</b> это ваш рабочий стол на день (подробно в разделе «Экран «Сегодня»» ниже). <b>«Финансы»</b> это всё, что касается денег: записи, накопления, счета, платежи, долги. <b>«Привычки»</b> это ежедневные привычки, челленджи и план недели.</p>
         <p>В «Привычках» нажмите «Новая привычка», выберите название, значок и дни недели. Нажмите на кружок, чтобы отметить сегодня. Квадратики недели можно нажимать, чтобы отметить или снять прошлые дни. Число рядом с огоньком показывает серию подряд выполненных запланированных дней. Дни, в которые привычка не запланирована, серию не прерывают. Чтобы изменить или удалить привычку, нажмите на её название.</p>
         <p><b>Челлендж.</b> В настройках привычки выберите «Челлендж: сколько дней» (до 365 дней или «Без конца») и дату начала. Под привычкой появится кнопка «Челлендж: день N из M». Внутри сетка кружков по 30 дней на странице (листайте вбок), галочка значит день выполнен, крестик значит пропущен. Нажатие на кружок отмечает или снимает день. Внизу «Прошло дней», «Максимальное комбо» и «Успешных дней», а кнопка «Поделиться прогрессом» создаёт картинку-итог в формате истории: её можно отправить другу или выложить в сторис. Когда срок закончится, появится поздравление с итогом и выбор: начать новый челлендж, продолжить без конца, сохранить картинку или закончить (отметки при этом остаются).</p>
         <p><b>План недели.</b> Это не привычки, а дела на конкретную неделю. Откройте план с карточки на «Сегодня» или кнопкой «План недели» во вкладке «Привычки». Там главные цели недели (до трёх), список «Без даты» и дни от понедельника до воскресенья. Нажмите «+» у нужного дня, впишите дело и при желании укажите дату и время (или нажмите «Без даты»). Если выбрать дату другой недели, дело окажется на ней. Кружок слева отмечает дело. Стрелки сверху листают недели: в прошлой видно итог, а кнопка внизу переносит несделанное на новую неделю. Цели, созданные раньше, превратились в дела этой недели.</p>
-        <p>Привычки входят в резервную копию вместе с остальными данными.</p>
+        <p>Привычки, отметки, план недели и оценки дней входят в резервную копию вместе с остальными данными.</p>
+      </details>
+      <details><summary>Экран «Сегодня»</summary>
+        <p><b>Приветствие.</b> Вверху заголовок по времени суток и короткая фраза с обращением по имени, она меняется раз в день. Имя вводится в «Настройках» → «Профиль» → «Как к вам обращаться». Без имени фраза показывается без обращения. Ниже дата и строка о том, сколько доступно на сегодня и сколько пунктов плана впереди.</p>
+        <p><b>Мой день.</b> Кольцо показывает, какая доля сегодняшних дел и привычек выполнена, и подсказывает, какое дело следующее.</p>
+        <p><b>Быстрые действия.</b> Кнопки «Запись», «Дело» и «Привычка» сразу открывают нужную форму. Новое дело получает сегодняшнюю дату, а после сохранения вы остаётесь на главном экране.</p>
+        <p><b>План на сегодня.</b> Дела из «Плана недели» по времени и привычки на сегодня в одном списке. Нажмите на кружок, чтобы отметить, сделанное уходит вниз. Если пунктов больше шести, внизу «Ещё N». Заголовок карточки открывает полный план недели.</p>
+        <p><b>Итог дня.</b> После 20:00 появляется карточка «Как прошёл день?»: выберите смайлик от 😞 до 😄 и при желании запишите одну фразу. Повторное нажатие на выбранный смайлик снимает оценку. Дальше карточка остаётся на весь день как «Итог дня» с лентой настроения за 7 дней.</p>
+        <p><b>Баланс.</b> Под суммой строка сравнения: на сколько процентов траты меньше или больше, чем в прошлом месяце к этой же дате.</p>
+        <p>Все плитки можно переставлять, менять им размер и скрывать: «Настройки» → «Главный экран», вверху переключатель «Сегодня / Финансы».</p>
       </details>
       <details><summary>Главный экран: порядок и размер плиток</summary>
         <p>«Настройки» → <b>«Главный экран»</b>. Откроется режим правки: нажмите на плитку, чтобы выбрать её, и используйте большие кнопки внизу: «Выше», «Ниже», «Сделать узкой» или «Сделать широкой», «Скрыть». Плитку можно и перетащить: удерживайте её и ведите пальцем. Чем шире плитка, тем больше в ней видно: например, у «Счетов», «Долгов» и «Регулярных платежей» больше строк, у «Лимитов» несколько категорий, у «Сравнения» столбики за полгода. «Компактно» делает плитки и промежутки меньше, «Вернуть как было» сбрасывает всё. Скрытые плитки в режиме правки видны бледными, их можно вернуть кнопкой «Показать». Остаток вверху экрана остаётся на месте. Настройка хранится на этом устройстве и входит в резервную копию.</p>
@@ -1572,20 +1610,20 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
         <p>Если включены накопления, в начале нового месяца откроется окно <b>«Итог месяца»</b>: введите любую сумму, которую хотите отправить в копилку, или нажмите «Оставить в остатке». Всё, что не ушло в копилку, переходит дальше. Перенос можно выключить галочкой в окне «Накопления».</p>
       </details>
       <details><summary>Название, цвет и тема</summary>
-        <p>Значок с ползунками в верхней карточке открывает настройки: своё название книги, цвет (7 палитр) и режим (авто, светлый, тёмный). Там же переключается стиль: «Стекло» (полупрозрачные карточки, кольцо лимита дня, график остатка за месяц, анимации, цвета категорий) или «Классика» (прежний строгий вид). Для тёмного режима можно включить чёрный фон: на OLED-экранах он экономит заряд. Стиль и чёрный фон запоминаются на этом устройстве.</p>
+        <p>Значок с ползунками открывает настройки. В разделе «Профиль» вводится ваше имя для приветствия. Дальше цвет (палитры) и режим (авто, светлый, тёмный). Там же переключается стиль: «Стекло» (полупрозрачные карточки, кольцо лимита дня, график остатка за месяц, анимации, цвета категорий) или «Классика» (прежний строгий вид). Для тёмного режима можно включить чёрный фон: на OLED-экранах он экономит заряд. Стиль и чёрный фон запоминаются на этом устройстве.</p>
       </details>
       <details><summary>Резервная копия</summary>
-        <p>В «Настройках» в разделе «Данные и копии» есть <b>«Сохранить копию»</b> и <b>«Загрузить копию»</b>. Копия — это файл со всеми записями, категориями, целями, регулярными платежами и настройками, включая название, цвет, тему, стиль и чёрный фон.</p>
+        <p>В «Настройках» в разделе «Данные и копии» есть <b>«Сохранить копию»</b> и <b>«Загрузить копию»</b>. Копия — это файл со всеми записями, категориями, целями, регулярными платежами, привычками с отметками, планом недели, оценками дней и настройками, включая имя, цвет, тему, стиль, чёрный фон и расположение плиток.</p>
         <p>Когда вы выбираете файл, приложение ничего не меняет, а сначала показывает, сколько записей добавится, сколько изменится и сколько есть только у вас. Решайте после этого: «Добавить к текущим» или «Заменить всё копией».</p>
         <p><b>Делайте копию регулярно</b>, например раз в неделю и всегда перед очисткой браузера или сменой телефона. Если с последней копии прошло 5 дней и больше, на главном экране появится напоминание с кнопкой «Сохранить копию» и вариантом «Напомнить завтра». При загрузке записи добавляются к текущим, одинаковые заменяются.</p>
       </details>
       <details><summary>Где хранятся данные</summary>
-        <p>Все записи, категории, цели и настройки хранятся только в браузере на этом устройстве. Другим людям они не видны.</p>
+        <p>Все записи, категории, цели, привычки, планы и настройки хранятся только в браузере на этом устройстве. Другим людям они не видны.</p>
         <p>Что из этого следует: если очистить данные сайта или историю браузера, записи пропадут. На другом телефоне или компьютере их не будет, пока вы не перенесёте их через резервную копию.</p>
         <p><b>Обязательно делайте резервную копию</b>: «Сохранить копию» в окне «Настройки» (значок с ползунками в шапке). Храните файл в «Файлах» или отправьте себе в мессенджер. Лучше делать копию раз в неделю и перед любой очисткой браузера.</p>
       </details>
       <details><summary>Обучение</summary>
-        <p>При первом открытии приложение показывает короткое обучение из нескольких слайдов. Листайте кнопками «Далее» и «Назад» или свайпом, «Пропустить» закрывает его. Запустить обучение снова можно кнопкой <b>«Показать обучение»</b> внизу главного экрана.</p>
+        <p>При первом открытии приложение показывает короткое обучение: сначала про экран «Сегодня», привычки и план недели, затем про финансы. Листайте кнопками «Далее» и «Назад» или свайпом, «Пропустить» закрывает его. Запустить обучение снова можно кнопкой <b>«Показать обучение»</b> внизу главного экрана.</p>
       </details>
       <details><summary>Работа без интернета</summary>
         <p>После первого открытия по ссылке приложение запоминает себя в телефоне и открывается без интернета. Записи и так лежат на устройстве, поэтому добавлять и править их можно в любом месте. Если вышла новая версия, она подхватится при следующем открытии с интернетом.</p>
@@ -2059,6 +2097,8 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     <div class="stack">
       <div class="spage" data-sp="home">
         <div class="sethero"><span class="sstar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.5c.7 5.6 3.4 8.8 10.5 10.5-7.1 1.7-9.8 4.9-10.5 10.5-.7-5.6-3.4-8.8-10.5-10.5C8.6 10.3 11.3 7.1 12 1.5z" fill="currentColor"/></svg></span><div><b>FOCUS</b><small>Планируй · Контролируй · Развивайся</small></div></div>
+        <p class="sglbl">Профиль</p>
+        <div class="sgroup"><div class="field" style="padding:12px 14px"><label for="uiName">Как к вам обращаться</label><input id="uiName" maxlength="30" autocomplete="given-name" placeholder="Ваше имя"><small class="hint" style="display:block;margin-top:6px">Имя появится в приветствии на главном экране</small></div></div>
         <p class="sglbl">Оформление</p>
         <div class="sgroup">
           <button type="button" class="srow" data-sp-go="look"><span class="sico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h9"/></svg></span><span class="stx"><b>Цвет и режим</b><small id="sLookVal">Цвет, тема, стиль</small></span><span class="schev" aria-hidden="true">›</span></button>
@@ -2346,7 +2386,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
 
   // ===== Привычки =====
   var LS_HAB = 'kassa-habits-v1';
-  var hab = { items: [], log: {}, plan: {} };
+  var hab = { items: [], log: {}, plan: {}, mood: {} };
   var habVer = 0, habPending = 0, habChain = Promise.resolve();
   var HAB_EMO = ['💪','🏃','📖','💧','🧘','😴','🥗','🚭','✍️','🎯','🧠','🦷'];
   var WD = ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
@@ -2394,11 +2434,17 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
       });
       if (arr.length) plan[k] = arr;
     });
-    return { items: items, log: log, plan: plan };
+    var mood = {};
+    if (o && o.mood && typeof o.mood === 'object' && !Array.isArray(o.mood)) Object.keys(o.mood).sort().slice(-800).forEach(function (k) {
+      var v = o.mood[k], m = v && Math.round(Number(v.m));
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(k) || !(m >= 1 && m <= 5)) return;
+      mood[k] = { m: m, note: typeof v.note === 'string' ? v.note.replace(/\s+/g, ' ').trim().slice(0, 120) : '' };
+    });
+    return { items: items, log: log, plan: plan, mood: mood };
   }
   // слияние привычек и планов: то, что в копии, дополняет нынешнее
   function habMerge(cur, inc) {
-    var out = { items: cur.items.map(function (x) { return x; }), log: {}, plan: {} }, idx = {};
+    var out = { items: cur.items.map(function (x) { return x; }), log: {}, plan: {}, mood: Object.assign({}, cur.mood, inc.mood) }, idx = {};
     out.items.forEach(function (x, i) { idx[x.id] = i; });
     inc.items.forEach(function (x) { if (x.id in idx) out.items[idx[x.id]] = x; else out.items.push(x); });
     [cur.log, inc.log].forEach(function (L) { Object.keys(L).forEach(function (k) { var a = out.log[k] || []; L[k].forEach(function (id) { if (a.indexOf(id) < 0) a.push(id); }); out.log[k] = a; }); });
@@ -2411,7 +2457,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
   }
   function lsLoadHab() { try { return cleanHab(JSON.parse(localStorage.getItem(LS_HAB))); } catch (e) { return cleanHab(null); } }
   function saveHab() {
-    var body = { items: hab.items, log: hab.log, plan: hab.plan };
+    var body = { items: hab.items, log: hab.log, plan: hab.plan, mood: hab.mood };
     if (store.mode === 'cloud') return store.col.doc('_hab').set(body);
     try { localStorage.setItem(LS_HAB, JSON.stringify(body)); } catch (e) {}
     return Promise.resolve();
@@ -2496,23 +2542,106 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
       '<path d="' + dd + ' L' + W + ' ' + H + ' L0 ' + H + ' Z" fill="url(#pgf)"/><path d="' + dd + '" fill="none" stroke="var(--brand)" stroke-width="2.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg>';
     return { badge: badge, svg: svg };
   }
+  function todayRows() {
+    var k = dateStr(new Date()), ti = wdOf(new Date());
+    var tasks = planItems(planKeyOf(0)).filter(function (x) { return x.day === ti; }).sort(function (x, y) { return (x.time || '99:99') < (y.time || '99:99') ? -1 : 1; });
+    var rows = tasks.map(function (t) { return { kind: 't', done: !!t.done, t: t }; });
+    habToday().forEach(function (h) { rows.push({ kind: 'h', done: habDone(h, k), h: h }); });
+    var und = rows.filter(function (r) { return !r.done; }), dn = rows.filter(function (r) { return r.done; });
+    return { all: rows, sorted: und.concat(dn), done: dn.length, total: rows.length, tasks: tasks };
+  }
+  function todayRingHtml() {
+    var r = todayRows(), pct = r.total ? r.done / r.total : 0, C = 2 * Math.PI * 38;
+    var nx = null, now = new Date(), hm = ('0' + now.getHours()).slice(-2) + ':' + ('0' + now.getMinutes()).slice(-2);
+    var open = r.tasks.filter(function (t) { return !t.done; });
+    nx = open.filter(function (t) { return t.time && t.time >= hm; })[0] || open[0] || null;
+    var line = !r.total ? 'На сегодня ничего не запланировано' : (r.done === r.total ? 'Всё сделано, отличный день 🎉' : nx ? 'Дальше: ' + (nx.time ? nx.time + ' · ' : '') + esc(nx.text) : 'Осталось ' + (r.total - r.done) + ' ' + (r.total - r.done === 1 ? 'привычка' : 'привычек'));
+    return '<div class="pcard" data-lk="ring"><div class="dring"><svg viewBox="0 0 100 100" aria-hidden="true"><circle class="rt" cx="50" cy="50" r="38"/><circle class="rv" cx="50" cy="50" r="38" transform="rotate(-90 50 50)" stroke-dasharray="' + C.toFixed(1) + '" stroke-dashoffset="' + (C * (1 - pct)).toFixed(1) + '"/><text x="50" y="51">' + Math.round(pct * 100) + '%</text></svg>' +
+      '<div class="rinfo"><h3>Мой день</h3><b class="num">' + r.done + ' из ' + r.total + '</b><small>' + line + '</small></div></div></div>';
+  }
+  function todayPlanHtml() {
+    var r = todayRows(), LIM = 6, show = r.sorted.slice(0, LIM);
+    var head = '<button type="button" class="tph" data-wg="1"><div><h3>План на сегодня</h3><div class="pv">' + (r.total ? '<span class="num">' + r.done + ' / ' + r.total + '</span> сделано' : 'Пока пусто') + '</div></div><span class="chev">›</span></button>';
+    var rows = show.map(function (x) {
+      if (x.kind === 't') { var t = x.t; return '<div class="wtrow' + (t.done ? ' done' : '') + '">' + wtChk(t) + '<span class="wtt">' + (t.time ? '<small>' + t.time + '</small> ' : '') + esc(t.text) + (t.target > 1 ? ' <small>' + t.n + ' / ' + t.target + '</small>' : '') + '</span></div>'; }
+      var h = x.h; return '<div class="wtrow' + (x.done ? ' done' : '') + '"><button type="button" class="wtchk' + (x.done ? ' on' : '') + '" data-hc="' + h.id + '" aria-pressed="' + x.done + '" aria-label="Отметить: ' + esc(h.name) + '">' + (x.done ? '✓' : '') + '</button><span class="wtt">' + esc(h.icon) + ' ' + esc(h.name) + '</span></div>';
+    }).join('');
+    var more = r.sorted.length > LIM ? '<button type="button" class="more" data-goto="hab">Ещё ' + (r.sorted.length - LIM) + ' ›</button>' : '';
+    return '<div class="pcard tplan" data-lk="plan">' + head + (rows ? '<div style="margin-top:8px">' + rows + '</div>' : '<span class="hint">Добавьте дело или привычку кнопками ниже</span>') + more + '</div>';
+  }
+  function todayQuickHtml() {
+    return '<div class="pcard qkc" data-lk="quick"><div class="qk"><button type="button" data-q="exp"><b>+</b>Запись</button><button type="button" data-q="task"><b>+</b>Дело</button><button type="button" data-q="hab"><b>+</b>Привычка</button></div></div>';
+  }
+  var MOODS = ['😞', '🙁', '😐', '🙂', '😄'];
+  function plRu(n, a, b, c) { var m = n % 100, d = n % 10; return (m > 10 && m < 15) ? c : d === 1 ? a : (d >= 2 && d <= 4) ? b : c; }
+  var MOT = {
+    morning: ['новый день — новый шаг вперёд', 'начните с самого простого дела, остальное пойдёт легче', 'сегодня у вас всё получится', 'маленькие шаги каждый день складываются в большой результат', 'вы уже на правильном пути', 'один сфокусированный час стоит целого дня суеты'],
+    day: ['самое время сделать ещё один шаг', 'вы движетесь в своём темпе, и это нормально', 'одно дело за раз — и день сделан', 'дисциплина — это забота о себе в будущем', 'отмечайте победы, даже маленькие', 'вы справляетесь лучше, чем думаете'],
+    evening: ['оглянитесь на день: вы успели больше, чем кажется', 'спокойно подведите итоги и отдохните', 'завтра будет новый шанс, а сегодня уже хорошо', 'хороший отдых — тоже часть результата', 'постоянство — ваша сила'],
+    night: ['сон — лучшая инвестиция в завтрашний день', 'остальное подождёт до утра', 'пусть завтра будет лёгкое начало'],
+    done: ['день закрыт, и это заслуженно 🎉', 'все дела сделаны, можно выдохнуть', 'отличная работа сегодня']
+  };
+  function todayGreeting() {
+    var h = new Date().getHours();
+    return h < 5 ? 'Доброй ночи' : h < 12 ? 'Доброе утро' : h < 18 ? 'Добрый день' : 'Добрый вечер';
+  }
+  function todayMotto() {
+    var d = new Date(), h = d.getHours(), r = todayRows(), nm = (ui.name || '').trim();
+    var per = h < 5 ? 'night' : h < 12 ? 'morning' : h < 18 ? 'day' : 'evening';
+    if (r.total && r.done === r.total) per = 'done';
+    var pool = MOT[per], seed = d.getFullYear() * 400 + d.getMonth() * 31 + d.getDate();
+    var t = pool[seed % pool.length];
+    return nm ? esc(nm) + ', ' + t : cap(t);
+  }
+  function todayCtxLine() {
+    var r = todayRows(), parts = [], left = r.total - r.done;
+    if (settings.on) { try { var st = saveStats(); if (!st.over && !(st.short > 0.005) && st.left > 0.005) parts.push('Сегодня доступно ' + money(Math.floor(st.left + 0.005))); } catch (e) {} }
+    if (r.total && !left) parts.push('все дела на сегодня сделаны');
+    else if (left) parts.push('впереди ' + left + ' ' + plRu(left, 'пункт', 'пункта', 'пунктов') + ' плана');
+    var s = parts.join(' · ');
+    return s ? s.charAt(0).toUpperCase() + s.slice(1) : '';
+  }
+  function spendCmp() {
+    var A = agg(), t = new Date(), dm = t.getDate(), py = t.getMonth() ? t.getFullYear() : t.getFullYear() - 1, pm = t.getMonth() ? t.getMonth() : 12;
+    var cur = 0, prev = 0, pdays = new Date(py, pm, 0).getDate();
+    for (var d = 1; d <= dm; d++) cur += A.outDay[t.getFullYear() + '-' + pad(t.getMonth() + 1) + '-' + pad(d)] || 0;
+    for (var e = 1; e <= Math.min(dm, pdays); e++) prev += A.outDay[py + '-' + pad(pm) + '-' + pad(e)] || 0;
+    if (prev <= 0) return '';
+    var pc = Math.round((cur - prev) / prev * 100);
+    if (Math.abs(pc) < 3) return '<div class="pcmp">Траты на уровне прошлого месяца</div>';
+    return pc < 0 ? '<div class="pcmp ok">Траты на ' + (-pc) + '% меньше, чем в прошлом месяце к этой дате</div>' : '<div class="pcmp bad">Траты на ' + pc + '% больше, чем в прошлом месяце к этой дате</div>';
+  }
+  function todayEveHtml() {
+    var k = dateStr(new Date()), m = hab.mood[k], hr = new Date().getHours();
+    if (!m && hr < 20 && !layEditing) return '';
+    var r = todayRows(), cur = m ? m.m : 0;
+    var btns = MOODS.map(function (e, i) { return '<button type="button" data-mood="' + (i + 1) + '" aria-pressed="' + (cur === i + 1) + '" aria-label="Оценка дня ' + (i + 1) + ' из 5">' + e + '</button>'; }).join('');
+    var wk = '';
+    if (m) {
+      var days = [];
+      for (var i = 6; i >= 0; i--) { var d = new Date(); d.setDate(d.getDate() - i); days.push(d); }
+      wk = '<div class="mweek">' + days.map(function (d) { var v = hab.mood[dateStr(d)]; return '<div>' + (v ? MOODS[v.m - 1] : '·') + '<small>' + WD[wdOf(d)] + '</small></div>'; }).join('') + '</div>';
+    }
+    return '<div class="pcard" data-lk="eve"><h3>' + (m ? 'Итог дня' : 'Как прошёл день?') + '</h3>' +
+      (r.total ? '<div class="pv" style="font-size:18px;font-weight:800;margin-top:4px"><span class="num">' + r.done + ' из ' + r.total + '</span> сделано</div>' : '') +
+      '<div class="mood">' + btns + '</div>' +
+      (m ? '<input type="text" class="mnote" id="moodNote" maxlength="120" placeholder="Одна фраза о дне (по желанию)" value="' + esc(m.note) + '" aria-label="Заметка о дне">' + wk : '') + '</div>';
+  }
   function renderHab() {
     var k = dateStr(new Date());
     var td = new Date().toLocaleDateString('ru-RU', { weekday: 'long', day: 'numeric', month: 'long' });
     $('todayDate').textContent = cap(td);
+    $('todayHello').textContent = todayGreeting();
+    $('todayMot').innerHTML = todayMotto();
+    $('todayCtx').textContent = todayCtxLine();
     var all = habToday(), done = all.filter(function (h) { return habDone(h, k); }).length;
     $('habSub').textContent = hab.items.length ? (all.length ? 'Сегодня сделано ' + done + ' из ' + all.length : 'Сегодня выходной от привычек') : 'Начните с одной простой привычки';
     $('habList').innerHTML = hab.items.length ? hab.items.map(function (h) { return habRowHtml(h, true); }).join('') : '<p class="hempty">Пока нет привычек. Добавьте первую, например «Зарядка» или «Стакан воды».</p>';
     // Сегодня
     var html = '';
     var bal = homeBal(), tr = homeTrend(bal);
-    html += '<div class="pcard" data-lk="bal" data-goto="fin" role="button" tabindex="0"><div class="pbal-top"><div><h3>Баланс</h3><div class="pbal-v num">' + sgn(bal) + '</div></div>' + tr.badge + '</div>' + tr.svg + '</div>';
-    if (hab.items.length) {
-      html += '<button type="button" class="pcard" data-lk="hab" data-goto="hab"><div class="prow1"><div><h3>Сегодня</h3><div class="pv">' + (all.length ? '<span class="num">' + done + ' / ' + all.length + '</span> привычек' : 'Привычек на сегодня нет') + '</div></div><span class="chev">›</span></div>' +
-        '<div class="hbar"><i data-w="' + (all.length ? done / all.length * 100 : 0).toFixed(1) + '"></i></div></button>';
-    } else {
-      html += '<button type="button" class="pcard" data-lk="hab" data-goto="hab"><div class="prow1"><div><h3>Сегодня</h3><div class="pv">Добавьте первую привычку</div></div><span class="chev">›</span></div></button>';
-    }
+    html += '<div class="pcard" data-lk="bal" data-goto="fin" role="button" tabindex="0"><div class="pbal-top"><div><h3>Баланс</h3><div class="pbal-v num">' + sgn(bal) + '</div></div>' + tr.badge + '</div>' + spendCmp() + tr.svg + '</div>';
+    html += todayRingHtml() + todayPlanHtml() + todayQuickHtml() + todayEveHtml();
     var best = 0, bestN = '';
     hab.items.forEach(function (h) { var st = habStreak(h); if (st > best) { best = st; bestN = h.name; } });
     var lim = '<div class="pt">—</div><div class="ps">Накопления выключены</div>';
@@ -2805,7 +2934,9 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
   $('wgNext').addEventListener('click', function () { wgNav(1); });
   var wgPreset = -1;
   function wgTimeSync() { $('wgTimeBox').hidden = !$('wgDate').value; if (!$('wgDate').value) $('wgTime').value = ''; }
-  function wgForm(id, preset) {
+  var wgDirect = false;
+  function wgForm(id, preset, direct) {
+    wgDirect = !!direct;
     wgKeyOpen = planKeyOf(planOff);
     var t = id ? planItems(wgKeyOpen).filter(function (x) { return x.id === id; })[0] : null;
     wgEdit = t ? t.id : null;
@@ -2919,6 +3050,15 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     hab = cleanHab(hab); persistHab(); renderHab(); closeOv();
   });
   function habClick(e) {
+    var md = e.target.closest('[data-mood]');
+    if (md) {
+      var mk = dateStr(new Date()), mv = +md.getAttribute('data-mood'), old = hab.mood[mk];
+      hab.mood = Object.assign({}, hab.mood);
+      if (old && old.m === mv) delete hab.mood[mk]; else hab.mood[mk] = { m: mv, note: old ? old.note : '' };
+      persistHab(); renderHab(); return;
+    }
+    var q = e.target.closest('[data-q]');
+    if (q) { var qa = q.getAttribute('data-q'); if (qa === 'exp') openAdd(); else if (qa === 'task') { planOff = 0; wgForm(null, wdOf(new Date()), true); } else habOpen(null); return; }
     var c = e.target.closest('[data-hc]');
     if (c) { habToggle(c.getAttribute('data-hc'), dateStr(new Date())); return; }
     var w = e.target.closest('[data-hk]');
@@ -2937,6 +3077,13 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
   }
   $('habList').addEventListener('click', habClick);
   $('todayBody').addEventListener('click', habClick);
+  $('todayBody').addEventListener('change', function (e) {
+    if (e.target.id !== 'moodNote') return;
+    var mk = dateStr(new Date()), old = hab.mood[mk];
+    if (!old) return;
+    hab.mood = Object.assign({}, hab.mood); hab.mood[mk] = { m: old.m, note: e.target.value.replace(/\s+/g, ' ').trim().slice(0, 120) };
+    persistHab(); toast('Сохранено');
+  });
   document.querySelectorAll('#tabbar button').forEach(function (b) { b.addEventListener('click', function () { var t = b.getAttribute('data-tab'); setTab(t, SW_TABS.indexOf(t) > SW_TABS.indexOf(tab) ? 'l' : 'r'); }); });
   $('gear2').addEventListener('click', function () { $('gear').click(); });
   $('gear3').addEventListener('click', function () { $('gear').click(); });
@@ -3207,7 +3354,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     var pal = PALETTES.some(function (p) { return p.id === o.palette; }) ? o.palette : 'ember';
     var md = (o.mode === 'light' || o.mode === 'dark') ? o.mode : 'auto';
     var nm = typeof o.name === 'string' ? o.name.trim().slice(0, 30) : '';
-    return { name: '', palette: pal, mode: md };
+    return { name: nm, palette: pal, mode: md };
   }
   function lsLoadUi() {
     try { return cleanUi(JSON.parse(localStorage.getItem(LS_UI))); } catch (e) { return cleanUi(null); }
@@ -3417,6 +3564,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     $('setBack').hidden = n === 'home';
     if (n === 'home') {
       var PN = { ember: 'Жар', ocean: 'Океан', graphite: 'Графит' }, MN = { auto: 'авто', light: 'светлый', dark: 'тёмный' };
+      try { $('uiName').value = ui.name; } catch (e) {}
       try { $('sLookVal').textContent = (PN[ui.palette] || 'Жар') + ' · ' + (MN[ui.mode] || 'авто'); } catch (e) {}
     }
     var sh = document.querySelector('#ovSet .sheet'); if (sh) sh.scrollTop = 0;
@@ -3495,7 +3643,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
   var BACK = {
     ovRecF: function () { renderRecSheet(); openOv('ovRec'); },
     ovDebtF: function () { renderDebt(); openOv('ovDebt'); },
-    ovWGF: function () { wgDraw(); openOv('ovWG'); },
+    ovWGF: function () { if (wgDirect) { wgDirect = false; return; } wgDraw(); openOv('ovWG'); },
     ovShare: function () { if (chalId) { chalDraw(true); openOv('ovChal'); } },
     ovExtra: function () { if (recEditId) startRecEdit(recEditId); else openOv('ovRec'); }
   };
@@ -3854,8 +4002,12 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
   function tourSlides() {
     var nm = DEFAULT_NAME;
     return [
-      { v: '<div class="tm plain"><div class="ico" style="color:var(--brand)">✦</div></div>', t: 'Добро пожаловать в «' + esc(nm) + '»', p: 'Личная касса: доходы, расходы, накопления и лимит на каждый день. За минуту покажу, как всё устроено.' },
-      { v: '<div class="tm plain"><span class="fab">＋ Запись</span></div>', t: 'Записывайте доходы и расходы', p: 'Нажмите «Запись», введите сумму и выберите категорию. Один платёж можно разделить по нескольким категориям, а частые траты сохранить как быстрые записи. Удалили лишнее? Вверху появится кнопка «Отменить».' },
+      { v: '<div class="tm plain"><div class="ico" style="color:var(--brand)">✦</div></div>', t: 'Добро пожаловать в «' + esc(nm) + '»', p: 'Личная система: деньги, привычки и план дня в одном месте. За минуту покажу, как всё устроено. Между разделами «Сегодня», «Финансы» и «Привычки» можно переключаться свайпом влево и вправо.' },
+      { v: '<div class="tm"><div class="row"><span>Мой день</span><span>3 из 5</span></div><div class="bar"><i style="width:60%;background:var(--brand)"></i></div><div class="row"><span>10:00 Сдать отчёт</span><span style="color:var(--brand)">✓</span></div><div class="row"><span>🏃 Зарядка</span><span style="color:var(--brand)">✓</span></div></div>', t: 'Сегодня: ваш рабочий стол', p: 'Кольцо дня, план на сегодня с делами и привычками, баланс и быстрые кнопки «Запись», «Дело» и «Привычка». Отмечайте пункты кружками прямо на главном экране. Плитки можно переставлять в «Настройках» → «Главный экран».' },
+      { v: '<div class="tm"><div class="row"><span>🏃 Зарядка</span><span>🔥 12</span></div><div class="bar"><i style="width:34%;background:var(--brand)"></i></div><small style="text-transform:none;letter-spacing:0">Челлендж: день 34 из 100</small></div>', t: 'Привычки и челленджи', p: 'Создайте привычку, выберите дни недели и отмечайте её кружком. Число рядом с огоньком показывает серию. Можно запустить челлендж на 21, 30, 66, 100, 365 дней или без конца, а итог сохранить картинкой и поделиться.' },
+      { v: '<div class="tm"><div class="row"><span>Пн 09:00 Записаться к врачу</span></div><div class="row"><span>Ср 14:30 Позвонить</span></div><div class="row"><span>Без даты: купить подарок</span></div></div>', t: 'План недели', p: 'Это дела на конкретную неделю, а не привычки. Добавляйте дело с датой и временем или без даты, отмечайте до трёх главных целей. Несделанное можно перенести на новую неделю одной кнопкой.' },
+      { v: '<div class="tm plain"><div class="ico" style="font-size:34px">😞 🙁 😐 🙂 😄</div></div>', t: 'Итог дня и приветствие', p: 'После 20:00 появится «Как прошёл день?»: выберите смайлик и, если хочется, запишите фразу. Свою историю настроения увидите лентой за неделю. Имя для приветствия вводится в «Настройках» → «Профиль».' },
+      { v: '<div class="tm plain"><span class="fab">＋ Запись</span></div>', t: 'Финансы: записывайте доходы и расходы', p: 'Нажмите «Запись», введите сумму и выберите категорию. Один платёж можно разделить по нескольким категориям, а частые траты сохранить как быстрые записи. Удалили лишнее? Вверху появится кнопка «Отменить».' },
       { v: '<div class="tm hero"><small>Остаток за месяц</small><b class="big">20 000 ₽</b><div class="chips"><span>Доходы<br>80 000</span><span>Расходы<br>50 000</span><span>Отложено<br>10 000</span></div></div>', t: 'Остаток месяца всегда на виду', p: 'Месяц переключается стрелками. Неизрасходованное можно переносить дальше, а кнопка с глазом прячет суммы от посторонних глаз.' },
       { v: '<div class="tm"><small>Можно сегодня</small><b class="big" style="margin-bottom:4px">2 500 ₽</b><div class="bar"><i style="width:40%;background:var(--brand)"></i></div><small style="text-transform:none;letter-spacing:0">лимит на день 2 500 ₽</small></div>', t: 'Сколько можно тратить сегодня', p: 'Приложение делит остаток на оставшиеся дни и вычитает ближайшие платежи. Включите накопления в плитке, и лимит появится на главном экране.' },
       { v: '<div class="tm"><div class="row"><span>Отпуск</span><span style="color:var(--gold)">40%</span></div><div class="bar"><i style="width:40%"></i></div><small style="text-transform:none;letter-spacing:0">Откладывайте 10 000 ₽ в месяц · осталось 6 мес.</small></div>', t: 'Накопления: копилка и цели', p: 'Задайте сумму цели и за сколько месяцев её накопить, а приложение посчитает ежемесячный взнос. Деньги можно переводить между копилкой и целями.' },
@@ -3867,7 +4019,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
       { v: '<div class="tm plain"><div class="ico">🎯</div></div>', t: 'Сколько тратить', p: 'В окне «Лимиты по категориям» есть рекомендуемый бюджет: сколько процентов дохода уходит на каждую категорию и сколько стоит тратить, чтобы откладывать 10, 20 или 30%. Одной кнопкой его можно превратить в лимиты.' },
       { v: '<div class="tm plain"><div class="ico">⏳</div></div>', t: 'Машина времени', p: 'В «Сравнении и динамике» есть прогноз на год вперёд. Проведите пальцем по графику и увидите, сколько денег будет в любой день. Светлая полоса покажет разброс, а риск — шанс остаться без денег. А ползунки покажут, как сократить траты, чтобы цель наступила раньше.' },
       { v: '<div class="tm plain"><div class="ico">🔒</div></div>', t: 'Защита', p: 'В «Настройках» можно включить пин-код и вход по Face ID, чтобы приложение не открывалось для посторонних. А раз в неделю оно само сохраняет три последние копии записей на телефоне.' },
-      { v: '<div class="tm plain"><div class="ico">💾</div></div>', t: 'Сохраните свои данные', p: 'Записи хранятся только в браузере этого устройства. Делайте резервную копию в окне «Настройки» (значок с ползунками), хотя бы раз в несколько дней.' },
+      { v: '<div class="tm plain"><div class="ico">💾</div></div>', t: 'Сохраните свои данные', p: 'Записи, привычки и планы хранятся только в браузере этого устройства. Делайте резервную копию в окне «Настройки» (значок с ползунками), хотя бы раз в несколько дней: в неё входит всё, включая привычки и оценки дней.' },
       { v: '<div class="tm"><div class="row"><span>📖 Руководство пользователя</span><span>›</span></div><div class="row"><span>🎓 Показать обучение</span><span>›</span></div></div>', t: 'Руководство всегда под рукой', p: 'Внизу главного экрана есть кнопка «Руководство пользователя»: в нём по разделам описано всё, что умеет приложение. Рядом кнопка «Показать обучение», если захотите пройти его снова.' }
     ];
   }
@@ -3880,7 +4032,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     $('tourBack').style.visibility = tourI === 0 ? 'hidden' : 'visible';
     $('tourNext').textContent = tourI === n - 1 ? 'Начать' : 'Далее';
     var card = $('tourCard');
-    card.style.animation = 'none'; void card.offsetWidth; card.style.animation = '';
+    card.style.animation = 'none'; void card.offsetWidth; card.style.animation = ''; card.scrollTop = 0;
   }
   function tourStart() {
     if (tourOpen) return;
@@ -4152,6 +4304,8 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
       toast('Не удалось сохранить оформление. Попробуйте ещё раз.');
     }).then(function () { uiPending--; });
   }
+  $('uiName').addEventListener('input', function () { ui.name = $('uiName').value.replace(/\s+/g, ' ').slice(0, 30); applyUi(); renderHab(); });
+  $('uiName').addEventListener('change', function () { ui.name = ui.name.trim(); applyUi(); persistUi(); toast('Имя сохранено'); });
   $('swatches').innerHTML = PALETTES.map(function (p) {
     return '<button type="button" class="sw" data-p="' + p.id + '" aria-pressed="false"><i aria-hidden="true"></i><span>' + p.name + '</span></button>';
   }).join('');
@@ -4906,7 +5060,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
       if (t.acc) o.acc = t.acc;
       return o;
     }), cats: catsBody(), save: { accs: settings.accs, xfers: settings.xfers, on: settings.on, plan: settings.plan, goal: settings.goal, carry: settings.carry, limitGoals: settings.limitGoals, carryFrom: settings.carryFrom, closed: settings.closed, goals: settings.goals, months: settings.months, goalStart: settings.goalStart },
-      tpl: { items: tpl.items }, debt: { items: debt.items }, hab: { items: hab.items, log: hab.log, plan: hab.plan }, ui: { name: ui.name.trim(), palette: ui.palette, mode: ui.mode, style: STYLE, oled: OLED, layout: layOf('fin'), layoutT: layOf('today') }, rec: { items: rec.items } };
+      tpl: { items: tpl.items }, debt: { items: debt.items }, hab: { items: hab.items, log: hab.log, plan: hab.plan, mood: hab.mood }, ui: { name: ui.name.trim(), palette: ui.palette, mode: ui.mode, style: STYLE, oled: OLED, layout: layOf('fin'), layoutT: layOf('today') }, rec: { items: rec.items } };
   }
   function downloadText(name, text) {
     var blob = new Blob([text], { type: 'application/json' });
@@ -5358,7 +5512,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     if (o && typeof o === 'object') {
       if (Array.isArray(o.order)) o.order.forEach(function (k) { if (LAY_DEF.indexOf(k) >= 0 && r.order.indexOf(k) < 0) r.order.push(k); });
       LAY_DEF.forEach(function (k) {
-        if (r.order.indexOf(k) < 0) r.order.push(k);
+        if (r.order.indexOf(k) < 0) r.order.splice(Math.min(LAY_DEF.indexOf(k), r.order.length), 0, k);
         if (o.size && (o.size[k] === 1 || o.size[k] === 2) && !LAY_FIXED[k]) r.size[k] = o.size[k];
         if (o.hide && o.hide[k] === true) r.hide[k] = true;
       });
@@ -5378,9 +5532,9 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
   var layEditing = false, laySel = null, layDrag = null, layEditCtx = 'fin', layCur = 'fin';
   var CTX = {
     fin: { key: LAY_KEY, def: LAY_DEF, name: LAY_NAME, size0: LAY_SIZE0, fixed: LAY_FIXED, wrap: 'finMain', always: false, lay: LAY },
-    today: { key: 'kassa-layout-today', def: ['bal', 'hab', 'lim', 'streak', 'goal'],
-      name: { bal: 'Баланс', hab: 'Привычки сегодня', lim: 'Можно сегодня', streak: 'Серия', goal: 'План недели' },
-      size0: { bal: 2, hab: 2, lim: 1, streak: 1, goal: 2 }, fixed: {}, wrap: 'todayBody', always: true, lay: null }
+    today: { key: 'kassa-layout-today', def: ['ring', 'quick', 'plan', 'eve', 'bal', 'lim', 'streak', 'goal'],
+      name: { ring: 'Мой день', quick: 'Быстрые действия', plan: 'План на сегодня', eve: 'Итог дня', bal: 'Баланс', lim: 'Можно сегодня', streak: 'Серия', goal: 'План недели' },
+      size0: { ring: 2, quick: 2, plan: 2, eve: 2, bal: 2, lim: 1, streak: 1, goal: 2 }, fixed: {}, wrap: 'todayBody', always: true, lay: null }
   };
   function useCtx(n) {
     if (n === layCur) return;
@@ -5397,7 +5551,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
   function layEls() { return layCur === 'today' ? layElsToday() : layElsFin(); }
   function layElsToday() {
     var r = {};
-    ['bal', 'hab', 'lim', 'streak', 'goal'].forEach(function (k) { r[k] = document.querySelector('#todayBody [data-lk="' + k + '"]'); });
+    ['ring', 'quick', 'plan', 'eve', 'bal', 'lim', 'streak', 'goal'].forEach(function (k) { r[k] = document.querySelector('#todayBody [data-lk="' + k + '"]'); });
     return r;
   }
   function layElsFin() {
@@ -5478,6 +5632,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     layEditing = true;
     if (!laySel || !layEls()[laySel]) laySel = LAY.order.filter(function (k) { return layEls()[k]; })[0] || null;
     document.body.classList.add('lay-edit');
+    renderHab();
     laySwMark();
     $('layTop').hidden = false; $('layBar').hidden = false; $('layLayer').hidden = false;
     applyLayout();
