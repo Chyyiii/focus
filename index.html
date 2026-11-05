@@ -469,13 +469,36 @@ body.tab-today .fab, body.tab-hab .fab { display: none; }
 #todayBody.dense { gap: 8px; }
 #todayBody .pcard { min-height: 0; }
 .dring { display: flex; align-items: center; gap: 16px; }
-.dring svg { flex: none; width: 84px; height: 84px; }
-.dring .rt { fill: none; stroke: var(--tint); stroke-width: 9; }
-.dring .rv { fill: none; stroke: var(--brand); stroke-width: 9; stroke-linecap: round; transition: stroke-dashoffset .5s; }
-.dring text { fill: var(--ink); font-weight: 800; font-size: 22px; text-anchor: middle; dominant-baseline: central; }
-.dring .rinfo { min-width: 0; }
-.dring .rinfo b { display: block; font-size: 18px; font-weight: 800; }
-.dring .rinfo small { display: block; margin-top: 4px; color: var(--muted); font-size: 14px; font-weight: 600; overflow-wrap: anywhere; }
+.dring svg { flex: none; width: 96px; height: 96px; }
+.dring .rt { fill: none; stroke: rgba(255, 255, 255, .14); stroke-width: 9; }
+.dring .rv { fill: none; stroke: var(--hero-gold); stroke-width: 9; stroke-linecap: round; transition: stroke-dashoffset .5s; filter: drop-shadow(0 0 6px rgba(240, 207, 122, .45)); }
+.dring text { fill: var(--hero-ink); font-weight: 800; font-size: 22px; text-anchor: middle; dominant-baseline: central; }
+.dring .rinfo { min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.dring .rinfo b { font-family: var(--font-disp); font-weight: 500; font-size: 32px; line-height: 1.1; }
+.dring .rinfo small { color: var(--hero-mute); font-size: 14px; font-weight: 600; overflow-wrap: anywhere; }
+.thero { padding: 20px 18px 18px; gap: 18px; }
+.hhead .hname { font-family: var(--font-disp); font-weight: 500; font-size: clamp(34px, 11vw, 46px); line-height: 1.05; letter-spacing: -0.01em; margin-top: 6px; }
+.hhead .hmot { margin-top: 8px; color: var(--hero-gold); font-size: 15px; font-weight: 600; line-height: 1.35; }
+.hcmp { margin-top: -6px; font-size: 12px; font-weight: 600; color: var(--hero-mute); }
+.dring { padding: 14px; border-radius: 22px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.08); }
+.tpl { margin-top: 6px; }
+.tplan .tph { align-items: baseline; }
+.tplan .tph h3 { margin: 0; }
+.tpc { font-weight: 800; font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.tm-pill { display: inline-block; margin-right: 8px; padding: 2px 8px; border-radius: 99px; background: var(--tint); font-size: 12px; font-weight: 800; color: var(--muted); font-variant-numeric: tabular-nums; vertical-align: 1px; }
+.tm-pill.gold { background: rgba(240, 207, 122, .25); color: var(--ink); }
+.tplan .wkf { margin-top: 10px; padding-top: 12px; border-top: 1px solid var(--line); width: 100%; }
+.hstats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.hchip { display: flex; flex-direction: column; gap: 3px; align-items: flex-start; text-align: left; background: var(--hero-chip); border: 1px solid rgba(255, 255, 255, .10); border-radius: 18px; padding: 11px 13px; color: var(--hero-ink); min-width: 0; }
+.hchip b { font-family: var(--font-disp); font-weight: 500; font-size: clamp(13px, 4.2vw, 17px); white-space: nowrap; line-height: 1.15; }
+.hchip { padding: 10px 11px; border-radius: 16px; } .hchip .hero-lbl { font-size: 10px; letter-spacing: .06em; }
+.hchip.bad b { color: var(--hero-out); }
+.hchip small { color: var(--hero-mute); font-size: 12px; font-weight: 600; overflow-wrap: anywhere; }
+@keyframes ringIn { from { stroke-dashoffset: var(--c); } }
+@keyframes fxIn { from { opacity: 0; transform: translate3d(0, 14px, 0); } }
+#todayBody.fx > * { animation: fxIn .32s cubic-bezier(.2, .7, .3, 1) both; animation-delay: calc(var(--i, 0) * 35ms); }
+#todayBody.fx .rv { animation: ringIn .9s cubic-bezier(.2, .7, .3, 1) both; animation-delay: .1s; }
+@media (prefers-reduced-motion: reduce) { #todayBody.fx > *, #todayBody.fx .rv { animation: none; } }
 .tplan .tph { display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%; background: transparent; border: 0; padding: 0; text-align: left; color: inherit; }
 .tplan .tph .chev { color: var(--muted); font-size: 24px; }
 .tplan .tph .pv { font-size: 18px; font-weight: 800; margin-top: 4px; }
@@ -489,10 +512,10 @@ body.tab-today .fab, body.tab-hab .fab { display: none; }
 .mnote { width: 100%; margin-top: 10px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); border-radius: 14px; padding: 11px 12px; font: inherit; font-size: 15px; }
 .mweek { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; margin-top: 12px; text-align: center; }
 .mweek div { font-size: 18px; line-height: 1.2; } .mweek small { display: block; font-size: 11px; color: var(--muted); font-weight: 700; }
-.qk { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
-.qk button { display: flex; flex-direction: column; align-items: center; gap: 4px; background: var(--tint); border: 0; border-radius: 16px; padding: 12px 4px; color: var(--ink); font-weight: 700; font-size: 13px; }
-.qk button b { font-size: 22px; line-height: 1; color: var(--brand); }
-#todayBody .pcard.qkc { padding: 10px; }
+.qk { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.qk button { display: flex; flex-direction: column; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 14px 4px 12px; color: var(--ink); font-weight: 700; font-size: 13px; box-shadow: var(--shadow); }
+.qk button i { width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; font-style: normal; font-size: 18px; font-weight: 800; color: var(--brand-ink); background: var(--brand); }
+.qk button:active { transform: scale(.97); }
 #todayBody .pcard.w1 { min-height: 112px; }
 .pcard.w1 .pbal-top { flex-direction: column; }
 .pcard.w1 .pbal-v { font-size: 24px; }
@@ -1243,10 +1266,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
 
 <main class="wrap" id="todayMain" hidden>
   <div class="pghead"><span class="brandrow"><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.5c.7 5.6 3.4 8.8 10.5 10.5-7.1 1.7-9.8 4.9-10.5 10.5-.7-5.6-3.4-8.8-10.5-10.5C8.6 10.3 11.3 7.1 12 1.5z" fill="currentColor"/></svg><span class="brand" id="brand2">FOCUS</span></span><button type="button" class="eye" id="gear2" aria-label="Настройки"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg></button></div>
-  <h1 class="pgtitle" id="todayHello" style="margin:6px 2px 0"></h1>
-  <p id="todayMot" style="margin:6px 2px 0;font-size:17px;font-weight:600;line-height:1.35"></p>
-  <p class="pgsub" id="todayDate" style="margin:6px 2px 0"></p>
-  <p class="pgsub" id="todayCtx" style="margin:0 2px 0;font-weight:600"></p>
+  <div hidden><span id="todayHello"></span><span id="todayMot"></span><span id="todayDate"></span><span id="todayCtx"></span></div>
   <div id="todayBody"></div>
 </main>
 <main class="wrap" id="habMain" hidden>
@@ -1547,12 +1567,10 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
         <p>Привычки, отметки, план недели и оценки дней входят в резервную копию вместе с остальными данными.</p>
       </details>
       <details><summary>Экран «Сегодня»</summary>
-        <p><b>Приветствие.</b> Вверху заголовок по времени суток и короткая фраза с обращением по имени, она меняется раз в день. Имя вводится в «Настройках» → «Профиль» → «Как к вам обращаться». Без имени фраза показывается без обращения. Ниже дата и строка о том, сколько доступно на сегодня и сколько пунктов плана впереди.</p>
-        <p><b>Мой день.</b> Кольцо показывает, какая доля сегодняшних дел и привычек выполнена, и подсказывает, какое дело следующее.</p>
+        <p><b>Главный блок.</b> Тёмная карточка вверху собирает главное: приветствие по времени суток и дате, ваше имя и мотивирующую фразу (она меняется раз в день), кольцо «Мой день» с подсказкой, какое дело следующее, и три показателя: «Баланс», «Лимит дня» (сколько можно потратить сегодня) и «Серия» (лучшая серия привычки). Нажмите на показатель, чтобы открыть нужный раздел. Под ними строка сравнения: на сколько процентов траты меньше или больше, чем в прошлом месяце к этой же дате. Имя вводится в «Настройках» → «Профиль» → «Как к вам обращаться».</p>
         <p><b>Быстрые действия.</b> Кнопки «Запись», «Дело» и «Привычка» сразу открывают нужную форму. Новое дело получает сегодняшнюю дату, а после сохранения вы остаётесь на главном экране.</p>
-        <p><b>План на сегодня.</b> Дела из «Плана недели» по времени и привычки на сегодня в одном списке. Нажмите на кружок, чтобы отметить, сделанное уходит вниз. Если пунктов больше шести, внизу «Ещё N». Заголовок карточки открывает полный план недели.</p>
+        <p><b>План на сегодня.</b> Дела из «Плана недели» по времени и привычки на сегодня в одном списке. Нажмите на кружок, чтобы отметить, сделанное уходит вниз. Ниже главные цели недели со звёздочкой и строка «План недели: N из M сделано», которая открывает весь план.</p>
         <p><b>Итог дня.</b> После 20:00 появляется карточка «Как прошёл день?»: выберите смайлик от 😞 до 😄 и при желании запишите одну фразу. Повторное нажатие на выбранный смайлик снимает оценку. Дальше карточка остаётся на весь день как «Итог дня» с лентой настроения за 7 дней.</p>
-        <p><b>Баланс.</b> Под суммой строка сравнения: на сколько процентов траты меньше или больше, чем в прошлом месяце к этой же дате.</p>
         <p>Все плитки можно переставлять, менять им размер и скрывать: «Настройки» → «Главный экран», вверху переключатель «Сегодня / Финансы».</p>
       </details>
       <details><summary>Главный экран: порядок и размер плиток</summary>
@@ -2556,25 +2574,47 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
   }
   function todayRingHtml() {
     var r = todayRows(), pct = r.total ? r.done / r.total : 0, C = 2 * Math.PI * 38;
-    var nx = null, now = new Date(), hm = ('0' + now.getHours()).slice(-2) + ':' + ('0' + now.getMinutes()).slice(-2);
+    var now = new Date(), hm = ('0' + now.getHours()).slice(-2) + ':' + ('0' + now.getMinutes()).slice(-2);
     var open = r.tasks.filter(function (t) { return !t.done; });
-    nx = open.filter(function (t) { return t.time && t.time >= hm; })[0] || open[0] || null;
-    var line = !r.total ? 'На сегодня ничего не запланировано' : (r.done === r.total ? 'Всё сделано, отличный день 🎉' : nx ? 'Дальше: ' + (nx.time ? nx.time + ' · ' : '') + esc(nx.text) : 'Осталось ' + (r.total - r.done) + ' ' + (r.total - r.done === 1 ? 'привычка' : 'привычек'));
-    return '<div class="pcard" data-lk="ring"><div class="dring"><svg viewBox="0 0 100 100" aria-hidden="true"><circle class="rt" cx="50" cy="50" r="38"/><circle class="rv" cx="50" cy="50" r="38" transform="rotate(-90 50 50)" stroke-dasharray="' + C.toFixed(1) + '" stroke-dashoffset="' + (C * (1 - pct)).toFixed(1) + '"/><text x="50" y="51">' + Math.round(pct * 100) + '%</text></svg>' +
-      '<div class="rinfo"><h3>Мой день</h3><b class="num">' + r.done + ' из ' + r.total + '</b><small>' + line + '</small></div></div></div>';
+    var nx = open.filter(function (t) { return t.time && t.time >= hm; })[0] || open[0] || null;
+    var left = r.total - r.done;
+    var line = !r.total ? 'На сегодня ничего не запланировано' : (!left ? 'Всё сделано, отличный день 🎉' : nx ? 'Дальше: ' + (nx.time ? nx.time + ' · ' : '') + esc(nx.text) : 'Осталось ' + left + ' ' + plRu(left, 'привычка', 'привычки', 'привычек'));
+    var best = 0, bestN = '';
+    hab.items.forEach(function (h) { var st = habStreak(h); if (st > best) { best = st; bestN = h.name; } });
+    var limL = 'Накопления', limV = 'выкл.', limC = '';
+    if (settings.on) {
+      var st2 = saveStats(), isShort = st2.short > 0.005;
+      limL = 'Лимит дня';
+      limV = isShort ? '−' + money(Math.ceil(st2.short - 0.005)) : (st2.over ? '−' + money(Math.ceil(-st2.left - 0.005)) : money(Math.floor(st2.left + 0.005)));
+      limC = (st2.over || isShort) ? ' bad' : '';
+    }
+    var nm = (ui.name || '').trim(), dt = new Date().toLocaleDateString('ru-RU', { weekday: 'short', day: 'numeric', month: 'long' });
+    var bal = homeBal(), cmp = spendCmp().replace(/<[^>]+>/g, '').replace(', чем в прошлом месяце к этой дате', ' к прошлому месяцу');
+    return '<div class="hero thero" data-lk="ring"><div class="hhead"><span class="hero-lbl">' + esc(todayGreeting()) + ' · ' + esc(dt) + '</span>' +
+      '<div class="hname">' + (nm ? esc(nm) : esc(todayGreeting())) + '</div><div class="hmot">' + todayMotto(true) + '</div></div>' +
+      '<div class="dring"><svg viewBox="0 0 100 100" aria-hidden="true"><circle class="rt" cx="50" cy="50" r="38"/><circle class="rv" cx="50" cy="50" r="38" transform="rotate(-90 50 50)" style="--c:' + C.toFixed(1) + '" stroke-dasharray="' + C.toFixed(1) + '" stroke-dashoffset="' + (C * (1 - pct)).toFixed(1) + '"/><text x="50" y="51">' + Math.round(pct * 100) + '%</text></svg>' +
+      '<div class="rinfo"><span class="hero-lbl">Мой день</span><b class="num">' + r.done + ' из ' + r.total + '</b><small>' + line + '</small></div></div>' +
+      '<div class="hstats"><button type="button" class="hchip" data-goto="fin"><span class="hero-lbl">Баланс</span><b class="num">' + sgn(bal) + '</b></button>' +
+      '<button type="button" class="hchip' + limC + '" data-open="' + (settings.on ? 'day' : 'save') + '"><span class="hero-lbl">' + limL + '</span><b class="num">' + limV + '</b></button>' +
+      '<button type="button" class="hchip" data-goto="hab"><span class="hero-lbl">Серия</span><b class="num">' + (best ? '🔥 ' + best : '—') + '</b></button></div>' +
+      (cmp ? '<div class="hcmp">' + esc(cmp) + '</div>' : '') + '</div>';
   }
   function todayPlanHtml() {
-    var r = todayRows(), LIM = 6, show = r.sorted.slice(0, LIM);
-    var head = '<button type="button" class="tph" data-wg="1"><div><h3>План на сегодня</h3><div class="pv">' + (r.total ? '<span class="num">' + r.done + ' / ' + r.total + '</span> сделано' : 'Пока пусто') + '</div></div><span class="chev">›</span></button>';
+    var r = todayRows(), LIM = 6, show = r.sorted.slice(0, LIM), key = planKeyOf(0), wk = planItems(key), ti = wdOf(new Date());
+    var head = '<button type="button" class="tph" data-wg="1"><h3>План на сегодня</h3><span class="tpc">' + (r.total ? r.done + ' / ' + r.total : '') + '</span></button>';
     var rows = show.map(function (x) {
-      if (x.kind === 't') { var t = x.t; return '<div class="wtrow' + (t.done ? ' done' : '') + '">' + wtChk(t) + '<span class="wtt">' + (t.time ? '<small>' + t.time + '</small> ' : '') + esc(t.text) + (t.target > 1 ? ' <small>' + t.n + ' / ' + t.target + '</small>' : '') + '</span></div>'; }
+      if (x.kind === 't') { var t = x.t; return '<div class="wtrow' + (t.done ? ' done' : '') + '">' + wtChk(t) + '<span class="wtt">' + (t.time ? '<small class="tm-pill">' + t.time + '</small>' : '') + esc(t.text) + (t.target > 1 ? ' <small>' + t.n + ' / ' + t.target + '</small>' : '') + '</span></div>'; }
       var h = x.h; return '<div class="wtrow' + (x.done ? ' done' : '') + '"><button type="button" class="wtchk' + (x.done ? ' on' : '') + '" data-hc="' + h.id + '" aria-pressed="' + x.done + '" aria-label="Отметить: ' + esc(h.name) + '">' + (x.done ? '✓' : '') + '</button><span class="wtt">' + esc(h.icon) + ' ' + esc(h.name) + '</span></div>';
     }).join('');
     var more = r.sorted.length > LIM ? '<button type="button" class="more" data-goto="hab">Ещё ' + (r.sorted.length - LIM) + ' ›</button>' : '';
-    return '<div class="pcard tplan" data-lk="plan">' + head + (rows ? '<div style="margin-top:8px">' + rows + '</div>' : '<span class="hint">Добавьте дело или привычку кнопками ниже</span>') + more + '</div>';
+    var mains = wk.filter(function (x) { return x.main && !x.done && x.day !== ti; }).slice(0, 2);
+    var mrows = mains.map(function (t) { return '<div class="wtrow">' + wtChk(t) + '<span class="wtt"><small class="tm-pill gold">★ неделя</small>' + esc(t.text) + '</span></div>'; }).join('');
+    var wdn = wk.filter(function (x) { return x.done; }).length;
+    var foot = '<button type="button" class="more wkf" data-wg="1">План недели' + (wk.length ? ': ' + wdn + ' из ' + wk.length + ' сделано' : ': составить') + ' ›</button>';
+    return '<div class="pcard tplan" data-lk="plan">' + head + (rows || mrows ? '<div class="tpl">' + rows + mrows + '</div>' : '<span class="hint">Добавьте дело или привычку кнопками выше</span>') + more + foot + '</div>';
   }
   function todayQuickHtml() {
-    return '<div class="pcard qkc" data-lk="quick"><div class="qk"><button type="button" data-q="exp"><b>+</b>Запись</button><button type="button" data-q="task"><b>+</b>Дело</button><button type="button" data-q="hab"><b>+</b>Привычка</button></div></div>';
+    return '<div class="qkc" data-lk="quick"><div class="qk"><button type="button" data-q="exp"><i>₽</i>Запись</button><button type="button" data-q="task"><i>✓</i>Дело</button><button type="button" data-q="hab"><i>🔥</i>Привычка</button></div></div>';
   }
   var MOODS = ['😞', '🙁', '😐', '🙂', '😄'];
   function plRu(n, a, b, c) { var m = n % 100, d = n % 10; return (m > 10 && m < 15) ? c : d === 1 ? a : (d >= 2 && d <= 4) ? b : c; }
@@ -2589,13 +2629,13 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     var h = new Date().getHours();
     return h < 5 ? 'Доброй ночи' : h < 12 ? 'Доброе утро' : h < 18 ? 'Добрый день' : 'Добрый вечер';
   }
-  function todayMotto() {
+  function todayMotto(bare) {
     var d = new Date(), h = d.getHours(), r = todayRows(), nm = (ui.name || '').trim();
     var per = h < 5 ? 'night' : h < 12 ? 'morning' : h < 18 ? 'day' : 'evening';
     if (r.total && r.done === r.total) per = 'done';
     var pool = MOT[per], seed = d.getFullYear() * 400 + d.getMonth() * 31 + d.getDate();
     var t = pool[seed % pool.length];
-    return nm ? esc(nm) + ', ' + t : cap(t);
+    return (nm && !bare) ? esc(nm) + ', ' + t : cap(t);
   }
   function todayCtxLine() {
     var r = todayRows(), parts = [], left = r.total - r.done;
@@ -2637,26 +2677,12 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     $('todayDate').textContent = cap(td);
     $('todayHello').textContent = todayGreeting();
     $('todayMot').innerHTML = todayMotto();
-    $('todayCtx').textContent = todayCtxLine();
     var all = habToday(), done = all.filter(function (h) { return habDone(h, k); }).length;
     $('habSub').textContent = hab.items.length ? (all.length ? 'Сегодня сделано ' + done + ' из ' + all.length : 'Сегодня выходной от привычек') : 'Начните с одной простой привычки';
     $('habList').innerHTML = hab.items.length ? hab.items.map(function (h) { return habRowHtml(h, true); }).join('') : '<p class="hempty">Пока нет привычек. Добавьте первую, например «Зарядка» или «Стакан воды».</p>';
     // Сегодня
     var html = '';
-    var bal = homeBal(), tr = homeTrend(bal);
-    html += '<div class="pcard" data-lk="bal" data-goto="fin" role="button" tabindex="0"><div class="pbal-top"><div><h3>Баланс</h3><div class="pbal-v num">' + sgn(bal) + '</div></div>' + tr.badge + '</div>' + spendCmp() + tr.svg + '</div>';
-    html += todayRingHtml() + todayPlanHtml() + todayQuickHtml() + todayEveHtml();
-    var best = 0, bestN = '';
-    hab.items.forEach(function (h) { var st = habStreak(h); if (st > best) { best = st; bestN = h.name; } });
-    var lim = '<div class="pt">—</div><div class="ps">Накопления выключены</div>';
-    if (settings.on) {
-      var s = saveStats(), isShort = s.short > 0.005;
-      var v = isShort ? '−' + money(Math.ceil(s.short - 0.005)) : (s.over ? '−' + money(Math.ceil(-s.left - 0.005)) : money(Math.floor(s.left + 0.005)));
-      lim = '<div class="pt">Можно сегодня</div><div class="ps ' + ((s.over || isShort) ? 'bad' : 'ok') + '">' + v + '</div>';
-    }
-    html += '<button type="button" class="pcard" data-lk="lim" data-open="' + (settings.on ? 'day' : 'save') + '"><svg class="pico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="3"/><path d="M3 10h18M16 15h2"/></svg>' + lim + '</button>' +
-      '<button type="button" class="pcard" data-lk="streak" data-goto="hab"><svg class="pico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c1 3 5 5 5 10a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-6 1-9z"/></svg><div class="pt">Серия</div><div class="ps ' + (best ? 'ok' : '') + '">' + (best ? '<span class="num">' + best + '</span> дн. · ' + esc(bestN) : 'пока нет') + '</div></button>';
-    html += wgCardHtml();
+    html += todayRingHtml() + todayQuickHtml() + todayPlanHtml() + todayEveHtml();
     $('todayBody').innerHTML = html;
     applyLayout();
     document.querySelectorAll('#todayBody .hbar i').forEach(function (i) { i.style.width = i.getAttribute('data-w') + '%'; });
@@ -2674,6 +2700,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     document.body.classList.add('tab-' + t, 'has-tabs');
     document.querySelectorAll('#tabbar button').forEach(function (b) { b.setAttribute('aria-selected', String(b.getAttribute('data-tab') === t)); });
     window.scrollTo(0, 0);
+    if (t === 'today' && changed) { var tb = $('todayBody'); tb.classList.add('fx'); setTimeout(function () { tb.classList.remove('fx'); }, 900); }
     if (dir && changed) { requestAnimationFrame(function () { setTimeout(function () { if (tab === t) { renderHab(); if (t === 'fin') applyLayout(); } }, 0); }); }
     else { renderHab(); if (t === 'fin') { applyLayout(); } }
     if (dir && changed) {
@@ -2684,6 +2711,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
   }
   document.addEventListener('gesturestart', function (e) { e.preventDefault(); });
   document.addEventListener('gesturechange', function (e) { e.preventDefault(); });
+  (function () { var tb = $('todayBody'); tb.classList.add('fx'); setTimeout(function () { tb.classList.remove('fx'); }, 1200); })();
   // Свайп между экранами
   var SW_TABS = ['today', 'fin', 'hab'], swX = 0, swY = 0, swT = 0, swOk = false;
   document.addEventListener('touchstart', function (e) {
@@ -4010,7 +4038,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     var nm = DEFAULT_NAME;
     return [
       { v: '<div class="tm plain"><div class="ico" style="color:var(--brand)">✦</div></div>', t: 'Добро пожаловать в «' + esc(nm) + '»', p: 'Личная система: деньги, привычки и план дня в одном месте. За минуту покажу, как всё устроено. Между разделами «Сегодня», «Финансы» и «Привычки» можно переключаться свайпом влево и вправо.' },
-      { v: '<div class="tm"><div class="row"><span>Мой день</span><span>3 из 5</span></div><div class="bar"><i style="width:60%;background:var(--brand)"></i></div><div class="row"><span>10:00 Сдать отчёт</span><span style="color:var(--brand)">✓</span></div><div class="row"><span>🏃 Зарядка</span><span style="color:var(--brand)">✓</span></div></div>', t: 'Сегодня: ваш рабочий стол', p: 'Кольцо дня, план на сегодня с делами и привычками, баланс и быстрые кнопки «Запись», «Дело» и «Привычка». Отмечайте пункты кружками прямо на главном экране. Плитки можно переставлять в «Настройках» → «Главный экран».' },
+      { v: '<div class="tm"><div class="row"><span>Мой день</span><span>3 из 5</span></div><div class="bar"><i style="width:60%;background:var(--brand)"></i></div><div class="row"><span>10:00 Сдать отчёт</span><span style="color:var(--brand)">✓</span></div><div class="row"><span>🏃 Зарядка</span><span style="color:var(--brand)">✓</span></div></div>', t: 'Сегодня: ваш рабочий стол', p: 'Один главный блок: приветствие, кольцо дня, баланс, лимит и серия. Ниже быстрые кнопки «Запись», «Дело», «Привычка» и план на сегодня с делами и привычками. Отмечайте пункты кружками прямо на главном экране. Плитки можно переставлять в «Настройках» → «Главный экран».' },
       { v: '<div class="tm"><div class="row"><span>🏃 Зарядка</span><span>🔥 12</span></div><div class="bar"><i style="width:34%;background:var(--brand)"></i></div><small style="text-transform:none;letter-spacing:0">Челлендж: день 34 из 100</small></div>', t: 'Привычки и челленджи', p: 'Создайте привычку, выберите дни недели и отмечайте её кружком. Число рядом с огоньком показывает серию. Можно запустить челлендж на 21, 30, 66, 100, 365 дней или без конца, а итог сохранить картинкой и поделиться.' },
       { v: '<div class="tm"><div class="row"><span>Пн 09:00 Записаться к врачу</span></div><div class="row"><span>Ср 14:30 Позвонить</span></div><div class="row"><span>Без даты: купить подарок</span></div></div>', t: 'План недели', p: 'Это дела на конкретную неделю, а не привычки. Добавляйте дело с датой и временем или без даты, отмечайте до трёх главных целей. Несделанное можно перенести на новую неделю одной кнопкой.' },
       { v: '<div class="tm plain"><div class="ico" style="font-size:34px">😞 🙁 😐 🙂 😄</div></div>', t: 'Итог дня и приветствие', p: 'После 20:00 появится «Как прошёл день?»: выберите смайлик и, если хочется, запишите фразу. Свою историю настроения увидите лентой за неделю. Имя для приветствия вводится в «Настройках» → «Профиль».' },
@@ -5539,9 +5567,9 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
   var layEditing = false, laySel = null, layDrag = null, layEditCtx = 'fin', layCur = 'fin';
   var CTX = {
     fin: { key: LAY_KEY, def: LAY_DEF, name: LAY_NAME, size0: LAY_SIZE0, fixed: LAY_FIXED, wrap: 'finMain', always: false, lay: LAY },
-    today: { key: 'kassa-layout-today', def: ['ring', 'quick', 'plan', 'eve', 'bal', 'lim', 'streak', 'goal'],
-      name: { ring: 'Мой день', quick: 'Быстрые действия', plan: 'План на сегодня', eve: 'Итог дня', bal: 'Баланс', lim: 'Можно сегодня', streak: 'Серия', goal: 'План недели' },
-      size0: { ring: 2, quick: 2, plan: 2, eve: 2, bal: 2, lim: 1, streak: 1, goal: 2 }, fixed: {}, wrap: 'todayBody', always: true, lay: null }
+    today: { key: 'kassa-layout-today', def: ['ring', 'quick', 'plan', 'eve'],
+      name: { ring: 'Мой день', quick: 'Быстрые действия', plan: 'План на сегодня', eve: 'Итог дня', bal: 'Баланс', goal: 'План недели' },
+      size0: { ring: 2, quick: 2, plan: 2, eve: 2 }, fixed: {}, wrap: 'todayBody', always: true, lay: null }
   };
   function useCtx(n) {
     if (n === layCur) return;
@@ -5558,7 +5586,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
   function layEls() { return layCur === 'today' ? layElsToday() : layElsFin(); }
   function layElsToday() {
     var r = {};
-    ['ring', 'quick', 'plan', 'eve', 'bal', 'lim', 'streak', 'goal'].forEach(function (k) { r[k] = document.querySelector('#todayBody [data-lk="' + k + '"]'); });
+    ['ring', 'quick', 'plan', 'eve'].forEach(function (k) { r[k] = document.querySelector('#todayBody [data-lk="' + k + '"]'); });
     return r;
   }
   function layElsFin() {
@@ -5585,7 +5613,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
       var w = (LAY_FIXED[k] || el.classList.contains('off')) ? 2 : (LAY.size[k] || LAY_SIZE0[k]);
       el.classList.toggle('w2', w === 2); el.classList.toggle('w1', w !== 2);
       if (cust) {
-        el.style.order = String(i);
+        el.style.order = String(i); el.style.setProperty('--i', i);
         el.style.gridColumn = w === 2 ? '1 / -1' : 'span 1';
       } else { el.style.order = ''; el.style.gridColumn = ''; }
       el.classList.toggle('lhide', cust && !ed && !!LAY.hide[k]);

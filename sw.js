@@ -1,5 +1,5 @@
 /* FOCUS: работа без интернета. Файлы приложения сохраняются при первом открытии. */
-var V = 'kassa-v18';
+var V = 'kassa-v19';
 var CORE = ['./', 'index.html', 'manifest.webmanifest', 'icon-192.png', 'icon-512.png', 'apple-touch-icon.png'];
 self.addEventListener('install', function (e) {
   e.waitUntil(caches.open(V).then(function (c) { return c.addAll(CORE); }).then(function () { return self.skipWaiting(); }));
