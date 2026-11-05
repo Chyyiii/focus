@@ -401,6 +401,7 @@ footer p { max-width: 52ch; }
 .tabbar button { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px; background: transparent; border: 0; border-radius: 14px; padding: 7px 4px; font-size: 12px; font-weight: 700; color: var(--muted); }
 .tabbar button svg { width: 22px; height: 22px; }
 .tabbar button[aria-selected="true"] { color: var(--brand); background: var(--tint); }
+@media (max-height: 480px) and (orientation: landscape) { .tabbar { padding: 3px 10px calc(3px + env(safe-area-inset-bottom, 0px)); } .tabbar button { flex-direction: row; justify-content: center; gap: 6px; padding: 6px 4px; } .tabbar button svg { width: 18px; height: 18px; } }
 :root[data-palette] .tabbar button[aria-selected="true"] { color: var(--ink); }
 body.has-tabs { padding-bottom: 150px; }
 body.has-tabs .fab { bottom: calc(80px + env(safe-area-inset-bottom, 0px)); }
@@ -553,6 +554,49 @@ body.lay-edit .pghead, body.lay-edit #todayDate { pointer-events: none; }
 .wgbtn button { height: 44px; border-radius: 12px; border: 1px solid var(--line); background: var(--tint); font-weight: 800; font-size: 18px; flex: 0 0 56px; }
 .wgbtn .plus { flex: 1; background: var(--brand); color: var(--brand-ink); border-color: var(--brand); font-size: 16px; }
 .pcard.w1 .wgrow:nth-of-type(n+3) { display: none; }
+
+.wkbar { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.wkbar button { width: 44px; height: 44px; border-radius: 12px; border: 1px solid var(--line); background: var(--tint); font-size: 22px; font-weight: 700; flex: none; }
+#wgWeek { flex: 1; text-align: center; display: flex; flex-direction: column; }
+#wgWeek small { color: var(--muted); font-size: 12px; font-weight: 600; }
+.wgs { display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 6px; color: var(--muted); font-weight: 600; }
+.wgs b { color: var(--ink); }
+.wtsec { border: 1px solid var(--line); border-radius: 16px; padding: 6px 12px 8px; background: var(--surface); margin-top: 10px; }
+.wtsec.today { border-color: var(--brand); box-shadow: 0 0 0 1px var(--brand) inset; }
+.wtsec.mainsec { background: var(--tint); }
+.wtsh { display: flex; justify-content: space-between; align-items: center; gap: 8px; min-height: 40px; }
+.wtsh b { font-size: 15px; }
+.wtsh small { margin-left: 8px; color: var(--muted); font-size: 12px; font-weight: 600; }
+.wta { width: 34px; height: 34px; border-radius: 50%; border: 0; background: var(--brand); color: var(--brand-ink); font-size: 22px; line-height: 1; font-weight: 700; flex: none; }
+.wtrow { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-top: 1px solid var(--line); }
+.wtchk { flex: none; width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--line); background: var(--bg); color: transparent; font-weight: 800; display: grid; place-items: center; padding: 0; }
+.wtchk.cnt { color: var(--muted); font-size: 18px; }
+.wtchk.on { background: var(--brand); border-color: var(--brand); color: var(--brand-ink); }
+.wtx { flex: 1; min-width: 0; background: transparent; border: 0; padding: 4px 0; text-align: left; color: inherit; display: flex; flex-direction: column; }
+.wtt { font-weight: 600; font-size: 15px; overflow-wrap: anywhere; }
+.wtt small, .wtx small { color: var(--muted); font-size: 12px; font-weight: 600; }
+.wtrow.done .wtt { text-decoration: line-through; color: var(--muted); }
+.wtrow.sm { padding: 5px 0; border-top: 0; }
+.wtrow.sm .wtchk { width: 26px; height: 26px; }
+#wgList > .secondary { margin-top: 12px; width: 100%; }
+#wgList { padding-bottom: 6px; }
+
+.dtrow { display: flex; gap: 8px; align-items: stretch; }
+.dtrow input { flex: 1; min-width: 0; }
+.dtrow .qbtn { flex: 0 0 auto; padding: 0 14px; height: auto; }
+.wtrow .wtt small { margin-right: 4px; }
+
+.devbox { border-color: var(--out); }
+.devrow { display: flex; gap: 8px; padding: 0 14px 14px; }
+.devrow input { flex: 1; min-width: 0; height: 44px; border: 1px solid var(--line); border-radius: 12px; padding: 0 12px; background: var(--bg); color: var(--ink); }
+.qbtn.dev { flex: 0 0 auto; padding: 0 14px; background: var(--out); color: var(--on-sem); border-color: var(--out); height: 44px; }
+.qbtn.dev:disabled { opacity: .4; }
+
+@keyframes slL { from { opacity: 0; transform: translateX(36px); } to { opacity: 1; transform: none; } }
+@keyframes slR { from { opacity: 0; transform: translateX(-36px); } to { opacity: 1; transform: none; } }
+.wrap.sl-l { animation: slL .28s ease; }
+.wrap.sl-r { animation: slR .28s ease; }
+@media (prefers-reduced-motion: reduce) { .wrap.sl-l, .wrap.sl-r { animation: none; } }
 .fab span { font-size: 24px; line-height: 0.8; font-weight: 600; }
 
 /* Окна снизу */
@@ -1177,7 +1221,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
   <div><h1 class="pgtitle">Привычки</h1><p class="pgsub" id="habSub"></p></div>
   <div class="card" id="habList"></div>
   <button type="button" class="primary" id="habAdd">+ Новая привычка</button>
-  <button type="button" class="secondary" id="wgOpenBtn">Цели на неделю</button>
+  <button type="button" class="secondary" id="wgOpenBtn">План недели</button>
   <p class="hint">Нажмите на кружок, чтобы отметить сегодня. Квадратики недели можно нажимать, чтобы отметить прошлые дни.</p>
 </main>
 <nav class="tabbar" id="tabbar" aria-label="Разделы"><div class="tabbar-in" role="tablist">
@@ -1463,10 +1507,10 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
         <p>«Настройки» → «Данные и копии» → <b>«Импорт из CSV»</b>. Выберите файл из Excel или банка. В первой строке нужны названия столбцов «Дата» и «Сумма», остальные («Тип», «Категория», «Комментарий») по желанию. Если столбца «Тип» нет, отрицательная сумма считается расходом. Перед добавлением приложение покажет, сколько записей найдено. Повторы пропускаются, новые категории создаются сами. Остатки счетов старые записи не меняют.</p>
       </details>
       <details><summary>Вкладки и привычки</summary>
-        <p>Внизу экрана три раздела. <b>«Сегодня»</b> собирает главное на день: баланс с графиком за 30 дней, сколько привычек сделано сегодня, сколько можно потратить, лучшая серия и прогресс недели. Нажмите на карточку, чтобы перейти в нужный раздел. Экран «Сегодня» настраивается так же, как «Финансы»: откройте «Настройки» → «Главный экран». Сверху в режиме правки переключатель «Сегодня / Финансы» выбирает, какой экран править. У каждого экрана свой порядок. <b>«Финансы»</b> это всё, что было в приложении раньше. <b>«Привычки»</b> это ваши ежедневные дела.</p>
+        <p>Внизу экрана три раздела, между ними можно переключаться и свайпом влево или вправо. <b>«Сегодня»</b> собирает главное на день: баланс с графиком за 30 дней, сколько привычек сделано сегодня, сколько можно потратить, лучшая серия и прогресс недели. Нажмите на карточку, чтобы перейти в нужный раздел. Экран «Сегодня» настраивается так же, как «Финансы»: откройте «Настройки» → «Главный экран». Сверху в режиме правки переключатель «Сегодня / Финансы» выбирает, какой экран править. У каждого экрана свой порядок. <b>«Финансы»</b> это всё, что было в приложении раньше. <b>«Привычки»</b> это ваши ежедневные дела.</p>
         <p>В «Привычках» нажмите «Новая привычка», выберите название, значок и дни недели. Нажмите на кружок, чтобы отметить сегодня. Квадратики недели можно нажимать, чтобы отметить или снять прошлые дни. Число рядом с огоньком показывает серию подряд выполненных запланированных дней. Дни, в которые привычка не запланирована, серию не прерывают. Чтобы изменить или удалить привычку, нажмите на её название.</p>
         <p><b>Челлендж.</b> В настройках привычки выберите «Челлендж: сколько дней» (до 365 дней или «Без конца») и дату начала. Под привычкой появится кнопка «Челлендж: день N из M». Внутри сетка кружков по 30 дней на странице (листайте вбок), галочка значит день выполнен, крестик значит пропущен. Нажатие на кружок отмечает или снимает день. Внизу «Прошло дней», «Максимальное комбо» и «Успешных дней», а кнопка «Поделиться прогрессом» создаёт картинку-итог в формате истории: её можно отправить другу или выложить в сторис. Когда срок закончится, появится поздравление с итогом и выбор: начать новый челлендж, продолжить без конца, сохранить картинку или закончить (отметки при этом остаются).</p>
-        <p><b>Цели на неделю</b> это отдельная от привычек вещь: число, которое нужно набрать за неделю, например «Тренировки: 3 раза» или «Главы книги: 5». Откройте их с экрана «Сегодня» или кнопкой в «Привычках», добавьте цель и нажимайте «+ 1» после каждого раза. Каждый понедельник счётчики начинаются заново.</p>
+        <p><b>План недели.</b> Это не привычки, а дела на конкретную неделю. Откройте план с карточки на «Сегодня» или кнопкой «План недели» во вкладке «Привычки». Там главные цели недели (до трёх), список «Без даты» и дни от понедельника до воскресенья. Нажмите «+» у нужного дня, впишите дело и при желании укажите дату и время (или нажмите «Без даты»). Если выбрать дату другой недели, дело окажется на ней. Кружок слева отмечает дело. Стрелки сверху листают недели: в прошлой видно итог, а кнопка внизу переносит несделанное на новую неделю. Цели, созданные раньше, превратились в дела этой недели.</p>
         <p>Привычки входят в резервную копию вместе с остальными данными.</p>
       </details>
       <details><summary>Главный экран: порядок и размер плиток</summary>
@@ -1855,28 +1899,30 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
   <div class="backdrop" data-close></div>
   <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="wgT" tabindex="-1">
     <div class="sheet-head">
-      <h2 id="wgT">Цели на неделю</h2>
+      <h2 id="wgT">План недели</h2>
       <button type="button" class="x" data-close aria-label="Закрыть">×</button>
     </div>
-    <p class="hint" id="wgSub"></p>
+    <div class="wkbar"><button type="button" id="wgPrev" aria-label="Прошлая неделя">‹</button><div id="wgWeek"></div><button type="button" id="wgNext" aria-label="Следующая неделя">›</button></div>
+    <div id="wgSum"></div>
     <div id="wgList"></div>
-    <button type="button" class="primary" id="wgAdd">+ Новая цель</button>
-    <p class="hint">Цели отдельные от привычек: это число, которое нужно набрать за неделю. Каждую неделю счётчики начинаются заново. Нажимайте «+ 1» после каждого раза.</p>
+    <button type="button" class="primary" id="wgAdd">+ Новая задача</button>
+    <p class="hint">Здесь дела на эту неделю: с датой и временем или просто без даты. Выберите до трёх главных целей. Несделанное можно перенести на следующую неделю.</p>
   </div>
 </div>
 <div class="overlay" id="ovWGF" hidden>
   <div class="backdrop" data-close></div>
   <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="wgfT" tabindex="-1">
     <div class="sheet-head">
-      <h2 id="wgfT">Новая цель</h2>
+      <h2 id="wgfT">Новая задача</h2>
       <button type="button" class="x" data-close aria-label="Закрыть">×</button>
     </div>
     <form id="wgForm" class="stack" novalidate>
-      <div class="field"><label for="wgName">Название</label><input id="wgName" maxlength="40" autocomplete="off" placeholder="Например: тренировки"></div>
-      <div class="field"><label>Значок</label><div class="hemo" id="wgEmo"></div></div>
-      <div class="field"><label for="wgTarget">Сколько раз за неделю</label><input id="wgTarget" type="number" inputmode="numeric" min="1" max="99" value="3"></div>
+      <div class="field"><label for="wgName">Что нужно сделать</label><input id="wgName" maxlength="60" autocomplete="off" placeholder="Например: записаться к врачу"></div>
+      <div class="field"><label for="wgDate">Дата</label><div class="dtrow"><input id="wgDate" type="date"><button type="button" class="qbtn" id="wgNoDate">Без даты</button></div></div>
+      <div class="field" id="wgTimeBox"><label for="wgTime">Время (необязательно)</label><input id="wgTime" type="time"></div>
+      <label class="chk"><input type="checkbox" id="wgMain"><span>Главная цель недели (до трёх)</span></label>
       <button type="submit" class="primary">Сохранить</button>
-      <button type="button" class="secondary" id="wgDel" hidden>Удалить цель</button>
+      <button type="button" class="secondary" id="wgDel" hidden>Удалить</button>
     </form>
   </div>
 </div>
@@ -2028,6 +2074,10 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
           <label class="srow stog"><span class="sico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></span><span class="stx"><b>Новая запись при запуске</b><small>Только на этом устройстве</small></span><input type="checkbox" id="openAddChk" class="tgl"></label>
           <button type="button" class="srow" id="sHelp"><span class="sico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2z"/><path d="M4 21V5"/></svg></span><span class="stx"><b>Руководство</b><small>Как всё устроено</small></span><span class="schev" aria-hidden="true">›</span></button>
           <button type="button" class="srow" id="sTour"><span class="sico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4m0 4h.01"/></svg></span><span class="stx"><b>Показать обучение</b><small>Короткий тур по приложению</small></span><span class="schev" aria-hidden="true">›</span></button>
+        </div>
+        <div class="sgroup devbox" id="devBox" hidden>
+          <div class="srow" style="cursor:default"><span class="stx"><b>Для разработчика</b><small>Удаляет все записи, привычки, планы, настройки и копии на этом устройстве (в облаке тоже). Это нельзя отменить.</small></span></div>
+          <div class="devrow"><input id="devWord" autocomplete="off" placeholder="Введите УДАЛИТЬ"><button type="button" class="qbtn dev" id="devWipe" disabled>Очистить все данные</button></div>
         </div>
         <button type="button" class="primary" data-close>Готово</button>
       </div>
@@ -2296,7 +2346,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
 
   // ===== Привычки =====
   var LS_HAB = 'kassa-habits-v1';
-  var hab = { items: [], log: {}, goals: [], gp: {} };
+  var hab = { items: [], log: {}, plan: {} };
   var habVer = 0, habPending = 0, habChain = Promise.resolve();
   var HAB_EMO = ['💪','🏃','📖','💧','🧘','😴','🥗','🚭','✍️','🎯','🧠','🦷'];
   var WD = ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
@@ -2318,27 +2368,50 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
       var a = o.log[k].filter(function (id, i, arr) { return ids[id] && arr.indexOf(id) === i; });
       if (a.length) log[k] = a;
     });
-    var goals = [], gids = {};
-    if (o && Array.isArray(o.goals)) o.goals.forEach(function (g) {
-      if (goals.length >= 20 || !g || typeof g.id !== 'string' || !/^[A-Za-z0-9]{1,24}$/.test(g.id) || gids[g.id]) return;
-      var nm = typeof g.name === 'string' ? g.name.replace(/\s+/g, ' ').trim().slice(0, 40) : '';
-      if (!nm) return;
-      var tg = Math.round(Number(g.target)); if (!(tg >= 1 && tg <= 99)) tg = 3;
-      gids[g.id] = 1;
-      goals.push({ id: g.id, name: nm, icon: typeof g.icon === 'string' ? g.icon.slice(0, 4) : '🎯', target: tg });
+    var plan = {}, src = (o && o.plan && typeof o.plan === 'object' && !Array.isArray(o.plan)) ? o.plan : null;
+    if (!src && o && Array.isArray(o.goals) && o.goals.length) {
+      var wk0 = dateStr(weekDates()[0]), gl = [];
+      o.goals.forEach(function (g) {
+        if (!g || typeof g.id !== 'string' || typeof g.name !== 'string') return;
+        var c = (o.gp && o.gp[wk0] && o.gp[wk0][g.id]) || 0, tg = Math.round(Number(g.target)) || 3;
+        gl.push({ id: g.id, text: g.name, day: -1, main: false, target: tg, n: Math.min(tg, Math.round(Number(c)) || 0), done: c >= tg });
+      });
+      src = {}; src[wk0] = gl;
+    }
+    if (src) Object.keys(src).sort().slice(-80).forEach(function (k) {
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(k) || !Array.isArray(src[k])) return;
+      var arr = [], seenId = {};
+      src[k].forEach(function (t) {
+        if (arr.length >= 100 || !t || typeof t.id !== 'string' || !/^[A-Za-z0-9]{1,24}$/.test(t.id) || seenId[t.id]) return;
+        var tx = typeof t.text === 'string' ? t.text.replace(/\s+/g, ' ').trim().slice(0, 60) : '';
+        if (!tx) return;
+        var d = Math.round(Number(t.day)); if (!(d >= 0 && d <= 6)) d = -1;
+        var tg = Math.round(Number(t.target)); if (!(tg >= 1 && tg <= 99)) tg = 1;
+        var n = Math.max(0, Math.min(tg, Math.round(Number(t.n)) || 0)), dn = t.done === true || (tg > 1 && n >= tg);
+        if (dn && tg > 1) n = tg;
+        seenId[t.id] = 1;
+        arr.push({ id: t.id, text: tx, day: d, time: (typeof t.time === 'string' && /^([01]\d|2[0-3]):[0-5]\d$/.test(t.time)) ? t.time : '', main: t.main === true, target: tg, n: n, done: dn });
+      });
+      if (arr.length) plan[k] = arr;
     });
-    var gp = {};
-    if (o && o.gp && typeof o.gp === 'object') Object.keys(o.gp).sort().slice(-60).forEach(function (k) {
-      if (!/^\d{4}-\d{2}-\d{2}$/.test(k) || !o.gp[k] || typeof o.gp[k] !== 'object') return;
-      var m = {}, any = false;
-      Object.keys(o.gp[k]).forEach(function (id) { var n = Math.round(Number(o.gp[k][id])); if (gids[id] && n > 0 && n <= 999) { m[id] = n; any = true; } });
-      if (any) gp[k] = m;
-    });
-    return { items: items, log: log, goals: goals, gp: gp };
+    return { items: items, log: log, plan: plan };
+  }
+  // слияние привычек и планов: то, что в копии, дополняет нынешнее
+  function habMerge(cur, inc) {
+    var out = { items: cur.items.map(function (x) { return x; }), log: {}, plan: {} }, idx = {};
+    out.items.forEach(function (x, i) { idx[x.id] = i; });
+    inc.items.forEach(function (x) { if (x.id in idx) out.items[idx[x.id]] = x; else out.items.push(x); });
+    [cur.log, inc.log].forEach(function (L) { Object.keys(L).forEach(function (k) { var a = out.log[k] || []; L[k].forEach(function (id) { if (a.indexOf(id) < 0) a.push(id); }); out.log[k] = a; }); });
+    [cur.plan, inc.plan].forEach(function (P, n) { Object.keys(P).forEach(function (k) {
+      var a = out.plan[k] || [], pos = {}; a.forEach(function (t, i) { pos[t.id] = i; });
+      P[k].forEach(function (t) { if (t.id in pos) a[pos[t.id]] = t; else a.push(t); });
+      out.plan[k] = a;
+    }); });
+    return cleanHab(out);
   }
   function lsLoadHab() { try { return cleanHab(JSON.parse(localStorage.getItem(LS_HAB))); } catch (e) { return cleanHab(null); } }
   function saveHab() {
-    var body = { items: hab.items, log: hab.log, goals: hab.goals, gp: hab.gp };
+    var body = { items: hab.items, log: hab.log, plan: hab.plan };
     if (store.mode === 'cloud') return store.col.doc('_hab').set(body);
     try { localStorage.setItem(LS_HAB, JSON.stringify(body)); } catch (e) {}
     return Promise.resolve();
@@ -2456,8 +2529,9 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     document.querySelectorAll('#todayBody .hbar i').forEach(function (i) { i.style.width = i.getAttribute('data-w') + '%'; });
   }
   var tab = 'today';
-  function setTab(t) {
+  function setTab(t, dir) {
     if (t !== 'today' && t !== 'fin' && t !== 'hab') t = 'today';
+    var changed = t !== tab;
     tab = t;
     try { localStorage.setItem('kassa-tab', t); } catch (e) {}
     $('todayMain').hidden = t !== 'today';
@@ -2469,7 +2543,34 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     renderHab();
     if (t === 'fin') { applyLayout(); }
     window.scrollTo(0, 0);
+    if (dir && changed) {
+      var m = $(t === 'today' ? 'todayMain' : t === 'fin' ? 'finMain' : 'habMain');
+      m.classList.remove('sl-l', 'sl-r'); void m.offsetWidth; m.classList.add(dir === 'l' ? 'sl-l' : 'sl-r');
+      setTimeout(function () { m.classList.remove('sl-l', 'sl-r'); }, 320);
+    }
   }
+  // Свайп между экранами
+  var SW_TABS = ['today', 'fin', 'hab'], swX = 0, swY = 0, swT = 0, swOk = false;
+  document.addEventListener('touchstart', function (e) {
+    swOk = false;
+    if (e.touches.length !== 1 || openId || layEditing || document.documentElement.hasAttribute('data-locked')) return;
+    var t = e.target;
+    if (!t.closest || t.closest('input, textarea, select, .chpages, [data-noswipe]')) return;
+    for (var el = t; el && el !== document.body; el = el.parentElement) {
+      if (el.scrollWidth > el.clientWidth + 2) { var ox = getComputedStyle(el).overflowX; if (ox === 'auto' || ox === 'scroll') return; }
+    }
+    swX = e.touches[0].clientX; swY = e.touches[0].clientY; swT = Date.now(); swOk = true;
+  }, { passive: true });
+  document.addEventListener('touchend', function (e) {
+    if (!swOk) return;
+    swOk = false;
+    if (openId || layEditing || Date.now() - swT > 700) return;
+    var c = e.changedTouches[0], dx = c.clientX - swX, dy = c.clientY - swY;
+    if (Math.abs(dx) < 70 || Math.abs(dx) < Math.abs(dy) * 1.6) return;
+    var i = SW_TABS.indexOf(tab), ni = i + (dx < 0 ? 1 : -1);
+    if (ni < 0 || ni >= SW_TABS.length) return;
+    setTab(SW_TABS[ni], dx < 0 ? 'l' : 'r');
+  }, { passive: true });
 
   // ----- челлендж -----
   var chalId = null;
@@ -2645,73 +2746,123 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     else toast(text);
   });
 
-  // ----- цели на неделю (отдельно от привычек) -----
-  function wgKey() { return dateStr(weekDates()[0]); }
-  function wgCount(id, key) { var m = hab.gp[key || wgKey()]; return (m && m[id]) || 0; }
-  function wgSet(id, n) {
-    var k = wgKey(); n = Math.max(0, Math.min(999, n));
-    var m = Object.assign({}, hab.gp[k] || {});
-    if (n > 0) m[id] = n; else delete m[id];
-    if (Object.keys(m).length) hab.gp[k] = m; else delete hab.gp[k];
-    persistHab(); renderHab(); wgDraw();
+  // ----- план недели -----
+  var WDF = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'];
+  var planOff = 0, wgKeyOpen = '', wgEdit = null, wgDaySel = -1;
+  function planKeyOf(off) { var d = weekDates()[0]; return dateStr(new Date(d.getFullYear(), d.getMonth(), d.getDate() + 7 * off)); }
+  function planItems(key) { return hab.plan[key] || []; }
+  function planPut(key, arr) { if (arr.length) hab.plan[key] = arr; else delete hab.plan[key]; }
+  function planSave(key, arr) { planPut(key, arr); persistHab(); renderHab(); wgDraw(); }
+  function wgToggle(id, key) {
+    var arr = planItems(key).map(function (t) { return Object.assign({}, t); });
+    var t = arr.filter(function (x) { return x.id === id; })[0];
+    if (!t) return;
+    if (t.target > 1) { if (t.done) { t.n = 0; t.done = false; } else { t.n++; if (t.n >= t.target) t.done = true; } }
+    else t.done = !t.done;
+    planSave(key, arr);
   }
-  function wgSummary() {
-    var n = hab.goals.length, ok = hab.goals.filter(function (g) { return wgCount(g.id) >= g.target; }).length;
-    return { n: n, ok: ok };
-  }
+  function wtChk(t) { return '<button type="button" class="wtchk' + (t.done ? ' on' : (t.target > 1 ? ' cnt' : '')) + '" data-wtt="' + t.id + '" aria-pressed="' + t.done + '" aria-label="Отметить: ' + esc(t.text) + '">' + (t.done ? '✓' : (t.target > 1 ? '+' : '')) + '</button>'; }
   function wgCardHtml() {
-    var ico = '<svg class="pico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg>';
-    if (!hab.goals.length) return '<button type="button" class="pcard" data-lk="goal" data-wg="1"><div class="pgoal">' + ico + '<div class="grow"><div class="gt"><span>Цели на неделю</span></div><div class="hint">Добавьте первую цель, например «Тренировки: 3 раза»</div></div></div></button>';
-    var sm = wgSummary();
-    var rows = hab.goals.slice(0, 3).map(function (g) {
-      var c = wgCount(g.id), pc = Math.min(100, c / g.target * 100);
-      return '<div class="wgrow"><div class="wgt"><span>' + esc(g.icon) + ' ' + esc(g.name) + '</span><span class="num">' + c + ' / ' + g.target + '</span></div><div class="hbar"><i data-w="' + pc.toFixed(1) + '"></i></div></div>';
-    }).join('');
-    return '<button type="button" class="pcard" data-lk="goal" data-wg="1"><div class="prow1"><div><h3>Цели на неделю</h3><div class="pv"><span class="num">' + sm.ok + ' / ' + sm.n + '</span> выполнено</div></div><span class="chev">›</span></div>' + rows + (hab.goals.length > 3 ? '<span class="hint">и ещё ' + (hab.goals.length - 3) + '</span>' : '') + '</button>';
+    var key = planKeyOf(0), items = planItems(key), total = items.length, ti = wdOf(new Date());
+    if (!total) return '<div class="pcard" data-lk="goal" data-wg="1" role="button" tabindex="0"><div class="prow1"><div><h3>План недели</h3><div class="pv">Составьте план</div></div><span class="chev">›</span></div><span class="hint">Дела на неделю по дням и главные цели</span></div>';
+    var done = items.filter(function (x) { return x.done; }).length;
+    var today = items.filter(function (x) { return x.day === ti; }).sort(function (x, y) { return (x.time || '99:99') < (y.time || '99:99') ? -1 : 1; }), mains = items.filter(function (x) { return x.main && !x.done && x.day !== ti; });
+    var show = today.concat(mains).slice(0, 3);
+    var rows = show.map(function (t) { return '<div class="wtrow sm' + (t.done ? ' done' : '') + '">' + wtChk(t) + '<span class="wtt">' + (t.time ? '<small>' + t.time + '</small> ' : '') + esc(t.text) + (t.target > 1 ? ' <small>' + t.n + ' / ' + t.target + '</small>' : '') + '</span></div>'; }).join('');
+    return '<div class="pcard" data-lk="goal" data-wg="1" role="button" tabindex="0"><div class="prow1"><div><h3>План недели</h3><div class="pv"><span class="num">' + done + ' / ' + total + '</span> сделано</div></div><span class="chev">›</span></div>' +
+      '<div class="hbar"><i data-w="' + (done / total * 100).toFixed(1) + '"></i></div>' + rows + (show.length ? '' : '<span class="hint">На сегодня дел нет</span>') + '</div>';
   }
   function wgDraw() {
-    var wk = weekDates(), a = wk[0], b = wk[6];
+    var key = planKeyOf(planOff), items = planItems(key), a = dParse(key), ti = wdOf(new Date());
     var fmt = function (d) { return d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' }); };
-    $('wgSub').textContent = 'Неделя: ' + fmt(a) + ' – ' + fmt(b);
-    $('wgList').innerHTML = hab.goals.length ? hab.goals.map(function (g) {
-      var c = wgCount(g.id), pc = Math.min(100, c / g.target * 100), ok = c >= g.target;
-      return '<div class="wgitem"><div class="wgtop"><button type="button" class="wgname" data-wge="' + g.id + '">' + esc(g.icon) + ' ' + esc(g.name) + '</button><span class="num' + (ok ? ' okc' : '') + '">' + c + ' / ' + g.target + (ok ? ' ✓' : '') + '</span></div>' +
-        '<div class="hbar"><i style="width:' + pc.toFixed(1) + '%"></i></div>' +
-        '<div class="wgbtn"><button type="button" data-wgm="' + g.id + '" aria-label="Минус один">−</button><button type="button" class="plus" data-wgp="' + g.id + '" aria-label="Плюс один">+ 1</button></div></div>';
-    }).join('') : '<p class="hempty">Целей пока нет. Цель на неделю это число, которое нужно набрать за 7 дней: тренировки, прочитанные главы, походы в зал.</p>';
+    var b = new Date(a.getFullYear(), a.getMonth(), a.getDate() + 6);
+    $('wgWeek').innerHTML = '<b>' + fmt(a) + ' – ' + fmt(b) + '</b><small>' + (planOff === 0 ? 'Эта неделя' : planOff === -1 ? 'Прошлая неделя' : planOff === 1 ? 'Следующая неделя' : planOff < 0 ? 'Неделя в прошлом' : 'Неделя впереди') + '</small>';
+    var total = items.length, done = items.filter(function (x) { return x.done; }).length, undone = total - done;
+    $('wgSum').innerHTML = total ? '<div class="wgs"><span>' + (planOff < 0 ? 'Итог недели' : 'Сделано') + ': <b class="num">' + done + ' из ' + total + '</b>' + (planOff < 0 ? ' (' + Math.round(done / total * 100) + '%)' : '') + '</span></div><div class="hbar"><i style="width:' + (done / total * 100).toFixed(1) + '%"></i></div>' : '<p class="hint">План пуст. Добавьте дела на неделю: по дням или просто в список «Без даты».</p>';
+    function row(t) {
+      var sub = [];
+      if (t.time) sub.push(t.time);
+      if (t.main && t.day >= 0) sub.push(WD[t.day]);
+      if (t.target > 1) sub.push(t.n + ' / ' + t.target);
+      return '<div class="wtrow' + (t.done ? ' done' : '') + '">' + wtChk(t) + '<button type="button" class="wtx" data-wte="' + t.id + '"><span class="wtt">' + esc(t.text) + '</span>' + (sub.length ? '<small>' + sub.join(' · ') + '</small>' : '') + '</button></div>';
+    }
+    function sec(title, sub, list, arg, cls) {
+      list = list.slice().sort(function (x, y) { return (x.time || '99:99') < (y.time || '99:99') ? -1 : (x.time || '99:99') > (y.time || '99:99') ? 1 : 0; });
+      return '<div class="wtsec ' + cls + '"><div class="wtsh"><div><b>' + title + '</b>' + (sub ? '<small>' + sub + '</small>' : '') + '</div><button type="button" class="wta" data-wta="' + arg + '" aria-label="Добавить: ' + title + '">+</button></div>' + list.map(row).join('') + '</div>';
+    }
+    var h = sec('Главные цели недели', 'до трёх', items.filter(function (x) { return x.main; }), 'main', 'mainsec');
+    h += sec('Без даты', 'в любой день', items.filter(function (x) { return !x.main && x.day < 0; }), '-1', '');
+    for (var i = 0; i < 7; i++) {
+      var d = new Date(a.getFullYear(), a.getMonth(), a.getDate() + i);
+      h += sec(WDF[i], fmt(d), items.filter(function (x) { return !x.main && x.day === i; }), String(i), (planOff === 0 && i === ti) ? 'today' : '');
+    }
+    if (undone > 0 && planOff <= 0) h += '<button type="button" class="secondary" data-wtcarry="1">' + (planOff < 0 ? 'Перенести несделанное (' + undone + ') на эту неделю' : 'Перенести несделанное (' + undone + ') на следующую неделю') + '</button>';
+    $('wgList').innerHTML = h;
   }
-  function wgOpen() { wgDraw(); openOv('ovWG'); }
-  var wgEdit = null, wgEmo = '🎯';
-  function wgFormDraw() { $('wgEmo').innerHTML = HAB_EMO.map(function (e) { return '<button type="button" data-e="' + e + '" aria-pressed="' + (e === wgEmo) + '">' + e + '</button>'; }).join(''); }
-  function wgForm(id) {
-    var g = id ? hab.goals.filter(function (x) { return x.id === id; })[0] : null;
-    wgEdit = g ? g.id : null; wgEmo = g ? g.icon : '🎯';
-    $('wgfT').textContent = g ? 'Цель' : 'Новая цель';
-    $('wgName').value = g ? g.name : ''; $('wgTarget').value = g ? g.target : 3;
-    $('wgDel').hidden = !g; wgFormDraw();
-    openOv('ovWGF', g ? null : 'wgName');
+  function wgOpen() { planOff = 0; wgDraw(); openOv('ovWG'); }
+  function wgNav(d) { planOff = Math.max(-26, Math.min(8, planOff + d)); wgDraw(); }
+  $('wgPrev').addEventListener('click', function () { wgNav(-1); });
+  $('wgNext').addEventListener('click', function () { wgNav(1); });
+  var wgPreset = -1;
+  function wgTimeSync() { $('wgTimeBox').hidden = !$('wgDate').value; if (!$('wgDate').value) $('wgTime').value = ''; }
+  function wgForm(id, preset) {
+    wgKeyOpen = planKeyOf(planOff);
+    var t = id ? planItems(wgKeyOpen).filter(function (x) { return x.id === id; })[0] : null;
+    wgEdit = t ? t.id : null;
+    var day = t ? t.day : (preset === 'main' || preset == null ? -1 : +preset);
+    var a = dParse(wgKeyOpen);
+    $('wgfT').textContent = t ? 'Задача' : 'Новая задача';
+    $('wgName').value = t ? t.text : '';
+    $('wgDate').value = day >= 0 ? dateStr(new Date(a.getFullYear(), a.getMonth(), a.getDate() + day)) : '';
+    $('wgTime').value = t ? (t.time || '') : '';
+    $('wgMain').checked = t ? t.main : preset === 'main';
+    $('wgDel').hidden = !t;
+    wgTimeSync();
+    openOv('ovWGF', t ? null : 'wgName');
   }
-  $('wgAdd').addEventListener('click', function () { wgForm(null); });
-  $('wgEmo').addEventListener('click', function (e) { var b = e.target.closest('button[data-e]'); if (!b) return; wgEmo = b.getAttribute('data-e'); wgFormDraw(); });
+  $('wgAdd').addEventListener('click', function () { wgForm(null, null); });
+  $('wgDate').addEventListener('change', wgTimeSync);
+  $('wgNoDate').addEventListener('click', function () { $('wgDate').value = ''; wgTimeSync(); });
   $('wgForm').addEventListener('submit', function (e) {
     e.preventDefault();
-    var nm = $('wgName').value.replace(/\s+/g, ' ').trim(), tg = Math.round(Number($('wgTarget').value));
-    if (!nm) { flag($('wgName')); toast('Введите название цели'); return; }
-    if (!(tg >= 1 && tg <= 99)) { flag($('wgTarget')); toast('Сколько раз за неделю: число от 1 до 99'); return; }
-    if (wgEdit) { var g = hab.goals.filter(function (x) { return x.id === wgEdit; })[0]; if (g) { g.name = nm; g.icon = wgEmo; g.target = tg; } }
-    else hab.goals.push({ id: 'g' + Date.now().toString(36) + Math.random().toString(36).slice(2, 5), name: nm, icon: wgEmo, target: tg });
-    hab = cleanHab(hab); persistHab(); renderHab(); closeOv();
+    var nm = $('wgName').value.replace(/\s+/g, ' ').trim(), mn = $('wgMain').checked, dv = $('wgDate').value, tm = $('wgTime').value || '';
+    if (!nm) { flag($('wgName')); toast('Введите, что нужно сделать'); return; }
+    var newKey = wgKeyOpen, day = -1;
+    if (dv && /^\d{4}-\d{2}-\d{2}$/.test(dv)) {
+      var dd = dParse(dv); day = wdOf(dd);
+      newKey = dateStr(new Date(dd.getFullYear(), dd.getMonth(), dd.getDate() - day));
+    } else tm = '';
+    var old = planItems(wgKeyOpen).map(function (t) { return Object.assign({}, t); });
+    var cur = wgEdit ? old.filter(function (x) { return x.id === wgEdit; })[0] : null;
+    var dest = newKey === wgKeyOpen ? old : planItems(newKey).map(function (t) { return Object.assign({}, t); });
+    if (mn && dest.filter(function (x) { return x.main && x.id !== wgEdit; }).length >= 3) { toast('Главных целей не больше трёх'); return; }
+    if (cur) {
+      cur.text = nm; cur.day = day; cur.time = tm; cur.main = mn;
+      if (newKey !== wgKeyOpen) { planPut(wgKeyOpen, old.filter(function (x) { return x.id !== wgEdit; })); dest.push(cur); }
+    } else dest.push({ id: 'p' + Date.now().toString(36) + Math.random().toString(36).slice(2, 5), text: nm, day: day, time: tm, main: mn, target: 1, n: 0, done: false });
+    planPut(newKey, dest);
+    hab = cleanHab(hab); persistHab(); renderHab();
+    if (newKey !== planKeyOf(planOff)) { planOff = Math.round((dParse(newKey) - dParse(planKeyOf(0))) / 6048e5); toast('Дело добавлено на неделю ' + dParse(newKey).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' })); }
+    closeOv();
   });
   $('wgDel').addEventListener('click', function () {
-    if (!wgEdit || !confirm('Удалить цель вместе с историей?')) return;
-    hab.goals = hab.goals.filter(function (x) { return x.id !== wgEdit; });
-    hab = cleanHab(hab); persistHab(); renderHab(); closeOv();
+    if (!wgEdit) return;
+    planPut(wgKeyOpen, planItems(wgKeyOpen).filter(function (x) { return x.id !== wgEdit; }));
+    persistHab(); renderHab(); closeOv();
   });
   $('wgList').addEventListener('click', function (e) {
-    var p = e.target.closest('[data-wgp]'), m = e.target.closest('[data-wgm]'), n = e.target.closest('[data-wge]');
-    if (p) wgSet(p.getAttribute('data-wgp'), wgCount(p.getAttribute('data-wgp')) + 1);
-    else if (m) wgSet(m.getAttribute('data-wgm'), wgCount(m.getAttribute('data-wgm')) - 1);
-    else if (n) wgForm(n.getAttribute('data-wge'));
+    var key = planKeyOf(planOff);
+    var c = e.target.closest('[data-wtt]'), ed = e.target.closest('[data-wte]'), ad = e.target.closest('[data-wta]'), cr = e.target.closest('[data-wtcarry]');
+    if (c) wgToggle(c.getAttribute('data-wtt'), key);
+    else if (ed) wgForm(ed.getAttribute('data-wte'), null);
+    else if (ad) wgForm(null, ad.getAttribute('data-wta'));
+    else if (cr) {
+      var to = planKeyOf(planOff < 0 ? 0 : 1), from = planItems(key), keep = from.filter(function (x) { return x.done; });
+      var moved = from.filter(function (x) { return !x.done; }).map(function (x) { return { id: 'p' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6), text: x.text, day: -1, main: x.main, target: x.target, n: 0, done: false }; });
+      planPut(key, keep); planPut(to, planItems(to).concat(moved));
+      hab = cleanHab(hab); persistHab(); renderHab(); wgDraw();
+      toast('Перенесено дел: ' + moved.length);
+    }
   });
   $('wgOpenBtn').addEventListener('click', wgOpen);
   var habEdit = null, habEmoSel = '🎯', habDaysSel = [0, 1, 2, 3, 4, 5, 6], habGoalSel = 0;
@@ -2757,7 +2908,13 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
   });
   $('habDel').addEventListener('click', function () {
     if (!habEdit) return;
-    if (!confirm('Удалить привычку вместе с историей отметок?')) return;
+    var db = $('habDel');
+    if (db.getAttribute('data-arm') !== '1') {
+      db.setAttribute('data-arm', '1'); db.textContent = 'Нажмите ещё раз: удалить с историей';
+      setTimeout(function () { db.removeAttribute('data-arm'); db.textContent = 'Удалить привычку'; }, 4000);
+      return;
+    }
+    db.removeAttribute('data-arm'); db.textContent = 'Удалить привычку';
     hab.items = hab.items.filter(function (x) { return x.id !== habEdit; });
     hab = cleanHab(hab); persistHab(); renderHab(); closeOv();
   });
@@ -2768,6 +2925,8 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     if (w) { habToggle(w.getAttribute('data-h'), w.getAttribute('data-hk')); return; }
     var op = e.target.closest('[data-open]');
     if (op && !e.target.closest('#habList')) { if (op.getAttribute('data-open') === 'day') { renderDay(); openOv('ovDay'); } else openOv('ovSave'); return; }
+    var wt = e.target.closest('[data-wtt]');
+    if (wt) { wgToggle(wt.getAttribute('data-wtt'), planKeyOf(0)); return; }
     if (e.target.closest('[data-wg]')) { wgOpen(); return; }
     var hg = e.target.closest('[data-hg]');
     if (hg) { chalOpen(hg.getAttribute('data-hg')); return; }
@@ -2778,7 +2937,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
   }
   $('habList').addEventListener('click', habClick);
   $('todayBody').addEventListener('click', habClick);
-  document.querySelectorAll('#tabbar button').forEach(function (b) { b.addEventListener('click', function () { setTab(b.getAttribute('data-tab')); }); });
+  document.querySelectorAll('#tabbar button').forEach(function (b) { b.addEventListener('click', function () { var t = b.getAttribute('data-tab'); setTab(t, SW_TABS.indexOf(t) > SW_TABS.indexOf(tab) ? 'l' : 'r'); }); });
   $('gear2').addEventListener('click', function () { $('gear').click(); });
   $('gear3').addEventListener('click', function () { $('gear').click(); });
   function lsLoadDebt() { try { return cleanDebt(JSON.parse(localStorage.getItem(LS_DEBT))); } catch (e) { return cleanDebt(null); } }
@@ -3227,6 +3386,28 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
 
   /* Окна снизу */
 
+
+  // ----- скрытая очистка данных (7 нажатий на карточку FOCUS в настройках) -----
+  var devTaps = 0, devTimer = 0;
+  document.querySelector('#ovSet .sethero').addEventListener('click', function () {
+    devTaps++; clearTimeout(devTimer); devTimer = setTimeout(function () { devTaps = 0; }, 2500);
+    if (devTaps >= 7) { devTaps = 0; $('devBox').hidden = false; $('devWord').value = ''; $('devWipe').disabled = true; toast('Раздел для разработчика открыт'); }
+  });
+  $('devWord').addEventListener('input', function () { $('devWipe').disabled = $('devWord').value.trim().toUpperCase() !== 'УДАЛИТЬ'; });
+  $('devWipe').addEventListener('click', async function () {
+    if ($('devWord').value.trim().toUpperCase() !== 'УДАЛИТЬ') return;
+    $('devWipe').disabled = true; $('devWipe').textContent = 'Удаляю...';
+    try {
+      if (store.mode === 'cloud') {
+        var ids = txs.map(function (t) { return t.id; });
+        for (var i = 0; i < ids.length; i += 20) await Promise.all(ids.slice(i, i + 20).map(function (id) { return store.col.doc(id).delete(); }));
+        await Promise.all(['_save', '_cats', '_ui', '_rec', '_tpl', '_debt', '_hab'].map(function (d) { return store.col.doc(d).delete().catch(function () {}); }));
+      }
+    } catch (e) { toast('Облачные данные удалить не удалось. Попробуйте ещё раз.'); $('devWipe').textContent = 'Очистить все данные'; $('devWipe').disabled = false; return; }
+    try { Object.keys(localStorage).filter(function (k) { return k.indexOf('kassa') === 0; }).forEach(function (k) { localStorage.removeItem(k); }); } catch (e) {}
+    try { sessionStorage.clear(); } catch (e) {}
+    location.reload();
+  });
   // ----- страницы настроек -----
   var SET_T = { home: 'Настройки', look: 'Цвет и режим', lock: 'Защита', data: 'Данные и копии' };
   function setPage(n) {
@@ -3245,7 +3426,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
   $('sHelp').addEventListener('click', function () { $('helpBtn').click(); });
   $('sTour').addEventListener('click', function () { $('tourBtn').click(); });
   function openOv(id, focusId) {
-    if (id === 'ovSet') setPage('home');
+    if (id === 'ovSet') { setPage('home'); if ($('devBox')) $('devBox').hidden = true; }
     if (openId) closeOv(true);
     lastFocus = document.activeElement;
     var el = $(id);
@@ -4725,7 +4906,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
       if (t.acc) o.acc = t.acc;
       return o;
     }), cats: catsBody(), save: { accs: settings.accs, xfers: settings.xfers, on: settings.on, plan: settings.plan, goal: settings.goal, carry: settings.carry, limitGoals: settings.limitGoals, carryFrom: settings.carryFrom, closed: settings.closed, goals: settings.goals, months: settings.months, goalStart: settings.goalStart },
-      tpl: { items: tpl.items }, debt: { items: debt.items }, hab: { items: hab.items, log: hab.log, goals: hab.goals, gp: hab.gp }, ui: { name: ui.name.trim(), palette: ui.palette, mode: ui.mode, style: STYLE, oled: OLED, layout: layOf('fin'), layoutT: layOf('today') }, rec: { items: rec.items } };
+      tpl: { items: tpl.items }, debt: { items: debt.items }, hab: { items: hab.items, log: hab.log, plan: hab.plan }, ui: { name: ui.name.trim(), palette: ui.palette, mode: ui.mode, style: STYLE, oled: OLED, layout: layOf('fin'), layoutT: layOf('today') }, rec: { items: rec.items } };
   }
   function downloadText(name, text) {
     var blob = new Blob([text], { type: 'application/json' });
@@ -4791,6 +4972,20 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     if (mo < 1 || mo > 12 || d < 1 || d > 31 || y < 1990 || y > 2100) return '';
     return y + '-' + pad(mo) + '-' + pad(d);
   }
+  // Число из таблицы: «8.000,00», «1 250,50», «1,234.56», «-300», «1.500»
+  function csvNum(raw) {
+    var neg = raw.charAt(0) === '-'; raw = raw.replace(/[+\-]/g, '');
+    if (!/\d/.test(raw)) return NaN;
+    var lc = raw.lastIndexOf(','), ld = raw.lastIndexOf('.'), nc = (raw.match(/,/g) || []).length, nd = (raw.match(/\./g) || []).length, t;
+    if (lc >= 0 && ld >= 0) { var dec = lc > ld ? ',' : '.', th = dec === ',' ? '.' : ','; t = raw.split(th).join('').replace(dec, '.'); }
+    else if (lc >= 0 || ld >= 0) {
+      var sep = lc >= 0 ? ',' : '.', cnt = lc >= 0 ? nc : nd, tail = raw.length - raw.lastIndexOf(sep) - 1, head = raw.slice(0, raw.indexOf(sep));
+      if (cnt > 1 || (tail === 3 && head.length >= 1 && head.length <= 3 && head !== '0')) t = raw.split(sep).join('');
+      else t = raw.replace(sep, '.');
+    } else t = raw;
+    var n = Number(t);
+    return isFinite(n) ? r2(neg ? -n : n) : NaN;
+  }
   function csvParse(text) {
     text = text.replace(/^﻿/, '');
     var rows = csvSplit(text);
@@ -4808,11 +5003,11 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     if (hasHead) rows = rows.slice(1); else ix = { date: 0, type: 1, cat: 2, amt: 3, note: 4 };
     var out = [], skipped = 0, seen = {}, dup = 0, savRows = 0;
     var have = {};
-    txs.forEach(function (t) { if (!t.example) have[t.date + '|' + t.type + '|' + t.cat + '|' + t.amount + '|' + (t.note || '')] = 1; });
+    txs.forEach(function (t) { if (!t.example) { var hk = t.date + '|' + t.type + '|' + t.cat + '|' + t.amount + '|' + (t.note || ''); have[hk] = (have[hk] || 0) + 1; } });
     rows.slice(0, 6000).forEach(function (r) {
       var date = csvDate(r[ix.date]);
       var raw = String(r[ix.amt] == null ? '' : r[ix.amt]).replace(/[\s ]/g, '').replace(/[−–—]/g, '-').replace(/[^\d.,\-+]/g, '');
-      var a = parseAmt(raw);
+      var a = csvNum(raw);
       if (!date || !isFinite(a) || a === 0) { skipped++; return; }
       var tp = ix.type >= 0 ? String(r[ix.type] || '').toLowerCase() : '', type;
       if (/копилк|накоплен|снятие/.test(tp)) { savRows++; return; }
@@ -4825,8 +5020,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
       if (!cat) cat = 'Другое';
       var note = ix.note >= 0 ? String(r[ix.note] || '').replace(/\s+/g, ' ').trim().slice(0, 60) : '';
       var key = date + '|' + type + '|' + cat + '|' + amt + '|' + note;
-      if (have[key] || seen[key]) { dup++; return; }
-      seen[key] = 1;
+      if (have[key] > 0) { have[key]--; dup++; return; }
       out.push({ type: type, cat: cat, amount: amt, date: date, note: note });
     });
     return { items: out, skipped: skipped, dup: dup, sav: savRows, head: hasHead };
@@ -4936,7 +5130,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
           if (typeof t.acc === 'string' && /^[A-Za-z0-9]{1,24}$/.test(t.acc)) o.acc = t.acc;
           list.push(o);
         });
-        bkPending = { txs: list, cats: b.cats, save: b.save, ui: b.ui, rec: b.rec, tpl: b.tpl, debt: b.debt };
+        bkPending = { txs: list, cats: b.cats, save: b.save, ui: b.ui, rec: b.rec, tpl: b.tpl, debt: b.debt, hab: b.hab };
         var cur = {}, inCopy = {}, nNew = 0, nChg = 0, nSame = 0, nExtra = 0;
         txs.forEach(function (t) { if (!t.example) cur[t.id] = t; });
         list.forEach(function (t) {
@@ -4951,7 +5145,8 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
         $('bkText').innerHTML = 'Копия' + (b.at ? ' от ' + esc(new Date(b.at).toLocaleDateString('ru-RU')) : '') + ': записей ' + list.length + '. Сейчас в приложении: ' + nowN + '.' +
           '<br>Добавится новых: <b>' + nNew + '</b>. Изменится: <b>' + nChg + '</b>. Совпадает: <b>' + nSame + '</b>.' +
           '<br>Есть только у вас, в копии нет: <b>' + nExtra + '</b>. «Добавить к текущим» их оставит, «Заменить всё копией» удалит.' +
-          '<br>Категории, регулярные платежи (' + (b.rec && Array.isArray(b.rec.items) ? b.rec.items.length : 0) + '), цели (' + (Array.isArray(sv.goals) ? sv.goals.length : 0) + '), счета (' + (Array.isArray(sv.accs) ? sv.accs.length : 0) + ') и настройки берутся из копии и заменят нынешние.';
+          '<br>Категории, регулярные платежи (' + (b.rec && Array.isArray(b.rec.items) ? b.rec.items.length : 0) + '), цели (' + (Array.isArray(sv.goals) ? sv.goals.length : 0) + '), счета (' + (Array.isArray(sv.accs) ? sv.accs.length : 0) + ') и настройки берутся из копии и заменят нынешние.' +
+          (b.hab && Array.isArray(b.hab.items) ? '<br>Привычек в копии: <b>' + b.hab.items.length + '</b>. «Добавить к текущим» объединит их с вашими, «Заменить всё копией» заменит.' : '');
         $('bkGo').textContent = 'Добавить к текущим' + (nNew + nChg ? ' (' + (nNew + nChg) + ')' : '');
         $('bkRep').textContent = 'Заменить всё копией' + (nExtra ? ' (−' + nExtra + ')' : '');
         $('bkInfo').hidden = false;
@@ -5012,7 +5207,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
       tpl = cleanTpl(b.tpl);
       persistTpl();
       if (b.debt) { debt = cleanDebt(b.debt); persistDebt(); }
-      if (b.hab) { hab = cleanHab(b.hab); persistHab(); }
+      if (b.hab) { var hinc = cleanHab(b.hab); hab = repl ? hinc : habMerge(hab, hinc); persistHab(); }
       applyUi(); renderUiSheet(); fillSettingsInputs();
       changeCats();
       persistSettings();
@@ -5184,7 +5379,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
   var CTX = {
     fin: { key: LAY_KEY, def: LAY_DEF, name: LAY_NAME, size0: LAY_SIZE0, fixed: LAY_FIXED, wrap: 'finMain', always: false, lay: LAY },
     today: { key: 'kassa-layout-today', def: ['bal', 'hab', 'lim', 'streak', 'goal'],
-      name: { bal: 'Баланс', hab: 'Привычки сегодня', lim: 'Можно сегодня', streak: 'Серия', goal: 'Цели на неделю' },
+      name: { bal: 'Баланс', hab: 'Привычки сегодня', lim: 'Можно сегодня', streak: 'Серия', goal: 'План недели' },
       size0: { bal: 2, hab: 2, lim: 1, streak: 1, goal: 2 }, fixed: {}, wrap: 'todayBody', always: true, lay: null }
   };
   function useCtx(n) {
