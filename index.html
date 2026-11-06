@@ -566,10 +566,11 @@ body.tab-today .fab, body.tab-hab .fab, body.tab-diary .fab { display: none; }
 .mnote { width: 100%; margin-top: 10px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); border-radius: 14px; padding: 11px 12px; font: inherit; font-size: 15px; }
 .mweek { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; margin-top: 12px; text-align: center; }
 .mweek div { font-size: 18px; line-height: 1.2; } .mweek small { display: block; font-size: 11px; color: var(--muted); font-weight: 700; }
-.qk { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
-.qk button { display: flex; flex-direction: column; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 14px 4px 12px; color: var(--ink); font-weight: 700; font-size: 13px; box-shadow: var(--shadow); }
-.qk button i { width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; font-style: normal; font-size: 18px; font-weight: 800; color: var(--brand-ink); background: var(--brand); }
-.qk button:active { transform: scale(.97); }
+.qk { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 22px; overflow: hidden; box-shadow: var(--shadow); }
+.qk button { display: flex; flex-direction: column; align-items: center; gap: 7px; background: transparent; border: 0; border-radius: 0; padding: 14px 2px 12px; color: var(--ink); font-weight: 700; font-size: 12.5px; min-width: 0; }
+.qk button + button { border-left: 1px solid var(--line); }
+.qk button svg { width: 24px; height: 24px; color: var(--brand); fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.qk button:active { background: var(--tint); }
 #todayBody .pcard.w1 { min-height: 112px; }
 .pcard.w1 .pbal-top { flex-direction: column; }
 .pcard.w1 .pbal-v { font-size: 24px; }
@@ -723,7 +724,8 @@ html { touch-action: manipulation; -webkit-text-size-adjust: 100%; text-size-adj
 .tour-dots i { width: 7px; height: 7px; border-radius: 50%; background: var(--line); transition: width .2s, background .2s; }
 .tour-dots i.on { width: 20px; border-radius: 4px; background: var(--brand); }
 .tm { width: 100%; max-width: 280px; border-radius: 18px; padding: 14px; background: var(--tint); border: 1px solid var(--line); text-align: left; }
-.tm.hero { background: var(--brand); color: var(--brand-ink); border: 0; }
+.tm.tmh { background: radial-gradient(120% 95% at 100% 0%, rgba(255,110,10,.45), transparent 58%), #120C08; color: #F8EDE3; border: 1px solid rgba(255,150,50,.35); }
+.tm.tmh small { color: #F0C9A4; opacity: 1; }
 .tm small { display: block; font-size: 11px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; opacity: .75; }
 .tm b.big { display: block; font-size: 30px; font-weight: 800; margin: 2px 0 8px; }
 .tm .chips { display: flex; gap: 6px; }
@@ -732,7 +734,7 @@ html { touch-action: manipulation; -webkit-text-size-adjust: 100%; text-size-adj
 .tm .bar i { display: block; height: 100%; background: var(--gold); border-radius: 4px; }
 .tm .row { display: flex; justify-content: space-between; font-size: 14px; font-weight: 700; padding: 6px 0; border-bottom: 1px solid var(--line); }
 .tm .row:last-child { border-bottom: 0; }
-.tm .fab { display: inline-block; padding: 12px 22px; border-radius: 999px; background: var(--brand); color: var(--brand-ink); font-weight: 800; font-size: 16px; }
+.tm .tfab, .tm .fab { display: inline-block; padding: 12px 22px; border-radius: 999px; background: var(--brand); color: var(--brand-ink); font-weight: 800; font-size: 16px; }
 .tm .ring { width: 120px; height: 120px; border-radius: 50%; margin: 0 auto; background: conic-gradient(#2E7D6B 0 38%, #C0392B 0 57%, #3F6FB5 0 68%, #D4A017 0 80%, #B8C4BF 0 100%); -webkit-mask: radial-gradient(circle 36px, transparent 98%, #000 100%); mask: radial-gradient(circle 36px, transparent 98%, #000 100%); }
 .tour-icon { width: 128px; height: 128px; border-radius: 29px; box-shadow: 0 14px 34px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.25); }
 .tm.plain { background: none; border: 0; padding: 0; text-align: center; }
@@ -2677,7 +2679,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
       '<div class="rinfo"><span class="hero-lbl">Выполнено сегодня</span><b class="num">' + (r.total ? r.done + ' из ' + r.total : 'Свободный день') + '</b><small>' + line + '</small></div></div>' +
       '<div class="hstats"><button type="button" class="hchip" data-goto="fin"><span class="hero-lbl">Баланс</span><b class="num">' + sgn(bal) + '</b><small>все деньги</small></button>' +
       '<button type="button" class="hchip' + limC + '" data-open="' + (settings.on ? 'day' : 'save') + '"><span class="hero-lbl">Лимит дня</span><b class="num">' + limV + '</b><small>' + (settings.on ? (limC ? 'сверх лимита' : 'на сегодня') : 'накопления выкл.') + '</small></button>' +
-      '<button type="button" class="hchip" data-gohab="1"><span class="hero-lbl">Серия</span><b class="num">' + (best ? '🔥 ' + best : '—') + '</b><small>' + (best ? plRu(best, 'день', 'дня', 'дней') + ' подряд' : 'отметьте привычку') + '</small></button></div>' +
+      '<button type="button" class="hchip" data-gohab="1"><span class="hero-lbl">Серия</span><b class="num">' + (best ? '🔥 ' + best : '—') + '</b><small>' + (best ? plRu(best, 'день', 'дня', 'дней') + ' подряд' : 'нет серии') + '</small></button></div>' +
       (cmp ? '<div class="hcmp">' + esc(cmp) + '</div>' : '') + '</div>';
   }
   function todayPlanHtml() {
@@ -2693,7 +2695,12 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     return '<div class="pcard tplan" data-lk="plan">' + head + (rows ? '<div class="tpl">' + rows + '</div>' : '<span class="hint">На сегодня ничего нет. Добавьте задачу или привычку кнопками выше.</span>') + more + foot + '</div>';
   }
   function todayQuickHtml() {
-    return '<div class="qkc" data-lk="quick"><div class="qk"><button type="button" data-q="exp"><i>₽</i>Запись</button><button type="button" data-q="task"><i>✓</i>Задача</button><button type="button" data-q="hab"><i>🔥</i>Привычка</button><button type="button" data-q="dia"><i>✎</i>Дневник</button></div></div>';
+    var ic = function (d) { return '<svg viewBox="0 0 24 24" aria-hidden="true">' + d + '</svg>'; };
+    return '<div class="qkc" data-lk="quick"><div class="qk">' +
+      '<button type="button" data-q="exp">' + ic('<rect x="3" y="6" width="18" height="13" rx="3"/><path d="M3 10h18M16 15h2"/>') + 'Запись</button>' +
+      '<button type="button" data-q="task">' + ic('<rect x="3" y="3" width="18" height="18" rx="5"/><path d="M8 12l3 3 5-6"/>') + 'Задача</button>' +
+      '<button type="button" data-q="hab">' + ic('<path d="M17 2l3 3-3 3"/><path d="M4 11V9a4 4 0 0 1 4-4h12"/><path d="M7 22l-3-3 3-3"/><path d="M20 13v2a4 4 0 0 1-4 4H4"/>') + 'Привычка</button>' +
+      '<button type="button" data-q="dia">' + ic('<path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/>') + 'Дневник</button></div></div>';
   }
   var MOODS = ['😞', '🙁', '😐', '🙂', '😄'];
   function plRu(n, a, b, c) { var m = n % 100, d = n % 10; return (m > 10 && m < 15) ? c : d === 1 ? a : (d >= 2 && d <= 4) ? b : c; }
@@ -4316,8 +4323,8 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
       { v: '<div class="tm"><div class="row"><span>Записаться к врачу</span><span style="color:var(--brand)">15:30</span></div><div class="row"><span>Оплатить счета</span><span style="color:var(--out)">вчера</span></div><div class="row"><span>Купить продукты</span><span>✓</span></div></div>', t: 'Задачи', p: 'Впишите задачу в поле сверху и нажмите «+». Выберите срок: сегодня, завтра или без даты. Просроченные задачи подсвечены красным, а выполненные уходят во вкладку «Готово».' },
       { v: '<div class="tm"><div class="row"><span>🏃 Зарядка</span><span>🔥 12</span></div><div class="bar"><i style="width:34%;background:var(--brand)"></i></div><small style="text-transform:none;letter-spacing:0">Челлендж: день 34 из 100</small></div>', t: 'Привычки и серия', p: 'Привычка — это то, что вы повторяете регулярно, например зарядка. Отмечайте её каждый день, а «серия» покажет, сколько дней подряд вы её не пропускали. Привычки лежат в «Задачах» на переключателе «Привычки». Там же можно запустить челлендж на 21, 30, 66, 100 или 365 дней.' },
       { v: '<div class="tm plain"><div class="ico" style="font-size:34px">😞 🙁 😐 🙂 😄</div></div>', t: 'Дневник', p: 'Поставьте смайлик дню и запишите пару мыслей. Запись сохраняется сама, а подсказки помогут начать. Все записи собраны по месяцам, их можно искать.' },
-      { v: '<div class="tm plain"><span class="fab">＋ Запись</span></div>', t: 'Финансы: записывайте траты', p: 'Нажмите «Запись», введите сумму и выберите категорию. Частые траты можно сохранить как быстрые записи. Удалили лишнее? Вверху будет кнопка «Отменить».' },
-      { v: '<div class="tm hero"><small>Остаток за месяц</small><b class="big">20 000 ₽</b><div class="chips"><span>Доходы<br>80 000</span><span>Расходы<br>50 000</span><span>Отложено<br>10 000</span></div></div>', t: 'Остаток месяца', p: 'Вверху видно, сколько денег осталось в этом месяце. Стрелки переключают месяцы, а значок глаза прячет суммы.' },
+      { v: '<div class="tm"><div class="row"><span>🛒 Продукты</span><span style="color:var(--out)">−1 200 ₽</span></div><div class="row"><span>☕ Кафе</span><span style="color:var(--out)">−800 ₽</span></div><div class="row"><span>💼 Зарплата</span><span style="color:var(--in)">+50 000 ₽</span></div><div style="text-align:center;margin-top:10px"><span class="tfab">＋ Запись</span></div></div>', t: 'Финансы: записывайте траты', p: 'Нажмите «Запись», введите сумму и выберите категорию. Частые траты можно сохранить как быстрые записи. Удалили лишнее? Вверху будет кнопка «Отменить».' },
+      { v: '<div class="tm tmh"><small>Остаток за месяц</small><b class="big">20 000 ₽</b><div class="chips"><span>Доходы<br>80 000</span><span>Расходы<br>50 000</span><span>Отложено<br>10 000</span></div></div>', t: 'Остаток месяца', p: 'Вверху видно, сколько денег осталось в этом месяце. Стрелки переключают месяцы, а значок глаза прячет суммы.' },
       { v: '<div class="tm"><small>Можно сегодня</small><b class="big" style="margin-bottom:4px">2 500 ₽</b><div class="bar"><i style="width:40%;background:var(--brand)"></i></div><small style="text-transform:none;letter-spacing:0">лимит на день 2 500 ₽</small></div>', t: 'Лимит дня', p: 'Приложение делит остаток на оставшиеся дни и вычитает ближайшие платежи. Получается сумма, которую можно потратить сегодня и не уйти в минус.' },
       { v: '<div class="tm"><div class="row"><span>Отпуск</span><span style="color:var(--gold)">40%</span></div><div class="bar"><i style="width:40%"></i></div><small style="text-transform:none;letter-spacing:0">Откладывайте 10 000 ₽ в месяц · осталось 6 мес.</small></div>', t: 'Накопления', p: 'Задайте цель и срок, а приложение посчитает, сколько откладывать каждый месяц. Деньги можно переводить между копилкой и целями.' },
       { v: '<div class="tm"><div class="row"><span>💳 Карта</span><span>49 000 ₽</span></div><div class="row"><span>💵 Наличка</span><span>5 300 ₽</span></div><small style="text-transform:none;letter-spacing:0;margin-top:6px">Всего на счетах: 54 300 ₽</small></div>', t: 'Несколько счетов', p: 'Заведите наличные и карты и укажите остаток на каждом. При записи выберите счёт, и остаток пересчитается сам. Переводы между счетами расходом не считаются.' },
