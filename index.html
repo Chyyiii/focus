@@ -406,7 +406,7 @@ footer p { max-width: 52ch; }
 body.has-tabs { padding-bottom: 150px; }
 body.has-tabs .fab { bottom: calc(80px + env(safe-area-inset-bottom, 0px)); }
 body.lay-edit .tabbar { display: none; }
-body.tab-today .fab, body.tab-hab .fab { display: none; }
+body.tab-today .fab, body.tab-hab .fab, body.tab-diary .fab { display: none; }
 .pghead { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 6px 2px 0; }
 .pghead .brand { color: var(--ink); padding-top: 0; }
 .pghead .eye { background: var(--surface); color: var(--ink); border: 1px solid var(--line); }
@@ -509,10 +509,38 @@ body.tab-today .fab, body.tab-hab .fab { display: none; }
 .mood { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; margin-top: 10px; }
 .mood button { background: var(--tint); border: 2px solid transparent; border-radius: 14px; padding: 8px 0; font-size: 26px; line-height: 1.1; }
 .mood button[aria-pressed="true"] { border-color: var(--brand); background: var(--surface); }
+.dia-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.dia-top b { font-size: 17px; }
+.dia-dtw { display: flex; align-items: center; gap: 8px; }
+.dia-dtw input { border: 1px solid var(--line); background: var(--bg); color: var(--ink); border-radius: 12px; padding: 7px 10px; font: inherit; font-size: 14px; max-width: 150px; }
+.dia-ta { width: 100%; margin-top: 12px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); border-radius: 16px; padding: 14px; font: inherit; font-size: 16px; line-height: 1.5; resize: none; min-height: 170px; }
+.dia-ta:focus { outline: 2px solid var(--brand); outline-offset: 1px; }
+.dia-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+.dia-chips button { background: var(--tint); border: 0; border-radius: 99px; padding: 8px 12px; font-size: 13px; font-weight: 700; color: var(--ink); }
+.dia-foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 10px; min-height: 24px; }
+.dia-saved { font-size: 13px; font-weight: 700; color: var(--in); opacity: 0; transition: opacity .3s; }
+.dia-saved.on { opacity: 1; }
+.dia-del { color: var(--out); }
+.dia-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.dia-stats div { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 12px; display: flex; flex-direction: column; gap: 2px; }
+.dia-stats b { font-size: 22px; font-weight: 800; }
+.dia-stats small { color: var(--muted); font-size: 12px; font-weight: 700; }
+.dia-wk { margin-top: 0; }
+.dia-wk button { background: transparent; border: 2px solid transparent; border-radius: 12px; padding: 4px 0; font-size: 20px; line-height: 1.2; color: var(--ink); }
+.dia-wk button small { display: block; font-size: 11px; color: var(--muted); font-weight: 700; }
+.dia-wk button.sel { border-color: var(--brand); background: var(--surface); }
+.dia-mh { margin: 14px 4px 4px; font-size: 13px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+.dia-item { display: flex; align-items: flex-start; gap: 12px; width: 100%; text-align: left; background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 12px 14px; margin-bottom: 8px; color: var(--ink); }
+.dia-item .de { font-size: 26px; line-height: 1.1; flex: none; }
+.dia-item .dt { min-width: 0; }
+.dia-item .dt b { display: block; font-size: 14px; }
+.dia-item .dt small { display: block; color: var(--muted); font-size: 14px; margin-top: 2px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.dia-pv { margin: 8px 0 0; font-size: 14px; color: var(--muted); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.dia-go { margin-top: 12px; width: 100%; }
 .mnote { width: 100%; margin-top: 10px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); border-radius: 14px; padding: 11px 12px; font: inherit; font-size: 15px; }
 .mweek { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; margin-top: 12px; text-align: center; }
 .mweek div { font-size: 18px; line-height: 1.2; } .mweek small { display: block; font-size: 11px; color: var(--muted); font-weight: 700; }
-.qk { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.qk { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
 .qk button { display: flex; flex-direction: column; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 14px 4px 12px; color: var(--ink); font-weight: 700; font-size: 13px; box-shadow: var(--shadow); }
 .qk button i { width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; font-style: normal; font-size: 18px; font-weight: 800; color: var(--brand-ink); background: var(--brand); }
 .qk button:active { transform: scale(.97); }
@@ -1277,10 +1305,27 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
   <button type="button" class="secondary" id="wgOpenBtn">План недели</button>
   <p class="hint">Нажмите на кружок, чтобы отметить сегодня. Квадратики недели можно нажимать, чтобы отметить прошлые дни.</p>
 </main>
+<main class="wrap" id="diaryMain" hidden>
+  <div class="pghead"><span class="brand" id="brand4">FOCUS</span><button type="button" class="eye" id="gear4" aria-label="Настройки"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg></button></div>
+  <div><h1 class="pgtitle">Дневник</h1><p class="pgsub" id="diaSub"></p></div>
+  <div class="card dia-ed" id="diaEd">
+    <div class="dia-top"><b id="diaLbl"></b><span class="dia-dtw"><input type="date" id="diaDate" aria-label="Дата записи"><button type="button" class="link" id="diaTodayBtn" hidden>Сегодня</button></span></div>
+    <div class="mood" id="diaMood"></div>
+    <textarea id="diaText" class="dia-ta" rows="7" maxlength="1200" aria-label="Запись дневника"></textarea>
+    <div class="dia-chips" id="diaChips"><button type="button" data-dp="Что получилось: ">Что получилось</button><button type="button" data-dp="Благодарность: ">Благодарность</button><button type="button" data-dp="Что улучшить: ">Что улучшить</button></div>
+    <div class="dia-foot"><span id="diaCnt" class="hint"></span><span id="diaSaved" class="dia-saved"></span><button type="button" class="link dia-del" id="diaDel" hidden>Удалить запись</button></div>
+  </div>
+  <div class="dia-stats" id="diaStats"></div>
+  <div class="mweek dia-wk" id="diaWeek"></div>
+  <input type="search" id="diaQ" class="search" placeholder="Найти в записях…" autocomplete="off">
+  <div id="diaList"></div>
+  <p class="hint">Запись сохраняется сама. Оценку дня можно поставить и без текста. Чтобы вернуться к прошлой записи, нажмите на неё в списке.</p>
+</main>
 <nav class="tabbar" id="tabbar" aria-label="Разделы"><div class="tabbar-in" role="tablist">
   <button type="button" role="tab" data-tab="today" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg>Сегодня</button>
   <button type="button" role="tab" data-tab="fin" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="3"/><path d="M3 10h18M16 15h2"/></svg>Финансы</button>
   <button type="button" role="tab" data-tab="hab" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4L19 7"/><rect x="3" y="3" width="18" height="18" rx="5"/></svg>Привычки</button>
+  <button type="button" role="tab" data-tab="diary" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11M9 8h6"/></svg>Дневник</button>
 </div></nav>
 
 <div class="laytop" id="layTop" hidden>
@@ -1560,17 +1605,22 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
         <p>«Настройки» → «Данные и копии» → <b>«Импорт из CSV»</b>. Выберите файл из Excel или банка. В первой строке нужны названия столбцов «Дата» и «Сумма», остальные («Тип», «Категория», «Комментарий») по желанию. Если столбца «Тип» нет, отрицательная сумма считается расходом. Перед добавлением приложение покажет, сколько записей найдено. Повторы пропускаются, новые категории создаются сами. Остатки счетов старые записи не меняют.</p>
       </details>
       <details><summary>Вкладки и привычки</summary>
-        <p>Внизу экрана три раздела, между ними можно переключаться и свайпом влево или вправо. <b>«Сегодня»</b> это ваш рабочий стол на день (подробно в разделе «Экран «Сегодня»» ниже). <b>«Финансы»</b> это всё, что касается денег: записи, накопления, счета, платежи, долги. <b>«Привычки»</b> это ежедневные привычки, челленджи и план недели.</p>
+        <p>Внизу экрана четыре раздела, между ними можно переключаться и свайпом влево или вправо. <b>«Сегодня»</b> это ваш рабочий стол на день (подробно в разделе «Экран «Сегодня»» ниже). <b>«Финансы»</b> это всё, что касается денег: записи, накопления, счета, платежи, долги. <b>«Привычки»</b> это ежедневные привычки, челленджи и план недели. <b>«Дневник»</b> это ваши записи и настроение по дням.</p>
         <p>В «Привычках» нажмите «Новая привычка», выберите название, значок и дни недели. Нажмите на кружок, чтобы отметить сегодня. Квадратики недели можно нажимать, чтобы отметить или снять прошлые дни. Число рядом с огоньком показывает серию подряд выполненных запланированных дней. Дни, в которые привычка не запланирована, серию не прерывают. Чтобы изменить или удалить привычку, нажмите на её название.</p>
         <p><b>Челлендж.</b> В настройках привычки выберите «Челлендж: сколько дней» (до 365 дней или «Без конца») и дату начала. Под привычкой появится кнопка «Челлендж: день N из M». Внутри сетка кружков по 30 дней на странице (листайте вбок), галочка значит день выполнен, крестик значит пропущен. Нажатие на кружок отмечает или снимает день. Внизу «Прошло дней», «Максимальное комбо» и «Успешных дней», а кнопка «Поделиться прогрессом» создаёт картинку-итог в формате истории: её можно отправить другу или выложить в сторис. Когда срок закончится, появится поздравление с итогом и выбор: начать новый челлендж, продолжить без конца, сохранить картинку или закончить (отметки при этом остаются).</p>
         <p><b>План недели.</b> Это не привычки, а дела на конкретную неделю. Откройте план с карточки на «Сегодня» или кнопкой «План недели» во вкладке «Привычки». Там главные цели недели (до трёх), список «Без даты» и дни от понедельника до воскресенья. Нажмите «+» у нужного дня, впишите дело и при желании укажите дату и время (или нажмите «Без даты»). Если выбрать дату другой недели, дело окажется на ней. Кружок слева отмечает дело. Стрелки сверху листают недели: в прошлой видно итог, а кнопка внизу переносит несделанное на новую неделю. Цели, созданные раньше, превратились в дела этой недели.</p>
         <p>Привычки, отметки, план недели и оценки дней входят в резервную копию вместе с остальными данными.</p>
       </details>
+      <details><summary>Дневник</summary>
+        <p>Вкладка «Дневник» нужна, чтобы записывать мысли и отмечать настроение. Вверху редактор записи: дата, пять смайликов настроения и поле для текста (до 1200 знаков). Запись <b>сохраняется сама</b>, пока вы пишете, и подпись «Сохранено» это подтверждает. Оценку можно поставить и без текста, а текст написать без оценки. Повторное нажатие на выбранный смайлик снимает оценку.</p>
+        <p>Три кнопки-подсказки («Что получилось», «Благодарность», «Что улучшить») добавляют в текст начало строки, если не знаете, с чего начать. Чтобы написать за другой день, выберите дату справа вверху или нажмите на день в ленте недели. Кнопка «Сегодня» возвращает к сегодняшней записи.</p>
+        <p>Ниже статистика: сколько всего записей, сколько дней подряд вы их ведёте и среднее настроение за 30 дней. Под ней лента последней недели и список всех записей по месяцам. Нажмите на запись, чтобы открыть или изменить её. Строка «Найти в записях» ищет по тексту и по датам. «Удалить запись» просит подтверждения вторым нажатием. Дневник входит в резервную копию.</p>
+      </details>
       <details><summary>Экран «Сегодня»</summary>
-        <p><b>Главный блок.</b> Тёмная карточка вверху собирает главное: приветствие по времени суток и дате, ваше имя и мотивирующую фразу (она меняется раз в день), кольцо «Мой день» с подсказкой, какое дело следующее, и три показателя: «Баланс», «Лимит дня» (сколько можно потратить сегодня) и «Серия» (лучшая серия привычки). Нажмите на показатель, чтобы открыть нужный раздел. Под ними строка сравнения: на сколько процентов траты меньше или больше, чем в прошлом месяце к этой же дате. Имя вводится в «Настройках» → «Профиль» → «Как к вам обращаться».</p>
+        <p><b>Главный блок.</b> Тёмная карточка вверху собирает главное: дату, ваше имя и мотивирующую фразу (она меняется раз в день), кольцо «Мой день» с подсказкой, какое дело следующее, и три показателя: «Баланс», «Лимит дня» (сколько можно потратить сегодня) и «Серия» (лучшая серия привычки). Нажмите на показатель, чтобы открыть нужный раздел. Под ними строка сравнения: на сколько процентов траты меньше или больше, чем в прошлом месяце к этой же дате. Имя вводится в «Настройках» → «Профиль» → «Как к вам обращаться».</p>
         <p><b>Быстрые действия.</b> Кнопки «Запись», «Дело» и «Привычка» сразу открывают нужную форму. Новое дело получает сегодняшнюю дату, а после сохранения вы остаётесь на главном экране.</p>
         <p><b>План на сегодня.</b> Дела из «Плана недели» по времени и привычки на сегодня в одном списке. Нажмите на кружок, чтобы отметить, сделанное уходит вниз. Ниже главные цели недели со звёздочкой и строка «План недели: N из M сделано», которая открывает весь план.</p>
-        <p><b>Итог дня.</b> После 20:00 появляется карточка «Как прошёл день?»: выберите смайлик от 😞 до 😄 и при желании запишите одну фразу. Повторное нажатие на выбранный смайлик снимает оценку. Дальше карточка остаётся на весь день как «Итог дня» с лентой настроения за 7 дней.</p>
+        <p><b>Дневник.</b> Карточка внизу экрана: поставьте смайлик дня и нажмите «Записать мысли», чтобы открыть дневник. Если запись уже есть, в карточке виден её фрагмент. Кнопка «Дневник» в быстрых действиях открывает ту же запись.</p>
         <p>Все плитки можно переставлять, менять им размер и скрывать: «Настройки» → «Главный экран», вверху переключатель «Сегодня / Финансы».</p>
       </details>
       <details><summary>Главный экран: порядок и размер плиток</summary>
@@ -2138,6 +2188,8 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
           <button type="button" class="srow" id="sTour"><span class="sico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4m0 4h.01"/></svg></span><span class="stx"><b>Показать обучение</b><small>Короткий тур по приложению</small></span><span class="schev" aria-hidden="true">›</span></button>
         </div>
         <div class="sgroup devbox" id="devBox" hidden>
+          <div class="srow" style="cursor:default"><span class="stx"><b>Примеры во всех разделах</b><small>Добавляет тестовые данные: записи за два месяца, накопления и цель, счета, регулярные платежи, долги, быстрые записи, лимит, привычки с челленджем, план недели и оценки дней. Всё помечено, и одной кнопкой убирается.</small></span></div>
+          <div class="devrow"><button type="button" class="qbtn" id="devDemo" style="flex:1">Добавить примеры</button><button type="button" class="qbtn" id="devDemoOff" style="flex:1">Убрать примеры</button></div>
           <div class="srow" style="cursor:default"><span class="stx"><b>Для разработчика</b><small>Удаляет все записи, привычки, планы, настройки и копии на этом устройстве (в облаке тоже). Это нельзя отменить.</small></span></div>
           <div class="devrow"><input id="devWord" autocomplete="off" placeholder="Введите УДАЛИТЬ"><button type="button" class="qbtn dev" id="devWipe" disabled>Очистить все данные</button></div>
         </div>
@@ -2457,10 +2509,13 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
       if (arr.length) plan[k] = arr;
     });
     var mood = {};
-    if (o && o.mood && typeof o.mood === 'object' && !Array.isArray(o.mood)) Object.keys(o.mood).sort().slice(-800).forEach(function (k) {
-      var v = o.mood[k], m = v && Math.round(Number(v.m));
-      if (!/^\d{4}-\d{2}-\d{2}$/.test(k) || !(m >= 1 && m <= 5)) return;
-      mood[k] = { m: m, note: typeof v.note === 'string' ? v.note.replace(/\s+/g, ' ').trim().slice(0, 120) : '' };
+    if (o && o.mood && typeof o.mood === 'object' && !Array.isArray(o.mood)) Object.keys(o.mood).sort().slice(-500).forEach(function (k) {
+      var v = o.mood[k];
+      if (!v || !/^\d{4}-\d{2}-\d{2}$/.test(k)) return;
+      var m = Math.round(Number(v.m)) || 0; if (!(m >= 1 && m <= 5)) m = 0;
+      var tx = typeof v.text === 'string' ? v.text : (typeof v.note === 'string' ? v.note : '');
+      tx = tx.replace(/\r/g, '').slice(0, 1200);
+      if (m || tx.trim()) mood[k] = { m: m, text: tx };
     });
     return { items: items, log: log, plan: plan, mood: mood };
   }
@@ -2590,8 +2645,8 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     }
     var nm = (ui.name || '').trim(), dt = new Date().toLocaleDateString('ru-RU', { weekday: 'short', day: 'numeric', month: 'long' });
     var bal = homeBal(), cmp = spendCmp().replace(/<[^>]+>/g, '').replace(', чем в прошлом месяце к этой дате', ' к прошлому месяцу');
-    return '<div class="hero thero" data-lk="ring"><div class="hhead"><span class="hero-lbl">' + esc(todayGreeting()) + ' · ' + esc(dt) + '</span>' +
-      '<div class="hname">' + (nm ? esc(nm) : esc(todayGreeting())) + '</div><div class="hmot">' + todayMotto(true) + '</div></div>' +
+    return '<div class="hero thero" data-lk="ring"><div class="hhead"><span class="hero-lbl">' + esc(dt) + '</span>' +
+      (nm ? '<div class="hname">' + esc(nm) + '</div>' : '') + '<div class="hmot"' + (nm ? '' : ' style="margin-top:6px;font-size:18px"') + '>' + todayMotto(true) + '</div></div>' +
       '<div class="dring"><svg viewBox="0 0 100 100" aria-hidden="true"><circle class="rt" cx="50" cy="50" r="38"/><circle class="rv" cx="50" cy="50" r="38" transform="rotate(-90 50 50)" style="--c:' + C.toFixed(1) + '" stroke-dasharray="' + C.toFixed(1) + '" stroke-dashoffset="' + (C * (1 - pct)).toFixed(1) + '"/><text x="50" y="51">' + Math.round(pct * 100) + '%</text></svg>' +
       '<div class="rinfo"><span class="hero-lbl">Мой день</span><b class="num">' + r.done + ' из ' + r.total + '</b><small>' + line + '</small></div></div>' +
       '<div class="hstats"><button type="button" class="hchip" data-goto="fin"><span class="hero-lbl">Баланс</span><b class="num">' + sgn(bal) + '</b></button>' +
@@ -2614,7 +2669,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     return '<div class="pcard tplan" data-lk="plan">' + head + (rows || mrows ? '<div class="tpl">' + rows + mrows + '</div>' : '<span class="hint">Добавьте дело или привычку кнопками выше</span>') + more + foot + '</div>';
   }
   function todayQuickHtml() {
-    return '<div class="qkc" data-lk="quick"><div class="qk"><button type="button" data-q="exp"><i>₽</i>Запись</button><button type="button" data-q="task"><i>✓</i>Дело</button><button type="button" data-q="hab"><i>🔥</i>Привычка</button></div></div>';
+    return '<div class="qkc" data-lk="quick"><div class="qk"><button type="button" data-q="exp"><i>₽</i>Запись</button><button type="button" data-q="task"><i>✓</i>Дело</button><button type="button" data-q="hab"><i>🔥</i>Привычка</button><button type="button" data-q="dia"><i>✎</i>Дневник</button></div></div>';
   }
   var MOODS = ['😞', '🙁', '😐', '🙂', '😄'];
   function plRu(n, a, b, c) { var m = n % 100, d = n % 10; return (m > 10 && m < 15) ? c : d === 1 ? a : (d >= 2 && d <= 4) ? b : c; }
@@ -2656,20 +2711,11 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     return pc < 0 ? '<div class="pcmp ok">Траты на ' + (-pc) + '% меньше, чем в прошлом месяце к этой дате</div>' : '<div class="pcmp bad">Траты на ' + pc + '% больше, чем в прошлом месяце к этой дате</div>';
   }
   function todayEveHtml() {
-    var k = dateStr(new Date()), m = hab.mood[k], hr = new Date().getHours();
-    if (!m && hr < 20 && !layEditing) return '';
-    var r = todayRows(), cur = m ? m.m : 0;
+    var k = dateStr(new Date()), m = hab.mood[k], cur = m ? m.m : 0, tx = m ? m.text.trim() : '';
     var btns = MOODS.map(function (e, i) { return '<button type="button" data-mood="' + (i + 1) + '" aria-pressed="' + (cur === i + 1) + '" aria-label="Оценка дня ' + (i + 1) + ' из 5">' + e + '</button>'; }).join('');
-    var wk = '';
-    if (m) {
-      var days = [];
-      for (var i = 6; i >= 0; i--) { var d = new Date(); d.setDate(d.getDate() - i); days.push(d); }
-      wk = '<div class="mweek">' + days.map(function (d) { var v = hab.mood[dateStr(d)]; return '<div>' + (v ? MOODS[v.m - 1] : '·') + '<small>' + WD[wdOf(d)] + '</small></div>'; }).join('') + '</div>';
-    }
-    return '<div class="pcard" data-lk="eve"><h3>' + (m ? 'Итог дня' : 'Как прошёл день?') + '</h3>' +
-      (r.total ? '<div class="pv" style="font-size:18px;font-weight:800;margin-top:4px"><span class="num">' + r.done + ' из ' + r.total + '</span> сделано</div>' : '') +
-      '<div class="mood">' + btns + '</div>' +
-      (m ? '<input type="text" class="mnote" id="moodNote" maxlength="120" placeholder="Одна фраза о дне (по желанию)" value="' + esc(m.note) + '" aria-label="Заметка о дне">' + wk : '') + '</div>';
+    return '<div class="pcard" data-lk="eve"><h3>Дневник · как прошёл день?</h3><div class="mood">' + btns + '</div>' +
+      (tx ? '<p class="dia-pv">' + esc(tx) + '</p>' : '') +
+      '<button type="button" class="secondary dia-go" data-dia="1">' + (tx ? 'Открыть запись ›' : '✎ Записать мысли') + '</button></div>';
   }
   function renderHab() {
     var k = dateStr(new Date());
@@ -2683,20 +2729,23 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     // Сегодня
     var html = '';
     html += todayRingHtml() + todayQuickHtml() + todayPlanHtml() + todayEveHtml();
+    if (tab === 'diary' && typeof renderDiary === 'function') renderDiary();
     $('todayBody').innerHTML = html;
     applyLayout();
     document.querySelectorAll('#todayBody .hbar i').forEach(function (i) { i.style.width = i.getAttribute('data-w') + '%'; });
   }
   var tab = 'today';
   function setTab(t, dir) {
-    if (t !== 'today' && t !== 'fin' && t !== 'hab') t = 'today';
+    if (t !== 'today' && t !== 'fin' && t !== 'hab' && t !== 'diary') t = 'today';
+    if (tab === 'diary' && t !== 'diary' && typeof diaFlush === 'function') diaFlush();
     var changed = t !== tab;
     tab = t;
     try { localStorage.setItem('kassa-tab', t); } catch (e) {}
     $('todayMain').hidden = t !== 'today';
     $('finMain').hidden = t !== 'fin';
     $('habMain').hidden = t !== 'hab';
-    document.body.classList.remove('tab-today', 'tab-fin', 'tab-hab');
+    $('diaryMain').hidden = t !== 'diary';
+    document.body.classList.remove('tab-today', 'tab-fin', 'tab-hab', 'tab-diary');
     document.body.classList.add('tab-' + t, 'has-tabs');
     document.querySelectorAll('#tabbar button').forEach(function (b) { b.setAttribute('aria-selected', String(b.getAttribute('data-tab') === t)); });
     window.scrollTo(0, 0);
@@ -2704,7 +2753,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     if (dir && changed) { requestAnimationFrame(function () { setTimeout(function () { if (tab === t) { renderHab(); if (t === 'fin') applyLayout(); } }, 0); }); }
     else { renderHab(); if (t === 'fin') { applyLayout(); } }
     if (dir && changed) {
-      var m = $(t === 'today' ? 'todayMain' : t === 'fin' ? 'finMain' : 'habMain');
+      var m = $(t === 'today' ? 'todayMain' : t === 'fin' ? 'finMain' : t === 'hab' ? 'habMain' : 'diaryMain');
       m.classList.remove('sl-l', 'sl-r'); void m.offsetWidth; m.classList.add(dir === 'l' ? 'sl-l' : 'sl-r');
       setTimeout(function () { m.classList.remove('sl-l', 'sl-r'); }, 200);
     }
@@ -2713,7 +2762,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
   document.addEventListener('gesturechange', function (e) { e.preventDefault(); });
   (function () { var tb = $('todayBody'); tb.classList.add('fx'); setTimeout(function () { tb.classList.remove('fx'); }, 1200); })();
   // Свайп между экранами
-  var SW_TABS = ['today', 'fin', 'hab'], swX = 0, swY = 0, swT = 0, swOk = false;
+  var SW_TABS = ['today', 'fin', 'hab', 'diary'], swX = 0, swY = 0, swT = 0, swOk = false;
   document.addEventListener('touchstart', function (e) {
     swOk = false;
     if (e.touches.length !== 1 || openId || layEditing || document.documentElement.hasAttribute('data-locked')) return;
@@ -2735,6 +2784,103 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     if (ni < 0 || ni >= SW_TABS.length) return;
     setTab(SW_TABS[ni], dx < 0 ? 'l' : 'r');
   }, { passive: true });
+
+  // ----- Дневник -----
+  var diaDate = dateStr(new Date()), diaTimer = 0, diaDelArm = 0, diaMore = 40, diaSavedT = 0;
+  var DIA_PROMPTS = ['Что сегодня получилось?', 'За что вы благодарны сегодня?', 'Что хочется улучшить завтра?', 'Что сегодня порадовало?', 'Чему вы сегодня научились?', 'Что было самым важным в этот день?'];
+  function diaSave(k, m, text) {
+    text = String(text || '').replace(/\r/g, '').slice(0, 1200);
+    hab.mood = Object.assign({}, hab.mood);
+    if (!(m >= 1) && !text.trim()) delete hab.mood[k]; else hab.mood[k] = { m: m >= 1 ? m : 0, text: text };
+    persistHab();
+  }
+  function diaLabel(k, short) {
+    var d = dParse(k), t = dateStr(new Date()), y = new Date(); y.setDate(y.getDate() - 1);
+    if (!short && k === t) return 'Сегодня, ' + d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' });
+    if (!short && k === dateStr(y)) return 'Вчера, ' + d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' });
+    return cap(d.toLocaleDateString('ru-RU', short ? { weekday: 'short', day: 'numeric', month: 'short' } : { weekday: 'long', day: 'numeric', month: 'long' }));
+  }
+  function diaFlush() {
+    if (!diaTimer) return;
+    clearTimeout(diaTimer); diaTimer = 0;
+    var old = hab.mood[diaDate];
+    diaSave(diaDate, old ? old.m : 0, $('diaText').value);
+    renderDiaRest();
+  }
+  function diaOn(k) { var e = hab.mood[k]; return !!e && (e.m > 0 || !!e.text.trim()); }
+  function renderDiaRest() {
+    var keys = Object.keys(hab.mood).filter(diaOn).sort(), t = dateStr(new Date());
+    // статистика
+    var streak = 0, d = new Date(); if (!diaOn(dateStr(d))) d.setDate(d.getDate() - 1);
+    while (diaOn(dateStr(d))) { streak++; d.setDate(d.getDate() - 1); }
+    var sum = 0, n = 0;
+    for (var i = 0; i < 30; i++) { var dd = new Date(); dd.setDate(dd.getDate() - i); var e = hab.mood[dateStr(dd)]; if (e && e.m > 0) { sum += e.m; n++; } }
+    $('diaStats').innerHTML = '<div><b class="num">' + keys.length + '</b><small>' + plRu(keys.length, 'запись', 'записи', 'записей') + '</small></div><div><b class="num">' + streak + '</b><small>' + plRu(streak, 'день подряд', 'дня подряд', 'дней подряд') + '</small></div><div><b>' + (n ? MOODS[Math.round(sum / n) - 1] : '—') + '</b><small>настроение, 30 дн.</small></div>';
+    $('diaSub').textContent = keys.length ? keys.length + ' ' + plRu(keys.length, 'запись', 'записи', 'записей') + (streak > 1 ? ' · ' + streak + ' дн. подряд' : '') : 'Начните с одной короткой записи';
+    // неделя
+    var wk = '';
+    for (var j = 6; j >= 0; j--) { var w = new Date(); w.setDate(w.getDate() - j); var wk2 = dateStr(w), we = hab.mood[wk2]; wk += '<button type="button" data-dd="' + wk2 + '" class="' + (wk2 === diaDate ? 'sel' : '') + '" aria-label="' + esc(diaLabel(wk2, true)) + '">' + (we && we.m > 0 ? MOODS[we.m - 1] : (we ? '📝' : '·')) + '<small>' + WD[wdOf(w)] + '</small></button>'; }
+    $('diaWeek').innerHTML = wk;
+    // список
+    var q = $('diaQ').value.trim().toLowerCase();
+    var list = keys.slice().reverse().filter(function (k) { return !q || hab.mood[k].text.toLowerCase().indexOf(q) >= 0 || diaLabel(k, true).toLowerCase().indexOf(q) >= 0; });
+    var html = '', lastM = '', shown = list.slice(0, diaMore);
+    shown.forEach(function (k) {
+      var e2 = hab.mood[k], mk = k.slice(0, 7);
+      if (mk !== lastM) { lastM = mk; html += '<div class="dia-mh">' + esc(cap(dParse(k).toLocaleDateString('ru-RU', { month: 'long' })) + ' ' + k.slice(0, 4)) + '</div>'; }
+      html += '<button type="button" class="dia-item" data-dd="' + k + '"><span class="de">' + (e2.m > 0 ? MOODS[e2.m - 1] : '📝') + '</span><span class="dt"><b>' + esc(diaLabel(k, true)) + '</b>' + (e2.text.trim() ? '<small>' + esc(e2.text.trim()) + '</small>' : '') + '</span></button>';
+    });
+    if (list.length > diaMore) html += '<button type="button" class="secondary" id="diaMoreBtn">Показать ещё</button>';
+    if (!list.length) html = '<p class="hint">' + (q ? 'Ничего не найдено.' : 'Здесь появятся ваши записи.') + '</p>';
+    $('diaList').innerHTML = html;
+  }
+  function renderDiary(force) {
+    if (!$('diaText')) return;
+    var k = diaDate, e = hab.mood[k], t = dateStr(new Date());
+    $('diaLbl').textContent = diaLabel(k);
+    $('diaDate').value = k; $('diaDate').max = t;
+    $('diaTodayBtn').hidden = k === t;
+    var cur = e ? e.m : 0;
+    $('diaMood').innerHTML = MOODS.map(function (em, i) { return '<button type="button" data-dm="' + (i + 1) + '" aria-pressed="' + (cur === i + 1) + '" aria-label="Настроение ' + (i + 1) + ' из 5">' + em + '</button>'; }).join('');
+    var ta = $('diaText');
+    if (force || document.activeElement !== ta) ta.value = e ? e.text : '';
+    var h = 0; for (var i = 0; i < k.length; i++) h = (h * 31 + k.charCodeAt(i)) % 9973;
+    ta.placeholder = DIA_PROMPTS[h % DIA_PROMPTS.length];
+    $('diaCnt').textContent = ta.value.length + ' / 1200';
+    $('diaDel').hidden = !e; diaDelArm = 0; $('diaDel').textContent = 'Удалить запись';
+    renderDiaRest();
+  }
+  function openDiary(k) {
+    diaDate = k || dateStr(new Date());
+    setTab('diary', SW_TABS.indexOf(tab) < SW_TABS.indexOf('diary') ? 'l' : 'r');
+    renderDiary(true);
+    $('diaText').focus();
+  }
+  function diaFlash() { var el = $('diaSaved'); el.textContent = 'Сохранено ✓'; el.classList.add('on'); clearTimeout(diaSavedT); diaSavedT = setTimeout(function () { el.classList.remove('on'); }, 1400); }
+  $('diaText').addEventListener('input', function () {
+    $('diaCnt').textContent = this.value.length + ' / 1200';
+    clearTimeout(diaTimer);
+    diaTimer = setTimeout(function () { diaTimer = 0; var old = hab.mood[diaDate]; diaSave(diaDate, old ? old.m : 0, $('diaText').value); renderDiaRest(); $('diaDel').hidden = !hab.mood[diaDate]; diaFlash(); }, 500);
+  });
+  $('diaText').addEventListener('blur', function () { if (diaTimer) { diaFlush(); diaFlash(); } });
+  document.addEventListener('visibilitychange', function () { if (document.hidden) diaFlush(); });
+  window.addEventListener('pagehide', diaFlush);
+  $('diaDate').addEventListener('change', function () { diaFlush(); var v = $('diaDate').value; if (!/^\d{4}-\d{2}-\d{2}$/.test(v)) return; var t = dateStr(new Date()); diaDate = v > t ? t : v; renderDiary(true); });
+  $('diaTodayBtn').addEventListener('click', function () { diaFlush(); diaDate = dateStr(new Date()); renderDiary(true); });
+  $('diaQ').addEventListener('input', function () { diaMore = 40; renderDiaRest(); });
+  $('diaryMain').addEventListener('click', function (e) {
+    var dm = e.target.closest('[data-dm]');
+    if (dm) { diaFlush(); var mv = +dm.getAttribute('data-dm'), old = hab.mood[diaDate]; diaSave(diaDate, old && old.m === mv ? 0 : mv, $('diaText').value); renderDiary(true); diaFlash(); return; }
+    var dp = e.target.closest('[data-dp]');
+    if (dp) { var ta = $('diaText'), add = dp.getAttribute('data-dp'); ta.value = (ta.value && !/\n$/.test(ta.value) ? ta.value + '\n' : ta.value) + add; ta.focus(); ta.setSelectionRange(ta.value.length, ta.value.length); ta.dispatchEvent(new Event('input')); return; }
+    var dd = e.target.closest('[data-dd]');
+    if (dd) { diaFlush(); diaDate = dd.getAttribute('data-dd'); renderDiary(true); window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+    if (e.target.id === 'diaMoreBtn') { diaMore += 40; renderDiaRest(); return; }
+    if (e.target.id === 'diaDel') {
+      if (!diaDelArm) { diaDelArm = 1; e.target.textContent = 'Точно удалить?'; setTimeout(function () { diaDelArm = 0; if (e.target) e.target.textContent = 'Удалить запись'; }, 3000); return; }
+      clearTimeout(diaTimer); diaTimer = 0; diaSave(diaDate, 0, ''); renderDiary(true); toast('Запись удалена');
+    }
+  });
 
   // ----- челлендж -----
   var chalId = null;
@@ -3088,12 +3234,12 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     var md = e.target.closest('[data-mood]');
     if (md) {
       var mk = dateStr(new Date()), mv = +md.getAttribute('data-mood'), old = hab.mood[mk];
-      hab.mood = Object.assign({}, hab.mood);
-      if (old && old.m === mv) delete hab.mood[mk]; else hab.mood[mk] = { m: mv, note: old ? old.note : '' };
-      persistHab(); renderHab(); return;
+      diaSave(mk, old && old.m === mv ? 0 : mv, old ? old.text : '');
+      renderHab(); return;
     }
+    if (e.target.closest('[data-dia]')) { openDiary(dateStr(new Date())); return; }
     var q = e.target.closest('[data-q]');
-    if (q) { var qa = q.getAttribute('data-q'); if (qa === 'exp') openAdd(); else if (qa === 'task') { planOff = 0; wgForm(null, wdOf(new Date()), true); } else habOpen(null); return; }
+    if (q) { var qa = q.getAttribute('data-q'); if (qa === 'dia') { openDiary(dateStr(new Date())); return; } if (qa === 'exp') openAdd(); else if (qa === 'task') { planOff = 0; wgForm(null, wdOf(new Date()), true); } else habOpen(null); return; }
     var c = e.target.closest('[data-hc]');
     if (c) { habToggle(c.getAttribute('data-hc'), dateStr(new Date())); return; }
     var w = e.target.closest('[data-hk]');
@@ -3112,16 +3258,11 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
   }
   $('habList').addEventListener('click', habClick);
   $('todayBody').addEventListener('click', habClick);
-  $('todayBody').addEventListener('change', function (e) {
-    if (e.target.id !== 'moodNote') return;
-    var mk = dateStr(new Date()), old = hab.mood[mk];
-    if (!old) return;
-    hab.mood = Object.assign({}, hab.mood); hab.mood[mk] = { m: old.m, note: e.target.value.replace(/\s+/g, ' ').trim().slice(0, 120) };
-    persistHab(); toast('Сохранено');
-  });
+
   document.querySelectorAll('#tabbar button').forEach(function (b) { b.addEventListener('click', function () { var t = b.getAttribute('data-tab'); setTab(t, SW_TABS.indexOf(t) > SW_TABS.indexOf(tab) ? 'l' : 'r'); }); });
   $('gear2').addEventListener('click', function () { $('gear').click(); });
   $('gear3').addEventListener('click', function () { $('gear').click(); });
+  $('gear4').addEventListener('click', function () { $('gear').click(); });
   function lsLoadDebt() { try { return cleanDebt(JSON.parse(localStorage.getItem(LS_DEBT))); } catch (e) { return cleanDebt(null); } }
   function saveDebt() {
     var body = { items: debt.items };
@@ -3590,6 +3731,104 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     try { sessionStorage.clear(); } catch (e) {}
     location.reload();
   });
+  // ----- примеры во всех разделах (режим разработчика) -----
+  var DEMO_KEY = 'kassa-demo';
+  function demoMeta() { try { return JSON.parse(localStorage.getItem(DEMO_KEY)) || null; } catch (e) { return null; } }
+  function isDx(id) { return typeof id === 'string' && id.indexOf('dx') === 0; }
+  $('devDemo').addEventListener('click', async function () {
+    var btn = $('devDemo');
+    if (demoMeta() || txs.some(function (t) { return isDx(t.id); })) { toast('Примеры уже добавлены. Сначала уберите их.'); return; }
+    btn.disabled = true; btn.textContent = 'Добавляю...';
+    var now = new Date(), Y = now.getFullYear(), M = now.getMonth(), D = now.getDate(), ti = wdOf(now);
+    var meta = { mood: [], lim: [], accDef: false, setOn: false };
+    var ago = function (n) { var d = new Date(now); d.setDate(d.getDate() - n); return d; };
+    var pickCat = function (list, name, alt) { return list.indexOf(name) >= 0 ? name : (list.indexOf(alt) >= 0 ? alt : list[0]); };
+    var cOut = function (n) { return pickCat(CATS.out, n, CATS.out[0]); }, cIn = function (n) { return pickCat(CATS.in, n, CATS.in[0]); };
+    try {
+      // записи: этот и прошлый месяц
+      var rows = [], cd = function (d) { return dateStr(new Date(Y, M, Math.max(1, Math.min(D, d)))); }, pd = function (d) { return dateStr(new Date(Y, M - 1, d)); };
+      rows.push(['in', cIn('Зарплата'), 72000, 'Аванс', cd(1)], ['out', cOut('Жильё'), 24000, 'Аренда', cd(2)], ['out', cOut('Продукты'), 3150, 'Магазин у дома #продукты', cd(D - 6)],
+        ['out', cOut('Транспорт'), 1200, 'Проездной', cd(D - 5)], ['out', cOut('Кафе и рестораны'), 890, 'Обед с коллегами', cd(D - 4)], ['out', cOut('Продукты'), 2480, 'Рынок #продукты', cd(D - 3)],
+        ['in', cIn('Подработка'), 9000, 'Заказ на стороне', cd(D - 2)], ['out', cOut('Связь'), 650, 'Интернет', cd(D - 2)], ['out', cOut('Здоровье'), 1340, 'Аптека', cd(D - 1)], ['out', cOut('Продукты'), 1760, 'Супермаркет', cd(D)],
+        ['out', cOut('Кафе и рестораны'), 540, 'Кофе и десерт', cd(D)], ['save', 'Накопления', 5000, 'В копилку', cd(3)]);
+      rows.push(['in', cIn('Зарплата'), 68000, 'Зарплата', pd(5)], ['in', cIn('Зарплата'), 40000, 'Аванс', pd(20)], ['out', cOut('Жильё'), 24000, 'Аренда', pd(2)], ['out', cOut('Продукты'), 4200, 'Супермаркет #продукты', pd(6)],
+        ['out', cOut('Продукты'), 3900, 'Рынок #продукты', pd(12)], ['out', cOut('Продукты'), 5100, 'Закупка на неделю', pd(19)], ['out', cOut('Транспорт'), 1200, 'Проездной', pd(4)], ['out', cOut('Транспорт'), 2300, 'Такси', pd(15)],
+        ['out', cOut('Кафе и рестораны'), 3400, 'Ужин с друзьями', pd(9)], ['out', cOut('Здоровье'), 2700, 'Врач', pd(11)], ['out', cOut('Связь'), 650, 'Интернет', pd(8)], ['save', 'Накопления', 5000, 'В копилку', pd(21)]);
+      renderHold++;
+      for (var i = 0; i < rows.length; i++) { var r = rows[i]; await addTx({ id: 'dx' + (i < 10 ? '0' : '') + i, type: r[0], cat: r[1], amount: r[2], note: r[3], date: r[4], createdAt: Date.now() + i }); }
+      renderHold--;
+      // накопления, цель, счета
+      var mk = Y + '-' + pad(M + 1);
+      if (!settings.on) { settings.on = true; meta.setOn = true; }
+      if (settings.goals.length < 8) settings.goals = settings.goals.concat([{ id: 'dxg1', name: 'Отпуск', target: 120000, months: 6, start: mk }]);
+      if (!settings.accs.length) meta.accDef = true;
+      settings.accs = cleanAccs(settings.accs.concat([{ id: 'dxa1', name: 'Карта', start: 30000, since: 0 }]));
+      persistSettings();
+      // регулярные платежи, долги, быстрые записи
+      rec.items = rec.items.concat([{ id: 'dxr1', type: 'out', cat: cOut('Жильё'), amount: 24000, day: 25, note: 'Аренда', acc: '', ext: false, fut: true, from: mk, done: [] }, { id: 'dxr2', type: 'out', cat: cOut('Связь'), amount: 650, day: 8, note: 'Интернет', acc: '', ext: false, fut: true, from: mk, done: [] }]);
+      persistRec();
+      debt.items = debt.items.concat([{ id: 'dxd1', who: 'Иван', type: 'give', amount: 6000, date: dateStr(ago(5)), note: 'До зарплаты', acc: '', ts: Date.now() }, { id: 'dxd2', who: 'Пётр', type: 'take', amount: 5000, date: dateStr(ago(9)), note: 'На билеты', acc: '', ts: Date.now() + 1 }]);
+      persistDebt();
+      if (tpl.items.length < 10) { tpl.items = tpl.items.concat([{ id: 'dxt1', type: 'out', cat: cOut('Кафе и рестораны'), amount: 350, note: 'Кофе' }, { id: 'dxt2', type: 'out', cat: cOut('Транспорт'), amount: 60, note: 'Проезд' }]); persistTpl(); }
+      var lc = cOut('Продукты'); if (!(CATS.limits[lc] > 0)) { CATS.limits[lc] = 15000; meta.lim.push(lc); saveCats(); }
+      // привычки, челлендж, план, настроение
+      var mkLog = function (id, back, mod, off, days) { for (var n = back; n >= 1; n--) { var d = ago(n); if (days && days.indexOf(wdOf(d)) < 0) continue; if (((n * 7 + off) % mod) !== 0) { var k = dateStr(d); hab.log[k] = (hab.log[k] || []).concat([id]); } } };
+      var all7 = [0, 1, 2, 3, 4, 5, 6];
+      hab.items = hab.items.concat([
+        { id: 'dxh1', name: 'Зарядка', icon: '🏃', days: all7, goal: 100, created: dateStr(ago(34)) },
+        { id: 'dxh2', name: 'Чтение', icon: '📖', days: all7, goal: 30, created: dateStr(ago(14)) },
+        { id: 'dxh3', name: 'Стакан воды', icon: '💧', days: all7, goal: 0, created: dateStr(ago(30)) },
+        { id: 'dxh4', name: 'Медитация', icon: '🧘', days: [0, 2, 4, 6], goal: 0, created: dateStr(ago(30)) }]);
+      mkLog('dxh1', 34, 11, 0); mkLog('dxh2', 14, 5, 1); mkLog('dxh3', 30, 4, 2); mkLog('dxh4', 30, 6, 3, [0, 2, 4, 6]);
+      var tk = dateStr(now); hab.log[tk] = (hab.log[tk] || []).concat(['dxh1', 'dxh3']);
+      var pl = hab.plan[planKeyOf(0)] || [];
+      pl = pl.concat([
+        { id: 'dxp1', text: 'Записаться к врачу', day: ti, time: '15:30', main: false, target: 1, n: 0, done: false },
+        { id: 'dxp2', text: 'Созвон с командой', day: ti, time: '11:00', main: false, target: 1, n: 0, done: true },
+        { id: 'dxp3', text: 'Купить продукты', day: ti, time: '', main: false, target: 1, n: 0, done: false },
+        { id: 'dxp4', text: 'Подготовить документы', day: -1, time: '', main: true, target: 1, n: 0, done: false },
+        { id: 'dxp5', text: 'Тренировка', day: (ti + 2) % 7, time: '19:00', main: false, target: 1, n: 0, done: false },
+        { id: 'dxp6', text: 'Позвонить родителям', day: (ti + 1) % 7, time: '', main: false, target: 1, n: 0, done: false }]);
+      hab.plan[planKeyOf(0)] = pl;
+      hab.plan[planKeyOf(-1)] = (hab.plan[planKeyOf(-1)] || []).concat([{ id: 'dxp7', text: 'Оплатить счета', day: 1, time: '', main: false, target: 1, n: 0, done: true }, { id: 'dxp8', text: 'Уборка', day: 5, time: '12:00', main: false, target: 1, n: 0, done: true }]);
+      [[4, 'Спокойный день. Закрыл дела по плану, вечером была прогулка.'], [3, 'Что получилось: сделал зарядку и разобрал почту. Что улучшить: лечь раньше.'], [5, 'Отличный день! Благодарность: близким за поддержку.'], [4, ''], [2, 'Тяжёлый день, много суеты. Завтра начну с самого важного.'], [4, 'Хорошая тренировка, настроение бодрое.']].forEach(function (md, j) { var k = dateStr(ago(j + 1)); if (!hab.mood[k]) { hab.mood[k] = { m: md[0], text: md[1] }; meta.mood.push(k); } });
+      hab = cleanHab(hab); persistHab();
+      try { localStorage.setItem(DEMO_KEY, JSON.stringify(meta)); } catch (e) {}
+      renderHab(); render();
+      toast('Примеры добавлены во все разделы');
+    } catch (e) { renderHold = 0; toast('Не удалось добавить примеры: ' + (e && e.message ? e.message : e)); }
+    btn.disabled = false; btn.textContent = 'Добавить примеры';
+  });
+  $('devDemoOff').addEventListener('click', async function () {
+    var meta = demoMeta() || { mood: [], lim: [], accDef: false, setOn: false }, btn = $('devDemoOff');
+    btn.disabled = true; btn.textContent = 'Убираю...';
+    try {
+      var ex = txs.filter(function (t) { return isDx(t.id); });
+      renderHold++;
+      for (var i = 0; i < ex.length; i++) await removeTx(ex[i].id);
+      renderHold--;
+      settings.goals = settings.goals.filter(function (g) { return !isDx(g.id); });
+      settings.accs = settings.accs.filter(function (a) { return !isDx(a.id); });
+      if (meta.accDef && settings.accs.length <= 1) settings.accs = [];
+      if (meta.setOn) settings.on = false;
+      settings.accs = cleanAccs(settings.accs);
+      persistSettings();
+      rec.items = rec.items.filter(function (x) { return !isDx(x.id); }); persistRec();
+      debt.items = debt.items.filter(function (x) { return !isDx(x.id); }); persistDebt();
+      tpl.items = tpl.items.filter(function (x) { return !isDx(x.id); }); persistTpl();
+      if (meta.lim.length) { meta.lim.forEach(function (c) { delete CATS.limits[c]; }); saveCats(); }
+      var ids = {}; hab.items.forEach(function (h) { if (isDx(h.id)) ids[h.id] = 1; });
+      hab.items = hab.items.filter(function (h) { return !ids[h.id]; });
+      Object.keys(hab.log).forEach(function (k) { hab.log[k] = hab.log[k].filter(function (id) { return !ids[id]; }); if (!hab.log[k].length) delete hab.log[k]; });
+      Object.keys(hab.plan).forEach(function (k) { hab.plan[k] = hab.plan[k].filter(function (t) { return !isDx(t.id); }); if (!hab.plan[k].length) delete hab.plan[k]; });
+      meta.mood.forEach(function (k) { delete hab.mood[k]; });
+      hab = cleanHab(hab); persistHab();
+      try { localStorage.removeItem(DEMO_KEY); } catch (e) {}
+      renderHab(); render();
+      toast('Примеры убраны');
+    } catch (e) { renderHold = 0; toast('Не удалось убрать примеры.'); }
+    btn.disabled = false; btn.textContent = 'Убрать примеры';
+  });
   // ----- страницы настроек -----
   var SET_T = { home: 'Настройки', look: 'Цвет и режим', lock: 'Защита', data: 'Данные и копии' };
   function setPage(n) {
@@ -4037,11 +4276,11 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
   function tourSlides() {
     var nm = DEFAULT_NAME;
     return [
-      { v: '<div class="tm plain"><div class="ico" style="color:var(--brand)">✦</div></div>', t: 'Добро пожаловать в «' + esc(nm) + '»', p: 'Личная система: деньги, привычки и план дня в одном месте. За минуту покажу, как всё устроено. Между разделами «Сегодня», «Финансы» и «Привычки» можно переключаться свайпом влево и вправо.' },
-      { v: '<div class="tm"><div class="row"><span>Мой день</span><span>3 из 5</span></div><div class="bar"><i style="width:60%;background:var(--brand)"></i></div><div class="row"><span>10:00 Сдать отчёт</span><span style="color:var(--brand)">✓</span></div><div class="row"><span>🏃 Зарядка</span><span style="color:var(--brand)">✓</span></div></div>', t: 'Сегодня: ваш рабочий стол', p: 'Один главный блок: приветствие, кольцо дня, баланс, лимит и серия. Ниже быстрые кнопки «Запись», «Дело», «Привычка» и план на сегодня с делами и привычками. Отмечайте пункты кружками прямо на главном экране. Плитки можно переставлять в «Настройках» → «Главный экран».' },
+      { v: '<div class="tm plain"><div class="ico" style="color:var(--brand)">✦</div></div>', t: 'Добро пожаловать в «' + esc(nm) + '»', p: 'Личная система: деньги, привычки и план дня в одном месте. За минуту покажу, как всё устроено. Между разделами «Сегодня», «Финансы», «Привычки» и «Дневник» можно переключаться свайпом влево и вправо.' },
+      { v: '<div class="tm"><div class="row"><span>Мой день</span><span>3 из 5</span></div><div class="bar"><i style="width:60%;background:var(--brand)"></i></div><div class="row"><span>10:00 Сдать отчёт</span><span style="color:var(--brand)">✓</span></div><div class="row"><span>🏃 Зарядка</span><span style="color:var(--brand)">✓</span></div></div>', t: 'Сегодня: ваш рабочий стол', p: 'Один главный блок: кольцо дня, баланс, лимит и серия. Ниже быстрые кнопки «Запись», «Дело», «Привычка» и «Дневник», а также план на сегодня с делами и привычками. Отмечайте пункты кружками прямо на главном экране. Плитки можно переставлять в «Настройках» → «Главный экран».' },
       { v: '<div class="tm"><div class="row"><span>🏃 Зарядка</span><span>🔥 12</span></div><div class="bar"><i style="width:34%;background:var(--brand)"></i></div><small style="text-transform:none;letter-spacing:0">Челлендж: день 34 из 100</small></div>', t: 'Привычки и челленджи', p: 'Создайте привычку, выберите дни недели и отмечайте её кружком. Число рядом с огоньком показывает серию. Можно запустить челлендж на 21, 30, 66, 100, 365 дней или без конца, а итог сохранить картинкой и поделиться.' },
       { v: '<div class="tm"><div class="row"><span>Пн 09:00 Записаться к врачу</span></div><div class="row"><span>Ср 14:30 Позвонить</span></div><div class="row"><span>Без даты: купить подарок</span></div></div>', t: 'План недели', p: 'Это дела на конкретную неделю, а не привычки. Добавляйте дело с датой и временем или без даты, отмечайте до трёх главных целей. Несделанное можно перенести на новую неделю одной кнопкой.' },
-      { v: '<div class="tm plain"><div class="ico" style="font-size:34px">😞 🙁 😐 🙂 😄</div></div>', t: 'Итог дня и приветствие', p: 'После 20:00 появится «Как прошёл день?»: выберите смайлик и, если хочется, запишите фразу. Свою историю настроения увидите лентой за неделю. Имя для приветствия вводится в «Настройках» → «Профиль».' },
+      { v: '<div class="tm plain"><div class="ico" style="font-size:34px">😞 🙁 😐 🙂 😄</div></div>', t: 'Дневник', p: 'Отдельный раздел внизу: поставьте смайлик дня и запишите пару мыслей. Запись сохраняется сама, а подсказки помогут начать. Все записи собраны по месяцам, их можно искать, а настроение за неделю видно лентой. Быстро открыть дневник можно кнопкой на главном экране.' },
       { v: '<div class="tm plain"><span class="fab">＋ Запись</span></div>', t: 'Финансы: записывайте доходы и расходы', p: 'Нажмите «Запись», введите сумму и выберите категорию. Один платёж можно разделить по нескольким категориям, а частые траты сохранить как быстрые записи. Удалили лишнее? Вверху появится кнопка «Отменить».' },
       { v: '<div class="tm hero"><small>Остаток за месяц</small><b class="big">20 000 ₽</b><div class="chips"><span>Доходы<br>80 000</span><span>Расходы<br>50 000</span><span>Отложено<br>10 000</span></div></div>', t: 'Остаток месяца всегда на виду', p: 'Месяц переключается стрелками. Неизрасходованное можно переносить дальше, а кнопка с глазом прячет суммы от посторонних глаз.' },
       { v: '<div class="tm"><small>Можно сегодня</small><b class="big" style="margin-bottom:4px">2 500 ₽</b><div class="bar"><i style="width:40%;background:var(--brand)"></i></div><small style="text-transform:none;letter-spacing:0">лимит на день 2 500 ₽</small></div>', t: 'Сколько можно тратить сегодня', p: 'Приложение делит остаток на оставшиеся дни и вычитает ближайшие платежи. Включите накопления в плитке, и лимит появится на главном экране.' },
@@ -5568,7 +5807,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
   var CTX = {
     fin: { key: LAY_KEY, def: LAY_DEF, name: LAY_NAME, size0: LAY_SIZE0, fixed: LAY_FIXED, wrap: 'finMain', always: false, lay: LAY },
     today: { key: 'kassa-layout-today', def: ['ring', 'quick', 'plan', 'eve'],
-      name: { ring: 'Мой день', quick: 'Быстрые действия', plan: 'План на сегодня', eve: 'Итог дня', bal: 'Баланс', goal: 'План недели' },
+      name: { ring: 'Мой день', quick: 'Быстрые действия', plan: 'План на сегодня', eve: 'Дневник', bal: 'Баланс', goal: 'План недели' },
       size0: { ring: 2, quick: 2, plan: 2, eve: 2 }, fixed: {}, wrap: 'todayBody', always: true, lay: null }
   };
   function useCtx(n) {
@@ -5662,7 +5901,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
   function layEnter() {
     closeOv();
     var want = tab === 'fin' ? 'fin' : 'today';
-    if (tab === 'hab') setTab('today');
+    if (tab === 'hab' || tab === 'diary') setTab('today');
     useCtx(want); layEditCtx = want;
     layEditing = true;
     if (!laySel || !layEls()[laySel]) laySel = LAY.order.filter(function (k) { return layEls()[k]; })[0] || null;
