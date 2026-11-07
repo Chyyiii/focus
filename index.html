@@ -1315,8 +1315,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
   <footer>
     <p id="storeNote"></p>
     <button type="button" class="link muted" id="clearEx" hidden>Убрать примеры</button>
-    <button type="button" class="secondary helpbtn" id="helpBtn">Руководство пользователя</button>
-    <button type="button" class="secondary helpbtn" id="tourBtn" style="margin-top:10px">Показать обучение</button>
+    <div hidden><button type="button" id="helpBtn">Руководство пользователя</button><button type="button" id="tourBtn">Показать обучение</button></div>
   </footer>
 </main>
 
@@ -1590,7 +1589,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
         <h4>Диаграмма доходов</h4>
         <p>Кнопка с диаграммой в шапке (рядом с «глазом» и настройками) показывает, на что разошлись доходы выбранного месяца: расходы по категориям, отложенное в копилку и остаток. Для каждой части видны сумма, доля и полоска. Нажмите на строку или на кусок кольца, и он подсветится, а в центре появится его название и сумма. Мелкие категории объединены в «Остальные категории»: нажмите на эту строку, чтобы увидеть, какие именно там и по сколько. Месяц переключается стрелками на главной.</p>
         <h4>Сворачивание записей</h4>
-        <p>Кнопка «Свернуть» справа от заголовка «Записи» убирает весь список в одну строку: сколько записей и на какую сумму доходов и расходов. Нажмите на эту строку или «Развернуть», чтобы вернуть список. Выбор запоминается на этом устройстве.</p>
+        <p>Список записей по умолчанию свёрнут в одну строку: сколько записей за месяц и на какую сумму доходов и расходов. Нажмите на эту строку или «Развернуть» справа от заголовка «Записи», чтобы открыть список, и «Свернуть», чтобы убрать его снова. При поиске или выборе категории список открывается сам. Выбор запоминается на этом устройстве.</p>
       </details>
       <details><summary>Отмена удаления и правка записей</summary>
         <p>После удаления записи, регулярного платежа, счёта, цели или перевода между счетами вверху на несколько секунд появляется кнопка <b>«Отменить»</b>: нажмите её, и всё вернётся.</p>
@@ -1657,7 +1656,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
         <p><b>Главный блок.</b> Тёмная карточка вверху собирает главное: дату, ваше имя и мотивирующую фразу (она меняется раз в день), кольцо «Выполнено сегодня» (сколько задач и привычек на сегодня уже сделано) с подсказкой, какое дело следующее, и три показателя. <b>«Баланс»</b> это все ваши деньги сейчас. <b>«Лимит дня»</b> это сколько можно потратить сегодня (виден, если включены накопления). <b>«Серия»</b> это сколько дней подряд вы выполняли привычку без пропусков, под числом написано, какая именно. Например «3 дня подряд · Зарядка» значит, что зарядку вы делаете уже третий день подряд. Если привычек нет или серия пока не началась, там прочерк. Нажмите на показатель, чтобы открыть нужный раздел. Под ними строка сравнения: на сколько процентов траты меньше или больше, чем в прошлом месяце к этой же дате. Имя вводится в «Настройках» → «Профиль».</p>
         <p><b>Быстрые действия.</b> Кнопки «Запись», «Задача», «Привычка» и «Дневник» сразу открывают нужную форму. Новая задача получает сегодняшнюю дату, а после сохранения вы остаётесь на главном экране.</p>
         <p><b>Задачи на сегодня.</b> Задачи на сегодня (и просроченные, они помечены красной датой) вместе с привычками на сегодня в одном списке. Нажмите на кружок, чтобы отметить, сделанное уходит вниз. Заголовок и строка «Все задачи» открывают раздел «Задачи».</p>
-        <p><b>Дневник.</b> Карточка внизу экрана: поставьте смайлик дня и нажмите «Записать мысли», чтобы открыть дневник. Если запись уже есть, в карточке виден её фрагмент. Кнопка «Дневник» в быстрых действиях открывает ту же запись.</p>
+        <p><b>Дневник.</b> Карточка внизу экрана появляется вечером, после 20:00 (или раньше, если запись за сегодня уже есть). Чтобы она была на экране всегда, откройте «Настройки» → «Дневник на главном экране» → «Всегда». Поставьте смайлик дня и нажмите «Записать мысли», чтобы открыть дневник. Если запись уже есть, в карточке виден её фрагмент. Кнопка «Дневник» в быстрых действиях открывает ту же запись.</p>
         <p>Все плитки можно переставлять, менять им размер и скрывать: «Настройки» → «Главный экран», вверху переключатель «Сегодня / Финансы».</p>
       </details>
       <details><summary>Главный экран: порядок и размер плиток</summary>
@@ -1732,7 +1731,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
         <p><b>Обязательно делайте резервную копию</b>: «Сохранить копию» в окне «Настройки» (значок с ползунками в шапке). Храните файл в «Файлах» или отправьте себе в мессенджер. Лучше делать копию раз в неделю и перед любой очисткой браузера.</p>
       </details>
       <details><summary>Обучение</summary>
-        <p>При первом открытии приложение показывает короткое обучение: сначала про экран «Сегодня», привычки и план недели, затем про финансы. Листайте кнопками «Далее» и «Назад» или свайпом, «Пропустить» закрывает его. Запустить обучение снова можно кнопкой <b>«Показать обучение»</b> внизу главного экрана.</p>
+        <p>При первом открытии приложение показывает короткое обучение: сначала про экран «Сегодня», привычки и план недели, затем про финансы. Листайте кнопками «Далее» и «Назад» или свайпом, «Пропустить» закрывает его. Запустить обучение снова можно в «Настройках» кнопкой <b>«Показать обучение»</b>.</p>
       </details>
       <details><summary>Работа без интернета</summary>
         <p>После первого открытия по ссылке приложение запоминает себя в телефоне и открывается без интернета. Записи и так лежат на устройстве, поэтому добавлять и править их можно в любом месте. Если вышла новая версия, она подхватится при следующем открытии с интернетом.</p>
@@ -2196,6 +2195,10 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
         <div class="sethero"><span class="sstar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.5c.7 5.6 3.4 8.8 10.5 10.5-7.1 1.7-9.8 4.9-10.5 10.5-.7-5.6-3.4-8.8-10.5-10.5C8.6 10.3 11.3 7.1 12 1.5z" fill="currentColor"/></svg></span><div><b>FOCUS</b><small>Планируй · Контролируй · Развивайся</small></div></div>
         <p class="sglbl">Профиль</p>
         <div class="sgroup"><div class="field" style="padding:12px 14px"><label for="uiName">Как к вам обращаться</label><input id="uiName" maxlength="30" autocomplete="given-name" placeholder="Ваше имя"><small class="hint" style="display:block;margin-top:6px">Имя появится в приветствии на главном экране</small></div></div>
+        <p class="sglbl">Дневник на главном экране</p>
+        <div class="sgroup"><div class="field" style="padding:12px 14px"><div class="segb" id="eveModes" role="group" aria-label="Когда показывать карточку дневника">
+          <button type="button" data-ev="auto" aria-pressed="true">После 20:00</button>
+          <button type="button" data-ev="always" aria-pressed="false">Всегда</button></div><small class="hint" style="display:block;margin-top:6px">По умолчанию карточка «как прошёл день?» появляется вечером. Выберите «Всегда», чтобы она была на главном экране постоянно. Кнопка «Дневник» в быстрых действиях доступна в любое время.</small></div></div>
         <p class="sglbl">Оформление</p>
         <div class="sgroup">
           <button type="button" class="srow" data-sp-go="look"><span class="sico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h9"/></svg></span><span class="stx"><b>Цвет и режим</b><small id="sLookVal">Цвет, тема, стиль</small></span><span class="schev" aria-hidden="true">›</span></button>
@@ -2395,8 +2398,8 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
   var store = { mode: 'local', col: null };
   var settings = { accs: [], xfers: [], on: false, plan: 0, goal: 0, carry: true, limitGoals: false, carryFrom: '', closed: '', goals: [], months: 0, goalStart: '' };
   var ui = { name: '', palette: 'ember', mode: 'auto' };
-  var STYLE = 'glass', OLED = false;
-  try { STYLE = localStorage.getItem('kassa-style') === 'classic' ? 'classic' : 'glass'; OLED = localStorage.getItem('kassa-oled') === '1'; } catch (e) {}
+  var STYLE = 'glass', OLED = false, EVE = 'auto';
+  try { STYLE = localStorage.getItem('kassa-style') === 'classic' ? 'classic' : 'glass'; OLED = localStorage.getItem('kassa-oled') === '1'; EVE = localStorage.getItem('kassa-eve') === 'always' ? 'always' : 'auto'; } catch (e) {}
   function isGlass() { return STYLE === 'glass'; }
   function applyLook() {
     var r = document.documentElement;
@@ -2741,6 +2744,12 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     if (Math.abs(pc) < 3) return '<div class="pcmp">Траты на уровне прошлого месяца</div>';
     return pc < 0 ? '<div class="pcmp ok">Траты на ' + (-pc) + '% меньше, чем в прошлом месяце к этой дате</div>' : '<div class="pcmp bad">Траты на ' + pc + '% больше, чем в прошлом месяце к этой дате</div>';
   }
+  function eveVisible() {
+    if (EVE === 'always') return true;
+    if (new Date().getHours() >= 20) return true;
+    var m = hab.mood[dateStr(new Date())];
+    return !!(m && (m.m || (m.text && m.text.trim())));
+  }
   function todayEveHtml() {
     var k = dateStr(new Date()), m = hab.mood[k], cur = m ? m.m : 0, tx = m ? m.text.trim() : '';
     var btns = MOODS.map(function (e, i) { return '<button type="button" data-mood="' + (i + 1) + '" aria-pressed="' + (cur === i + 1) + '" aria-label="Оценка дня ' + (i + 1) + ' из 5">' + e + '</button>'; }).join('');
@@ -2759,7 +2768,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     $('habList').innerHTML = hab.items.length ? hab.items.map(function (h) { return habRowHtml(h, true); }).join('') : '<p class="hempty">Пока нет привычек. Добавьте первую, например «Зарядка» или «Стакан воды».</p>';
     // Сегодня
     var html = '';
-    html += todayRingHtml() + todayQuickHtml() + todayPlanHtml() + todayEveHtml();
+    html += todayRingHtml() + todayQuickHtml() + todayPlanHtml() + (eveVisible() ? todayEveHtml() : '');
     renderTasks();
     if (tab === 'diary' && typeof renderDiary === 'function') renderDiary();
     $('todayBody').innerHTML = html;
@@ -4336,7 +4345,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
       { v: '<div class="tm plain"><div class="ico">⏳</div></div>', t: 'Машина времени', p: 'В «Сравнении и динамике» есть прогноз на год вперёд. Проведите пальцем по графику, и увидите, сколько денег будет в любой день.' },
       { v: '<div class="tm plain"><div class="ico">🔒</div></div>', t: 'Защита', p: 'В настройках можно включить пин-код и Face ID. Раз в неделю приложение само сохраняет копии данных на телефоне.' },
       { v: '<div class="tm plain"><div class="ico">💾</div></div>', t: 'Сохраните данные', p: 'Всё хранится только на этом устройстве. Раз в несколько дней делайте резервную копию в «Настройках»: в неё входят и деньги, и задачи, и привычки, и дневник.' },
-      { v: '<div class="tm"><div class="row"><span>📖 Руководство пользователя</span><span>›</span></div><div class="row"><span>🎓 Показать обучение</span><span>›</span></div></div>', t: 'Руководство всегда под рукой', p: 'Внизу экрана «Финансы» есть кнопка «Руководство пользователя»: в нём всё описано по разделам. Рядом кнопка «Показать обучение», если захотите пройти его снова.' }
+      { v: '<div class="tm"><div class="row"><span>📖 Руководство пользователя</span><span>›</span></div><div class="row"><span>🎓 Показать обучение</span><span>›</span></div></div>', t: 'Руководство всегда под рукой', p: 'Откройте «Настройки» (значок с ползунками): там есть «Руководство пользователя», в нём всё описано по разделам, и «Показать обучение», если захотите пройти его снова.' }
     ];
   }
   function tourRender() {
@@ -4648,6 +4657,18 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     OLED = b.getAttribute('data-o') === '1';
     applyLook(); renderUiSheet();
   });
+  function renderEveSeg() {
+    document.querySelectorAll('#eveModes [data-ev]').forEach(function (x) { x.setAttribute('aria-pressed', x.getAttribute('data-ev') === EVE ? 'true' : 'false'); });
+  }
+  $('eveModes').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-ev]');
+    if (!b) return;
+    EVE = b.getAttribute('data-ev') === 'always' ? 'always' : 'auto';
+    try { localStorage.setItem('kassa-eve', EVE); } catch (x) {}
+    renderEveSeg(); renderHab();
+    toast(EVE === 'always' ? 'Дневник всегда на главном экране' : 'Дневник появится после 20:00');
+  });
+  renderEveSeg();
   $('modes').addEventListener('click', function (e) {
     var b = e.target.closest('[data-m]');
     if (!b) return;
@@ -5368,15 +5389,23 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
   /* Резервная копия */
   var bkPending = null;
   function buildBackup() {
-    return { app: 'kassa', v: 1, at: new Date().toISOString(), txs: txs.filter(function (t) { return !t.example; }).map(function (t) {
+    // примеры из режима разработчика (id на «dx») в копию не попадают
+    var nx = function (x) { return !isDx(x.id); }, dm = demoMeta(), dmo = dm || { mood: [], lim: [], accDef: false, setOn: false };
+    var cb = catsBody(); cb.limits = cb.limits.filter(function (l) { return dmo.lim.indexOf(l.n) < 0; });
+    var bAccs = settings.accs.filter(nx);
+    if (dm && dm.accDef && bAccs.length <= 1) bAccs = [];
+    var dxh = {}; hab.items.forEach(function (h) { if (isDx(h.id)) dxh[h.id] = 1; });
+    var bLog = {}; Object.keys(hab.log).forEach(function (k) { var l = hab.log[k].filter(function (id) { return !dxh[id]; }); if (l.length) bLog[k] = l; });
+    var bMood = {}; Object.keys(hab.mood).forEach(function (k) { if (dmo.mood.indexOf(k) < 0) bMood[k] = hab.mood[k]; });
+    return { app: 'kassa', v: 1, at: new Date().toISOString(), txs: txs.filter(function (t) { return !t.example && nx(t); }).map(function (t) {
       var o = { id: t.id, type: t.type, cat: t.cat, amount: t.amount, date: t.date, note: t.note || '', createdAt: t.createdAt || 0 };
       if (t.auto) o.auto = true;
       if (t.recId) o.recId = t.recId;
       if (t.goalId) o.goalId = t.goalId;
-      if (t.acc) o.acc = t.acc;
+      if (t.acc && !isDx(t.acc)) o.acc = t.acc;
       return o;
-    }), cats: catsBody(), save: { accs: settings.accs, xfers: settings.xfers, on: settings.on, plan: settings.plan, goal: settings.goal, carry: settings.carry, limitGoals: settings.limitGoals, carryFrom: settings.carryFrom, closed: settings.closed, goals: settings.goals, months: settings.months, goalStart: settings.goalStart },
-      tpl: { items: tpl.items }, debt: { items: debt.items }, hab: { items: hab.items, log: hab.log, tasks: hab.tasks, mood: hab.mood }, ui: { name: ui.name.trim(), palette: ui.palette, mode: ui.mode, style: STYLE, oled: OLED, layout: layOf('fin'), layoutT: layOf('today') }, rec: { items: rec.items } };
+    }), cats: cb, save: { accs: bAccs, xfers: settings.xfers.filter(function (x) { return !isDx(x.from) && !isDx(x.to); }), on: dmo.setOn ? false : settings.on, plan: settings.plan, goal: settings.goal, carry: settings.carry, limitGoals: settings.limitGoals, carryFrom: settings.carryFrom, closed: settings.closed, goals: settings.goals.filter(nx), months: settings.months, goalStart: settings.goalStart },
+      tpl: { items: tpl.items.filter(nx) }, debt: { items: debt.items.filter(nx) }, hab: { items: hab.items.filter(nx), log: bLog, tasks: hab.tasks.filter(nx), mood: bMood }, ui: { name: ui.name.trim(), palette: ui.palette, mode: ui.mode, style: STYLE, oled: OLED, eve: EVE, layout: layOf('fin'), layoutT: layOf('today') }, rec: { items: rec.items.filter(nx) } };
   }
   function downloadText(name, text) {
     var blob = new Blob([text], { type: 'application/json' });
@@ -5670,6 +5699,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
       ui = cleanUi(b.ui);
       if (b.ui && (b.ui.style === 'glass' || b.ui.style === 'classic')) STYLE = b.ui.style;
       if (b.ui && typeof b.ui.oled === 'boolean') OLED = b.ui.oled;
+      if (b.ui && (b.ui.eve === 'always' || b.ui.eve === 'auto')) { EVE = b.ui.eve; try { localStorage.setItem('kassa-eve', EVE); } catch (x) {} renderEveSeg(); }
       if (b.ui && b.ui.layout) { useCtx('fin'); LAY = layClean(b.ui.layout); laySave(); applyLayout(); }
       if (b.ui && b.ui.layoutT) { useCtx('today'); LAY = layClean(b.ui.layoutT); laySave(); useCtx('fin'); applyLayout(); }
       applyLook();
@@ -6161,13 +6191,14 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     } else if (mt.length === 0 && !xfM.length) {
       list.innerHTML = '<p class="load">' + (catFilter || qv ? 'Ничего не найдено.' : 'В этом месяце записей нет.') + '</p>';
     } else {
+      var jF = jFolded && !catFilter && !qv;
       var byDay = {};
       mt.forEach(function (t) { (byDay[t.date] = byDay[t.date] || []).push(t); });
-      if (!jFolded) xfM.forEach(function (x) { (byDay[x.date] = byDay[x.date] || []).push({ type: 'xf', id: x.id, date: x.date, createdAt: x.ts, x: x }); });
+      if (!jF) xfM.forEach(function (x) { (byDay[x.date] = byDay[x.date] || []).push({ type: 'xf', id: x.id, date: x.date, createdAt: x.ts, x: x }); });
       var jin = 0, jout = 0;
       mt.forEach(function (t) { if (t.type === 'in') jin += t.amount; else if (t.type === 'out') jout += t.amount; });
       var n = mt.length;
-      if (jFolded) {
+      if (jF) {
         var sp = [];
         if (jin > 0) sp.push('<span class="amt">+' + money(r2(jin)) + '</span>');
         if (jout > 0) sp.push('<span class="amt">−' + money(r2(jout)) + '</span>');
@@ -6181,7 +6212,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     }
 
     var fa = $('foldAll');
-    fa.hidden = loading || txs.length === 0 || mt.length === 0;
+    fa.hidden = loading || txs.length === 0 || mt.length === 0 || !!catFilter || !!qv;
     fa.textContent = jFolded ? 'Развернуть' : 'Свернуть';
 
     if (!light) {
@@ -6200,11 +6231,11 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
       : 'Записи хранятся только в этом браузере. Если очистить данные сайта, они пропадут.';
   }
 
-  var jFolded = false;
-  try { jFolded = localStorage.getItem('kassa-jfold') === '1'; } catch (e) {}
+  var jFolded = true;
+  try { jFolded = localStorage.getItem('kassa-jfold2') !== '0'; } catch (e) {}
   function toggleJ() {
     jFolded = !jFolded;
-    try { localStorage.setItem('kassa-jfold', jFolded ? '1' : '0'); } catch (e) {}
+    try { localStorage.setItem('kassa-jfold2', jFolded ? '1' : '0'); } catch (e) {}
     selectedId = null;
     render();
   }
