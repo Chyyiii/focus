@@ -4,7 +4,7 @@
 
 | Параметр | Значение |
 |---|---|
-| Репозиторий | `https://github.com/Chyyiii/moneyload` (публичный) |
+| Репозиторий | `https://github.com/Chyyiii/focus` (публичный) |
 | Ветка | `main` |
 | Проверяемый коммит | `2bbe26fdf38186b5de73088f6ad001391cd2be96` («Update BASELINE.md», 2026-11-07 12:46 по Перми) |
 | Утверждённый baseline | тег `focus-2.0-baseline` → коммит `2aede6ca86f9942f90999338a236f7594a8e46ec`; задокументирован в `docs/BASELINE.md` (файлы приложения: коммит `50bb8bbc99c9e20c41584bf2a42a68b2737d680a`) |
