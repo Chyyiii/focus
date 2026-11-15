@@ -713,6 +713,10 @@ html { touch-action: manipulation; -webkit-text-size-adjust: 100%; text-size-adj
 #qlineBox[hidden], #qlineHint[hidden] { display: none; }
 .tour { position: fixed; inset: 0; z-index: 90; display: flex; align-items: center; justify-content: center; padding: 16px; background: rgba(8, 14, 12, .72); }
 .tour[hidden] { display: none; }
+.wl-btns { display: grid; gap: 10px; margin-top: 20px; }
+.wl-btns button { width: 100%; }
+.wl-err { margin: 12px 0 0; padding: 10px 12px; border-radius: 12px; background: var(--tint); border: 1px solid var(--line); color: var(--ink) !important; font-size: 14px !important; }
+.wl-err[hidden] { display: none; }
 @media (max-height: 640px) { .tour .tour-vis { display: none; } .tour .tour-card { padding-top: 40px; } }
 .tour-card { position: relative; width: 100%; max-width: 400px; max-height: calc(100vh - 32px); overflow: auto; background: var(--bg); color: var(--ink); border-radius: 26px; padding: 22px 20px 18px; box-shadow: 0 20px 60px rgba(0,0,0,.4); outline: none; animation: tourIn .25s ease; }
 @keyframes tourIn { from { opacity: 0; transform: translateY(14px) scale(.98); } to { opacity: 1; transform: none; } }
@@ -1754,6 +1758,20 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     <div class="btnrow">
       <button type="button" class="secondary" id="tourBack">Назад</button>
       <button type="button" class="primary" id="tourNext">Далее</button>
+    </div>
+  </div>
+</div>
+
+<div class="tour" id="welcome" hidden role="dialog" aria-modal="true" aria-labelledby="wlT">
+  <div class="tour-card" id="wlCard" tabindex="-1">
+    <div class="tour-vis"><div class="tm plain"><div class="ico" style="color:var(--brand)">✦</div></div></div>
+    <h2 id="wlT">FOCUS</h2>
+    <p>Как хочешь начать?</p>
+    <p class="wl-err" id="wlErr" role="alert" hidden>Не удалось загрузить примеры. Можно повторить попытку или начать с нуля.</p>
+    <div class="wl-btns">
+      <button type="button" class="primary" id="wlDemo">Посмотреть FOCUS на примере</button>
+      <button type="button" class="secondary" id="wlZero">Начать с нуля</button>
+      <button type="button" class="link muted" id="wlSkip" hidden>Продолжить, не очищая</button>
     </div>
   </div>
 </div>
@@ -3652,6 +3670,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     if (launchDone || loading) return;
     launchDone = true;
     autoBackup();
+    welcomeCheck();
     var want = null;
     try {
       var m = /[?&#]add=(out|in|save)\b/.exec(location.search + location.hash);
@@ -4401,11 +4420,109 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
       if (Math.abs(dx) > 50) tourGo(dx < 0 ? 1 : -1);
     }, { passive: true });
   })();
-  setTimeout(function () {
+  function tourMaybe() {
     var seen = true;
     try { seen = localStorage.getItem('kassa-tour') === '1'; } catch (e) { seen = true; }
-    if (!seen) tourStart();
-  }, 700);
+    if (!seen && !welcomeOpen) tourStart();
+  }
+  setTimeout(tourMaybe, 700);
+
+  /* Приветственный экран первого запуска (FOCUS-005) */
+  var WELCOME_KEY = 'kassa-welcome';
+  var welcomeOpen = false, welcomeBusy = false, welcomeSession = false;
+  function welcomeHasData() {
+    if (txs.length || settings.on || settings.goal > 0 || (settings.goals || []).length || (settings.accs || []).length) return true;
+    if (rec.items.length || debt.items.length || tpl.items.length || hab.items.length || hab.tasks.length) return true;
+    if (Object.keys(hab.mood || {}).length || Object.keys(CATS.limits || {}).length) return true;
+    if (JSON.stringify(CATS.out) !== JSON.stringify(DEFAULT_CATS.out) || JSON.stringify(CATS.in) !== JSON.stringify(DEFAULT_CATS.in)) return true;
+    if (ui.name) return true;
+    return !!(lsGet('kassa-tour') || lsGet('kassa-demo') || lsGet('kassa-auto-bk') || lsGet('kassa-bk-last'));
+  }
+  function welcomeCheck() {
+    if (welcomeSession || lsGet(WELCOME_KEY)) return;
+    if (welcomeHasData()) { lsSet(WELCOME_KEY, 'existing'); return; }
+    welcomeShow();
+  }
+  function welcomeShow() {
+    if (welcomeOpen) return;
+    if (tourOpen) { tourOpen = false; $('tour').hidden = true; }
+    welcomeOpen = true;
+    $('wlErr').hidden = true;
+    $('wlSkip').hidden = true;
+    welcomeDirty = false;
+    $('wlDemo').textContent = 'Посмотреть FOCUS на примере';
+    $('welcome').hidden = false;
+    document.body.style.overflow = 'hidden';
+    setTimeout(function () { $('wlCard').focus(); }, 30);
+  }
+  function welcomeClose(kind) {
+    lsSet(WELCOME_KEY, kind);
+    if (lsGet(WELCOME_KEY) !== kind) welcomeSession = true;
+    welcomeOpen = false;
+    $('welcome').hidden = true;
+    if (!openId) document.body.style.overflow = '';
+    setTimeout(tourMaybe, 300);
+  }
+  var welcomeDirty = false;
+  var WL_ERR = 'Не удалось загрузить примеры. Можно повторить попытку или начать с нуля.';
+  var WL_DIRTY = 'Не удалось загрузить примеры и убрать уже сохранённые. Часть демонстрационных записей могла сохраниться. Повторите очистку.';
+  /* Удаляет только записи, созданные текущей попыткой (по запомненным id), не опираясь на массив txs. */
+  async function welcomeCleanup() {
+    var gone = lastExIds.slice();
+    var ok = true;
+    for (var i = 0; i < gone.length; i++) { try { await removeTx(gone[i]); } catch (e) { ok = false; } }
+    if (ok && store.mode === 'local') {
+      try {
+        var saved = JSON.parse(localStorage.getItem(LS_KEY) || '[]');
+        ok = !(Array.isArray(saved) && saved.some(function (t) { return t && gone.indexOf(t.id) >= 0; }));
+      } catch (e) { ok = false; }
+    }
+    return ok;
+  }
+  function welcomeShowErr() {
+    $('wlErr').textContent = welcomeDirty ? WL_DIRTY : WL_ERR;
+    $('wlErr').hidden = false;
+    $('wlDemo').textContent = welcomeDirty ? 'Повторить очистку' : 'Повторить попытку';
+    $('wlSkip').hidden = !welcomeDirty;
+  }
+  async function welcomePick(kind) {
+    if (welcomeBusy) return;
+    if (kind === 'skip') {
+      /* выбор первого запуска НЕ фиксируется: экран скрыт только до конца сессии */
+      welcomeSession = true;
+      welcomeOpen = false;
+      $('welcome').hidden = true;
+      if (!openId) document.body.style.overflow = '';
+      setTimeout(tourMaybe, 300);
+      toast('Часть примеров могла сохраниться. Если они появятся после перезапуска, уберите их кнопкой «Убрать примеры» внизу страницы.');
+      return;
+    }
+    welcomeBusy = true;
+    $('wlDemo').disabled = true; $('wlZero').disabled = true; $('wlSkip').disabled = true; $('wlErr').hidden = true;
+    var ok = true;
+    if (welcomeDirty) {
+      /* перед любым продолжением нужна успешная очистка */
+      ok = await welcomeCleanup();
+      if (ok) { welcomeDirty = false; if (kind === 'demo') { welcomeBusy = false; $('wlDemo').disabled = false; $('wlZero').disabled = false; $('wlSkip').disabled = false; welcomeShowErr(); return; } }
+    } else if (kind === 'demo') {
+      ok = false;
+      try {
+        ok = (await loadExamples()) === true;
+        if (ok && store.mode === 'local') {
+          var saved = JSON.parse(localStorage.getItem(LS_KEY) || '[]');
+          ok = Array.isArray(saved) && saved.filter(function (t) { return t && t.example; }).length === 10;
+        }
+      } catch (e) { ok = false; }
+      if (!ok && !(await welcomeCleanup())) welcomeDirty = true;
+    }
+    welcomeBusy = false;
+    $('wlDemo').disabled = false; $('wlZero').disabled = false; $('wlSkip').disabled = false;
+    if (!ok) { welcomeShowErr(); return; }
+    welcomeClose(kind === 'demo' ? 'demo' : 'empty');
+  }
+  $('wlDemo').addEventListener('click', function () { welcomePick('demo'); });
+  $('wlZero').addEventListener('click', function () { welcomePick('zero'); });
+  $('wlSkip').addEventListener('click', function () { welcomePick('skip'); });
 
   /* Категории и значки */
   function curIcon() {
@@ -6319,7 +6436,9 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     }
   });
 
+  var lastExIds = [];
   async function loadExamples() {
+    lastExIds = [];
     var rows = [
       ['in', 'Зарплата', 72000, 'Аванс', 8],
       ['out', 'Жильё', 24000, 'Аренда', 7],
@@ -6333,18 +6452,23 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
       ['out', 'Продукты', 1760, 'Супермаркет', 0]
     ];
     var base = new Date();
+    var exOk = false;
     view = { y: base.getFullYear(), m: base.getMonth() };
     try {
       for (var i = 0; i < rows.length; i++) {
         var r = rows[i];
         var dt = new Date(base.getFullYear(), base.getMonth(), Math.max(1, base.getDate() - r[4]));
-        await addTx({ id: newId(), type: r[0], cat: r[1], amount: r[2], note: r[3], date: dateStr(dt), createdAt: Date.now() + i, example: true });
+        var exId = newId();
+        lastExIds.push(exId);
+        await addTx({ id: exId, type: r[0], cat: r[1], amount: r[2], note: r[3], date: dateStr(dt), createdAt: Date.now() + i, example: true });
       }
       toast('Примеры добавлены. Убрать их можно внизу страницы.');
+      exOk = true;
     } catch (e) {
       toast('Не удалось сохранить примеры.');
     }
     render();
+    return exOk;
   }
 
   $('clearEx').addEventListener('click', async function () {
