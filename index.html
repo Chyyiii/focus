@@ -208,6 +208,9 @@ html[data-hide] :is(.hero-bal, .hero-sub, .stat-v, .tile-val, .tile-sub, .jar-v,
 .bkrem { border-left-color: var(--brand); }
 .bkrem[hidden] { display: none; }
 .bkrem-b { display: flex; gap: 8px; }
+.exbar { border-left-color: var(--brand); }
+.exbar[hidden] { display: none; }
+.exbar-b { min-height: 44px; }
 .bkrem-b button { flex: 1; height: auto; min-height: 44px; padding: 0 6px; white-space: nowrap; margin: 0; display: flex; align-items: center; justify-content: center; text-align: center; line-height: 1.15; border-radius: 12px; font-size: 14px; }
 .tile.wide { grid-column: 1 / -1; }
 .search { margin-bottom: 10px; }
@@ -1285,6 +1288,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     </div>
   </header>
 
+  <div class="remind exbar" hidden><div><b>Сейчас показаны примеры.</b> Это не ваши данные: посмотрите, как всё работает, и уберите их.</div><div class="bkrem-b"><button type="button" class="primary exbar-b">Убрать примеры</button></div></div>
   <div class="remind" id="remind" hidden></div>
   <div class="remind bkrem" id="bkRemind" hidden>
     <div id="bkRemT"></div>
@@ -1325,12 +1329,14 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
 
 <main class="wrap" id="todayMain" hidden>
   <div class="pghead"><span class="brandrow"><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.5c.7 5.6 3.4 8.8 10.5 10.5-7.1 1.7-9.8 4.9-10.5 10.5-.7-5.6-3.4-8.8-10.5-10.5C8.6 10.3 11.3 7.1 12 1.5z" fill="currentColor"/></svg><span class="brand" id="brand2">FOCUS</span></span><button type="button" class="eye" id="gear2" aria-label="Настройки"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg></button></div>
+  <div class="remind exbar" hidden><div><b>Сейчас показаны примеры.</b> Это не ваши данные: посмотрите, как всё работает, и уберите их.</div><div class="bkrem-b"><button type="button" class="primary exbar-b">Убрать примеры</button></div></div>
   <div hidden><span id="todayHello"></span><span id="todayMot"></span><span id="todayDate"></span><span id="todayCtx"></span></div>
   <div id="todayBody"></div>
 </main>
 <main class="wrap" id="habMain" hidden>
   <div class="pghead"><span class="brand" id="brand3">FOCUS</span><button type="button" class="eye" id="gear3" aria-label="Настройки"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg></button></div>
   <div><h1 class="pgtitle">Задачи</h1><p class="pgsub" id="habSub"></p></div>
+  <div class="remind exbar" hidden><div><b>Сейчас показаны примеры.</b> Это не ваши данные: посмотрите, как всё работает, и уберите их.</div><div class="bkrem-b"><button type="button" class="primary exbar-b">Убрать примеры</button></div></div>
   <div class="tkseg" id="tkSeg"><button type="button" data-tseg="tasks" aria-pressed="true">Задачи</button><button type="button" data-tseg="habits" aria-pressed="false">Привычки</button></div>
   <section id="tkPane" class="stack">
     <form id="tkQuick" class="tkq" novalidate><input id="tkIn" maxlength="120" placeholder="Новая задача…" autocomplete="off" enterkeyhint="done" aria-label="Новая задача"><button type="submit" class="tkadd" aria-label="Добавить задачу">＋</button></form>
@@ -1347,6 +1353,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
 <main class="wrap" id="diaryMain" hidden>
   <div class="pghead"><span class="brand" id="brand4">FOCUS</span><button type="button" class="eye" id="gear4" aria-label="Настройки"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg></button></div>
   <div><h1 class="pgtitle">Дневник</h1><p class="pgsub" id="diaSub"></p></div>
+  <div class="remind exbar" hidden><div><b>Сейчас показаны примеры.</b> Это не ваши данные: посмотрите, как всё работает, и уберите их.</div><div class="bkrem-b"><button type="button" class="primary exbar-b">Убрать примеры</button></div></div>
   <div class="card dia-ed" id="diaEd">
     <div class="dia-top"><b id="diaLbl"></b><span class="dia-dtw"><input type="date" id="diaDate" aria-label="Дата записи"><button type="button" class="link" id="diaTodayBtn" hidden>Сегодня</button></span></div>
     <div class="mood" id="diaMood"></div>
@@ -1577,7 +1584,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
         <p>Нажмите <b>«+ Запись»</b> внизу экрана, введите сумму, выберите тип (расход или доход) и категорию, при желании поменяйте дату и добавьте комментарий. Стрелки в верхней карточке переключают месяцы. Вверху крупно виден <b>остаток за месяц</b>: доходы минус расходы и минус отложенное. Нажмите на «Доходы», «Расходы» или «Отложено» в верхней карточке, чтобы сразу добавить такую запись.</p>
         <p>Обязательные поля помечены красной звёздочкой <b style="color:var(--out)">*</b>. Если такое поле пустое, при сохранении оно подсветится красным.</p>
         <p>Любое окно закрывается свайпом вниз: потяните его за шапку или за верх содержимого. Крестик и тап по затемнению тоже работают.</p>
-        <p>Если на экране записи-примеры, их можно убрать кнопкой «Убрать примеры» в самом низу.</p>
+        <p>Пока на экране примеры, вверху каждого раздела есть плашка с кнопкой «Убрать примеры». Она убирает примеры из всех разделов сразу.</p>
       </details>
       <details><summary>Изменить или удалить запись</summary>
         <p>Нажмите на запись в списке: появятся кнопки <b>«Изменить»</b> и <b>«Удалить»</b>. Нажмите на пустое место, чтобы закрыть их.</p>
@@ -3804,15 +3811,15 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
   var DEMO_KEY = 'kassa-demo';
   function demoMeta() { try { return JSON.parse(localStorage.getItem(DEMO_KEY)) || null; } catch (e) { return null; } }
   function isDx(id) { return typeof id === 'string' && id.indexOf('dx') === 0; }
-  $('devDemo').addEventListener('click', async function () {
-    var btn = $('devDemo');
-    if (demoMeta() || txs.some(function (t) { return isDx(t.id); })) { toast('Примеры уже добавлены. Сначала уберите их.'); return; }
-    btn.disabled = true; btn.textContent = 'Добавляю...';
+  var demoIds = [];
+  /* Примеры во всех разделах (id на «dx»). Используется кнопкой режима разработчика и приветственным экраном. */
+  async function demoAdd(quiet) {
     var now = new Date(), Y = now.getFullYear(), M = now.getMonth(), D = now.getDate(), ti = wdOf(now);
     var meta = { mood: [], lim: [], accDef: false, setOn: false };
     var ago = function (n) { var d = new Date(now); d.setDate(d.getDate() - n); return d; };
     var pickCat = function (list, name, alt) { return list.indexOf(name) >= 0 ? name : (list.indexOf(alt) >= 0 ? alt : list[0]); };
     var cOut = function (n) { return pickCat(CATS.out, n, CATS.out[0]); }, cIn = function (n) { return pickCat(CATS.in, n, CATS.in[0]); };
+    demoIds = [];
     try {
       // записи: этот и прошлый месяц
       var rows = [], cd = function (d) { return dateStr(new Date(Y, M, Math.max(1, Math.min(D, d)))); }, pd = function (d) { return dateStr(new Date(Y, M - 1, d)); };
@@ -3824,7 +3831,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
         ['out', cOut('Продукты'), 3900, 'Рынок #продукты', pd(12)], ['out', cOut('Продукты'), 5100, 'Закупка на неделю', pd(19)], ['out', cOut('Транспорт'), 1200, 'Проездной', pd(4)], ['out', cOut('Транспорт'), 2300, 'Такси', pd(15)],
         ['out', cOut('Кафе и рестораны'), 3400, 'Ужин с друзьями', pd(9)], ['out', cOut('Здоровье'), 2700, 'Врач', pd(11)], ['out', cOut('Связь'), 650, 'Интернет', pd(8)], ['save', 'Накопления', 5000, 'В копилку', pd(21)]);
       renderHold++;
-      for (var i = 0; i < rows.length; i++) { var r = rows[i]; await addTx({ id: 'dx' + (i < 10 ? '0' : '') + i, type: r[0], cat: r[1], amount: r[2], note: r[3], date: r[4], createdAt: Date.now() + i }); }
+      for (var i = 0; i < rows.length; i++) { var r = rows[i]; var dxId = 'dx' + (i < 10 ? '0' : '') + i; demoIds.push(dxId); await addTx({ id: dxId, type: r[0], cat: r[1], amount: r[2], note: r[3], date: r[4], createdAt: Date.now() + i }); }
       renderHold--;
       // накопления, цель, счета
       var mk = Y + '-' + pad(M + 1);
@@ -3866,17 +3873,23 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
       hab = cleanHab(hab); persistHab();
       try { localStorage.setItem(DEMO_KEY, JSON.stringify(meta)); } catch (e) {}
       renderHab(); render();
-      toast('Примеры добавлены во все разделы');
-    } catch (e) { renderHold = 0; toast('Не удалось добавить примеры: ' + (e && e.message ? e.message : e)); }
-    btn.disabled = false; btn.textContent = 'Добавить примеры';
-  });
-  $('devDemoOff').addEventListener('click', async function () {
-    var meta = demoMeta() || { mood: [], lim: [], accDef: false, setOn: false }, btn = $('devDemoOff');
-    btn.disabled = true; btn.textContent = 'Убираю...';
+      if (!quiet) toast('Примеры добавлены во все разделы');
+      return true;
+    } catch (e) {
+      renderHold = 0;
+      try { localStorage.setItem(DEMO_KEY, JSON.stringify(meta)); } catch (e2) {}
+      if (!quiet) toast('Не удалось добавить примеры: ' + (e && e.message ? e.message : e));
+      return false;
+    }
+  }
+  /* extraIds: id записей, созданных текущей попыткой (облачный список txs может отставать) */
+  async function demoRemove(quiet, extraIds) {
+    var meta = demoMeta() || { mood: [], lim: [], accDef: false, setOn: false };
     try {
-      var ex = txs.filter(function (t) { return isDx(t.id); });
+      var exIds = txs.filter(function (t) { return isDx(t.id) || isDx(t.recId); }).map(function (t) { return t.id; });
+      (extraIds || []).forEach(function (id) { if (exIds.indexOf(id) < 0) exIds.push(id); });
       renderHold++;
-      for (var i = 0; i < ex.length; i++) await removeTx(ex[i].id);
+      for (var i = 0; i < exIds.length; i++) await removeTx(exIds[i]);
       renderHold--;
       settings.goals = settings.goals.filter(function (g) { return !isDx(g.id); });
       settings.accs = settings.accs.filter(function (a) { return !isDx(a.id); });
@@ -3896,8 +3909,21 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
       hab = cleanHab(hab); persistHab();
       try { localStorage.removeItem(DEMO_KEY); } catch (e) {}
       renderHab(); render();
-      toast('Примеры убраны');
-    } catch (e) { renderHold = 0; toast('Не удалось убрать примеры.'); }
+      if (!quiet) toast('Примеры убраны');
+      return true;
+    } catch (e) { renderHold = 0; if (!quiet) toast('Не удалось убрать примеры.'); return false; }
+  }
+  $('devDemo').addEventListener('click', async function () {
+    var btn = $('devDemo');
+    if (demoMeta() || txs.some(function (t) { return isDx(t.id); })) { toast('Примеры уже добавлены. Сначала уберите их.'); return; }
+    btn.disabled = true; btn.textContent = 'Добавляю...';
+    await demoAdd(false);
+    btn.disabled = false; btn.textContent = 'Добавить примеры';
+  });
+  $('devDemoOff').addEventListener('click', async function () {
+    var btn = $('devDemoOff');
+    btn.disabled = true; btn.textContent = 'Убираю...';
+    await demoRemove(false);
     btn.disabled = false; btn.textContent = 'Убрать примеры';
   });
   // ----- страницы настроек -----
@@ -4466,15 +4492,14 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
   var welcomeDirty = false;
   var WL_ERR = 'Не удалось загрузить примеры. Можно повторить попытку или начать с нуля.';
   var WL_DIRTY = 'Не удалось загрузить примеры и убрать уже сохранённые. Часть демонстрационных записей могла сохраниться. Повторите очистку.';
-  /* Удаляет только записи, созданные текущей попыткой (по запомненным id), не опираясь на массив txs. */
+  /* Откат неудачной попытки: удаляются только данные этой попытки (записи по запомненным id, остальное по метке dx), без опоры на txs. */
   async function welcomeCleanup() {
-    var gone = lastExIds.slice();
-    var ok = true;
-    for (var i = 0; i < gone.length; i++) { try { await removeTx(gone[i]); } catch (e) { ok = false; } }
+    var ids = demoIds.slice();
+    var ok = await demoRemove(true, ids);
     if (ok && store.mode === 'local') {
       try {
         var saved = JSON.parse(localStorage.getItem(LS_KEY) || '[]');
-        ok = !(Array.isArray(saved) && saved.some(function (t) { return t && gone.indexOf(t.id) >= 0; }));
+        ok = !(Array.isArray(saved) && saved.some(function (t) { return t && (ids.indexOf(t.id) >= 0 || isDx(t.id)); })) && !demoMeta();
       } catch (e) { ok = false; }
     }
     return ok;
@@ -4494,7 +4519,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
       $('welcome').hidden = true;
       if (!openId) document.body.style.overflow = '';
       setTimeout(tourMaybe, 300);
-      toast('Часть примеров могла сохраниться. Если они появятся после перезапуска, уберите их кнопкой «Убрать примеры» внизу страницы.');
+      toast('Часть примеров могла сохраниться. Если они появятся после перезапуска, уберите их кнопкой «Убрать примеры» в плашке вверху раздела.');
       return;
     }
     welcomeBusy = true;
@@ -4507,10 +4532,10 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     } else if (kind === 'demo') {
       ok = false;
       try {
-        ok = (await loadExamples()) === true;
+        ok = (await demoAdd(true)) === true;
         if (ok && store.mode === 'local') {
           var saved = JSON.parse(localStorage.getItem(LS_KEY) || '[]');
-          ok = Array.isArray(saved) && saved.filter(function (t) { return t && t.example; }).length === 10;
+          ok = Array.isArray(saved) && demoIds.length > 0 && demoIds.every(function (id) { return saved.some(function (t) { return t && t.id === id; }); }) && !!demoMeta();
         }
       } catch (e) { ok = false; }
       if (!ok && !(await welcomeCleanup())) welcomeDirty = true;
@@ -5505,6 +5530,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
   $('svTake').addEventListener('click', function () { moveSave(-1); });
   /* Резервная копия */
   var bkPending = null;
+  function bkDate(d) { return pad(d.getDate()) + '.' + pad(d.getMonth() + 1) + '.' + d.getFullYear(); }
   function buildBackup() {
     // примеры из режима разработчика (id на «dx») в копию не попадают
     var nx = function (x) { return !isDx(x.id); }, dm = demoMeta(), dmo = dm || { mood: [], lim: [], accDef: false, setOn: false };
@@ -5514,7 +5540,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     var dxh = {}; hab.items.forEach(function (h) { if (isDx(h.id)) dxh[h.id] = 1; });
     var bLog = {}; Object.keys(hab.log).forEach(function (k) { var l = hab.log[k].filter(function (id) { return !dxh[id]; }); if (l.length) bLog[k] = l; });
     var bMood = {}; Object.keys(hab.mood).forEach(function (k) { if (dmo.mood.indexOf(k) < 0) bMood[k] = hab.mood[k]; });
-    return { app: 'kassa', v: 1, at: new Date().toISOString(), txs: txs.filter(function (t) { return !t.example && nx(t); }).map(function (t) {
+    return { app: 'kassa', v: 1, at: new Date().toISOString(), txs: txs.filter(function (t) { return !t.example && nx(t) && !isDx(t.recId); }).map(function (t) {
       var o = { id: t.id, type: t.type, cat: t.cat, amount: t.amount, date: t.date, note: t.note || '', createdAt: t.createdAt || 0 };
       if (t.auto) o.auto = true;
       if (t.recId) o.recId = t.recId;
@@ -5534,7 +5560,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 2000);
   }
   $('bkSave').addEventListener('click', async function () {
-    var json = JSON.stringify(buildBackup(), null, 1), name = 'kassa-' + dateStr(new Date()) + '.json';
+    var json = JSON.stringify(buildBackup(), null, 1), name = 'Резервная копия Focus ' + bkDate(new Date()) + '.json';
     try {
       var dl = window.claude && window.claude.use ? await window.claude.use('downloads') : null;
       if (dl) {
@@ -6342,7 +6368,8 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     }
     renderHab();
 
-    $('clearEx').hidden = !txs.some(function (t) { return t.example; });
+    $('clearEx').hidden = !hasExamples();
+    renderExBar();
     $('storeNote').textContent = store.mode === 'cloud'
       ? 'Записи хранятся в вашем аккаунте и видны только вам.'
       : 'Записи хранятся только в этом браузере. Если очистить данные сайта, они пропадут.';
@@ -6436,9 +6463,7 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
     }
   });
 
-  var lastExIds = [];
   async function loadExamples() {
-    lastExIds = [];
     var rows = [
       ['in', 'Зарплата', 72000, 'Аванс', 8],
       ['out', 'Жильё', 24000, 'Аренда', 7],
@@ -6452,34 +6477,49 @@ body.lay-edit .hero, body.lay-edit .remind { pointer-events: none; }
       ['out', 'Продукты', 1760, 'Супермаркет', 0]
     ];
     var base = new Date();
-    var exOk = false;
     view = { y: base.getFullYear(), m: base.getMonth() };
     try {
       for (var i = 0; i < rows.length; i++) {
         var r = rows[i];
         var dt = new Date(base.getFullYear(), base.getMonth(), Math.max(1, base.getDate() - r[4]));
-        var exId = newId();
-        lastExIds.push(exId);
-        await addTx({ id: exId, type: r[0], cat: r[1], amount: r[2], note: r[3], date: dateStr(dt), createdAt: Date.now() + i, example: true });
+        await addTx({ id: newId(), type: r[0], cat: r[1], amount: r[2], note: r[3], date: dateStr(dt), createdAt: Date.now() + i, example: true });
       }
       toast('Примеры добавлены. Убрать их можно внизу страницы.');
-      exOk = true;
     } catch (e) {
       toast('Не удалось сохранить примеры.');
     }
     render();
-    return exOk;
   }
 
-  $('clearEx').addEventListener('click', async function () {
-    var ex = txs.filter(function (t) { return t.example; });
+  /* Примеры (записи с признаком example и данные «dx» во всех разделах): показ плашки и единая кнопка «Убрать примеры» */
+  function hasDxData() {
+    var dx = function (x) { return isDx(x.id); };
+    return txs.some(function (t) { return isDx(t.id) || isDx(t.recId); }) || !!demoMeta() || hab.items.some(dx) || hab.tasks.some(dx) || settings.goals.some(dx) || settings.accs.some(dx) || rec.items.some(dx) || debt.items.some(dx) || tpl.items.some(dx);
+  }
+  function hasExamples() { return txs.some(function (t) { return t.example; }) || hasDxData(); }
+  function renderExBar() {
+    var on = !loading && hasExamples();
+    Array.prototype.forEach.call(document.querySelectorAll('.exbar'), function (b) { b.hidden = !on; });
+  }
+  var exBusy = false;
+  async function removeAllExamples() {
+    if (exBusy) return;
+    exBusy = true;
+    var btns = document.querySelectorAll('.exbar-b, #clearEx');
+    Array.prototype.forEach.call(btns, function (b) { b.disabled = true; });
+    var ok = true;
     try {
+      var ex = txs.filter(function (t) { return t.example; });
       for (var i = 0; i < ex.length; i++) await removeTx(ex[i].id);
-      toast('Примеры убраны');
-    } catch (e) {
-      toast('Не удалось убрать примеры.');
-    }
-  });
+    } catch (e) { ok = false; }
+    if (ok && hasDxData()) ok = await demoRemove(true);
+    toast(ok ? 'Примеры убраны' : 'Не удалось убрать примеры.');
+    exBusy = false;
+    Array.prototype.forEach.call(btns, function (b) { b.disabled = false; });
+    render();
+  }
+  $('clearEx').addEventListener('click', removeAllExamples);
+  document.addEventListener('click', function (e) { if (e.target.closest && e.target.closest('.exbar-b')) removeAllExamples(); });
 
   /* Лимиты, регулярные платежи */
   function catSpent(cat, key, exceptId) {
